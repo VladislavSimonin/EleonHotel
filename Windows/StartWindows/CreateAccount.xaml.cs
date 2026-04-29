@@ -9,6 +9,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Konscious.Security.Cryptography;
+using System.Security.Cryptography;
+using EleonHotel.Data;
 
 namespace EleonHotel.Windows.StartWindows
 {
@@ -21,5 +24,26 @@ namespace EleonHotel.Windows.StartWindows
         {
             InitializeComponent();
         }
+
+        private void BtnCreateAccount_Click(object sender, RoutedEventArgs e)
+        {
+            HotelDbContext dbContext = new HotelDbContext();
+
+            if (string.IsNullOrWhiteSpace(TbLogin.Text) || string.IsNullOrWhiteSpace(TbPassword.Text) ||
+            string.IsNullOrWhiteSpace(TbSurname.Text) || string.IsNullOrWhiteSpace(TbName.Text) ||
+            string.IsNullOrWhiteSpace(TbPatronymic.Text) || string.IsNullOrWhiteSpace(TbPhone.Text) ||
+            string.IsNullOrWhiteSpace(TbEmail.Text) || string.IsNullOrWhiteSpace(TbPassportSeries.Text) ||
+            string.IsNullOrWhiteSpace(TbPassportNumber.Text) || string.IsNullOrWhiteSpace(TbWhoGavePassport.Text) ||
+            string.IsNullOrWhiteSpace(TbWhenPassportGave.Text) || string.IsNullOrWhiteSpace(TbRegistrationAddress.Text))
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+                
+
+
+
+   
     }
 }

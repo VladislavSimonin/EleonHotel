@@ -59,7 +59,7 @@
         <TextBox x:Name="TbLogin" Grid.Row="11" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
         <TextBox x:Name="TbPassword" Grid.Row="12" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
         
-        <Button  Grid.Row="13" Grid.ColumnSpan="2" Grid.Column="1" Content="Создать аккаунт" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button x:Name="BtnCreateAccount" Grid.Row="13" Grid.ColumnSpan="2" Grid.Column="1" Content="Создать аккаунт" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnCreateAccount_Click"/>
 
     </Grid>
 </Window>
