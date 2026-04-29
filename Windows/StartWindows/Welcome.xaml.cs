@@ -24,5 +24,11 @@ namespace EleonHotel.Windows.StartWindows
             this.Height = SystemParameters.PrimaryScreenHeight * 0.5; // 80% высоты
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
+
+        private void CreateAccount_Click(object sender, RoutedEventArgs e)
+        {
+            new CreateAccount().Show();
+            this.Close();
+        }
     }
 }
