@@ -24,6 +24,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -36,30 +38,31 @@
         <Label Grid.Row="1" Grid.Column="0" Content="Фамилия" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Имя" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Отчество" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Серия паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Номер паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="Кем выдан паспорт" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="7" Grid.Column="0" Content="Дата выдачи паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="8" Grid.Column="0" Content="Адрес регистрации" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="9" Grid.Column="0" Content="Номер телефона" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="10" Grid.Column="0" Content="Электронная почта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="11" Grid.Column="0" Content="Придумайте логин" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="12" Grid.Column="0" Content="Придумайте пароль" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-        <TextBox x:Name="TbSurname" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbName" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPatronymic" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPassportSeries" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPassportNumber" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbWhoGavePassport" Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbWhenPassportGave" Grid.Row="7" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbRegistrationAddress" Grid.Row="8" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPhone" Grid.Row="9" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbEmail" Grid.Row="10" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbLogin" Grid.Row="11" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPassword" Grid.Row="12" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Ваш день рождения" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Серия паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Номер паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="7" Grid.Column="0" Content="Кем выдан паспорт" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="8" Grid.Column="0" Content="Дата выдачи паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="9" Grid.Column="0" Content="Адрес регистрации" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="10" Grid.Column="0" Content="Номер телефона" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="11" Grid.Column="0" Content="Электронная почта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="12" Grid.Column="0" Content="Придумайте логин" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="13" Grid.Column="0" Content="Придумайте пароль" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         
-        <Button x:Name="BtnCreateAccount" Grid.Row="13" Grid.ColumnSpan="2" Grid.Column="1" Content="Создать аккаунт" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnCreateAccount_Click"/>
+        <TextBox x:Name="TbSurname" MaxLength="30" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbName" MaxLength="30" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbPatronymic" MaxLength="30" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <DatePicker x:Name="Birthsday" Grid.Column="2" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="TbPassportSeries" MaxLength="4" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbPassportNumber" MaxLength="6" Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbWhoGavePassport" MaxLength="100" Grid.Row="7" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <DatePicker x:Name="WhenPassportGave" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="TbRegistrationAddress" Grid.Row="9" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbPhone" Grid.Row="10" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbEmail" Grid.Row="11" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbLogin" Grid.Row="12" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <TextBox x:Name="TbPassword" Grid.Row="13" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+        <Button x:Name="BtnCreateAccount" Grid.Row="14" Grid.ColumnSpan="2" Grid.Column="1" Content="Создать аккаунт" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BtnCreateAccount_Click" Margin="0,17,0,0" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>
