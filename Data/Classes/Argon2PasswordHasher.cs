@@ -5,7 +5,7 @@ using Konscious.Security.Cryptography;
 using System.Security.Cryptography;
 using System.Runtime.ExceptionServices;
 
-namespace EleonHotel.Data
+namespace EleonHotel.Data.Classes
 {
     public static class Argon2PasswordHasher
     {

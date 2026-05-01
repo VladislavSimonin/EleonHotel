@@ -33,6 +33,8 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
+    public DateOnly Birthsday { get; set; }
+
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
     public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();

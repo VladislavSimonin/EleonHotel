@@ -9,17 +9,17 @@ public partial class Employee
 
     public int UserId { get; set; }
 
-    public int ShiftId { get; set; }
+    public int? ShiftId { get; set; }
 
-    public decimal Salary { get; set; }
+    public decimal? Salary { get; set; }
 
-    public int PositionId { get; set; }
+    public int? PositionId { get; set; }
 
     public virtual ICollection<Penalty> Penalties { get; set; } = new List<Penalty>();
 
-    public virtual Position Position { get; set; } = null!;
+    public virtual Position? Position { get; set; }
 
-    public virtual Shift Shift { get; set; } = null!;
+    public virtual Shift? Shift { get; set; }
 
     public virtual User User { get; set; } = null!;
 }

@@ -9,11 +9,11 @@ public partial class Guest
 
     public int UserId { get; set; }
 
-    public int RoomId { get; set; }
+    public int? RoomId { get; set; }
 
     public virtual ICollection<PaymentInvoice> PaymentInvoices { get; set; } = new List<PaymentInvoice>();
 
-    public virtual Room Room { get; set; } = null!;
+    public virtual Room? Room { get; set; }
 
     public virtual User User { get; set; } = null!;
 

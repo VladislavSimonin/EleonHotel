@@ -28,14 +28,13 @@
             <Label FontSize="24" Grid.Row="1" Grid.Column="0" Content="Логин" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label FontSize="24" Grid.Row="2" Grid.Column="0" Content="Пароль" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             
-            <TextBox Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" Text="" VerticalAlignment="Center" Width="156"/>
-            <PasswordBox
-    Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="156"
+            <TextBox x:Name="TbLogin" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" Text="" VerticalAlignment="Center" Width="156"/>
+            <PasswordBox x:Name="PbPassword"
+    Grid.Column="1"  HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="156"
     Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"/>
-            
-            <Button x:Name="Enter" Grid.Column="2" Content="Войти" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="4" Width="198"/>
-            <Button x:Name="ForgetPassword" Grid.Column="1" Content="Забыли пароль?" HorizontalAlignment="Center" Margin="0,24,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-            <Button x:Name="CreateAccount" Grid.Column="1" Content="Создать аккаунт" HorizontalAlignment="Center" Margin="0,84,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="CreateAccount_Click"/>
+
+            <Button x:Name="Enter" Grid.Column="2" Content="Войти" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="4" Width="198" Click="Enter_Click"/>
+            <Button x:Name="CreateAccount" Grid.Column="1" Content="Создать аккаунт" HorizontalAlignment="Center" Margin="0,66,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="CreateAccount_Click"/>
 
         </Grid>
     </Grid>
