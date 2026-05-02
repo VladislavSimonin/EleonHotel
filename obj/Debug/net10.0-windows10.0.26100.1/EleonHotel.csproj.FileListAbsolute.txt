@@ -1,0 +1,15 @@
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.csproj.AssemblyReference.cache
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\MainWindow.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\App.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel_MarkupCompile.cache
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel_MarkupCompile.lref
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\MainWindow.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.g.resources
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.AssemblyInfoInputs.cache
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.AssemblyInfo.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.csproj.CoreCompileInputs.cache
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EFCoreSqlServerNetTopologySuite.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.dll
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\refint\EleonHotel.dll
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows10.0.26100.1\EleonHotel.pdb
