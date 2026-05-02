@@ -43,12 +43,13 @@ namespace EleonHotel.Windows.MainWindows
         private void LoadAllRoomData()
         {
             // Загружаем данные для всех категорий номеров
-            LoadRoomData("Econom", 1, TblEconomDesc, TblEconomFacilities, TblEconomCost);
-            LoadRoomData("Standart", 2, TblStandartDesc, TblStandartFacilities, TblStandartCost);
-            LoadRoomData("Comfort", 3, TblComfortDesc, TblComfortFacilities, TblComfortCost);
-            LoadRoomData("Family", 4, TblFamilyDesc, TblFamilyFacilities, TblFamilyCost);
-            LoadRoomData("Business", 5, TblBusinessDesc, TblBusinessFacilities, TblBusinessCost);
-            LoadRoomData("Lux", 6, TblLuxDesc, TblLuxFacilities, TblLuxCost);
+            // Используем оператор ! для указания компилятору, что элементы уже инициализированы через InitializeComponent()
+            LoadRoomData("Econom", 1, TblEconomDesc!, TblEconomFacilities!, TblEconomCost!);
+            LoadRoomData("Standart", 2, TblStandartDesc!, TblStandartFacilities!, TblStandartCost!);
+            LoadRoomData("Comfort", 3, TblComfortDesc!, TblComfortFacilities!, TblComfortCost!);
+            LoadRoomData("Family", 4, TblFamilyDesc!, TblFamilyFacilities!, TblFamilyCost!);
+            LoadRoomData("Business", 5, TblBusinessDesc!, TblBusinessFacilities!, TblBusinessCost!);
+            LoadRoomData("Lux", 6, TblLuxDesc!, TblLuxFacilities!, TblLuxCost!);
 
             // Инициализация списков изображений для всех категорий
             InitializeAllRoomImages();
@@ -56,13 +57,6 @@ namespace EleonHotel.Windows.MainWindows
 
         private void LoadRoomData(string categoryName, int categoryId, TextBlock descBlock, TextBlock facilitiesBlock, TextBlock costBlock)
         {
-            // Проверка на наличие элементов управления
-            if (descBlock == null || facilitiesBlock == null || costBlock == null)
-            {
-                MessageBox.Show($"Ошибка: Элементы управления для категории {categoryName} не найдены. Проверьте x:Name в XAML.", "Ошибка инициализации", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             const string query = @"
         SELECT 
         rc.description,
