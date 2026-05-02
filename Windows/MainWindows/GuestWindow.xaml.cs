@@ -9,14 +9,26 @@ namespace EleonHotel.Windows.MainWindows
     {
         private const string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         public int UserId { get; private set; }
-        private List<string> currentRoomImages;
+        private Dictionary<int, List<string>> roomImages;
+        private int currentCategoryIndex;
+
+        // Словарь для хранения ID категорий номеров
+        private readonly Dictionary<string, int> categoryIds = new Dictionary<string, int>
+        {
+            { "Econom", 1 },
+            { "Standart", 2 },
+            { "Comfort", 3 },
+            { "Family", 4 },
+            { "Business", 5 },
+            { "Lux", 6 }
+        };
 
         public GuestWindow(int userId)
         {
             InitializeComponent();
             UserId = userId;
             InitializeComboBox();
-            LoadRoomDescription();
+            LoadAllRoomData();
         }
 
         private void InitializeComboBox()
@@ -28,7 +40,21 @@ namespace EleonHotel.Windows.MainWindows
             CbGuests.SelectedIndex = 0;
         }
 
-        private void LoadRoomDescription()
+        private void LoadAllRoomData()
+        {
+            // Загружаем данные для всех категорий номеров
+            LoadRoomData("Econom", 1, TblEconomDesc, TblEconomFacilities, TblEconomCost);
+            LoadRoomData("Standart", 2, TblStandartDesc, TblStandartFacilities, TblStandartCost);
+            LoadRoomData("Comfort", 3, TblComfortDesc, TblComfortFacilities, TblComfortCost);
+            LoadRoomData("Family", 4, TblFamilyDesc, TblFamilyFacilities, TblFamilyCost);
+            LoadRoomData("Business", 5, TblBusinessDesc, TblBusinessFacilities, TblBusinessCost);
+            LoadRoomData("Lux", 6, TblLuxDesc, TblLuxFacilities, TblLuxCost);
+
+            // Инициализация списков изображений для всех категорий
+            InitializeAllRoomImages();
+        }
+
+        private void LoadRoomData(string categoryName, int categoryId, TextBlock descBlock, TextBlock facilitiesBlock, TextBlock costBlock)
         {
             const string query = @"
         SELECT 
@@ -41,12 +67,12 @@ namespace EleonHotel.Windows.MainWindows
                 FROM Rooms r2
                 JOIN Room_facilities rf2 ON r2.room_id = rf2.room_id
                 JOIN Facilities_list fl ON rf2.room_facility_id = fl.room_facility_id
-                WHERE r2.room_category_id = rc.room_category_id
+                WHERE r2.room_category_id = @CategoryId
             ) AS uf
             ORDER BY uf.room_facility_name
             FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, '') AS facilities
     FROM Room_categories rc
-    WHERE rc.room_category_id = 1;";
+    WHERE rc.room_category_id = @CategoryId;";
 
             try
             {
@@ -54,47 +80,105 @@ namespace EleonHotel.Windows.MainWindows
                 {
                     conn.Open();
                     using (var cmd = new SqlCommand(query, conn))
-                    using (var reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            TblEconomDesc.Text = reader["description"]?.ToString() ?? "Нет описания";
+                            if (reader.Read())
+                            {
+                                descBlock.Text = reader["description"]?.ToString() ?? "Нет описания";
 
-                            var costVal = reader["cost"];
-                            TblEconomCost.Text = costVal != DBNull.Value ?
-                                $"{Convert.ToDecimal(costVal):#,##0} ₽" : "Цена не указана";
+                                var costVal = reader["cost"];
+                                costBlock.Text = costVal != DBNull.Value ?
+                                    $"{Convert.ToDecimal(costVal):#,##0} ₽" : "Цена не указана";
 
-                            TblEconomFacilities.Text = reader["facilities"]?.ToString() ?? "Нет удобств";
+                                facilitiesBlock.Text = reader["facilities"]?.ToString() ?? "Нет удобств";
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка при загрузке данных для {categoryName}: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            // Инициализация списка изображений
-            InitializeRoomImages();
         }
 
-        private void InitializeRoomImages()
+        private void InitializeAllRoomImages()
         {
-            currentRoomImages = new List<string>
+            roomImages = new Dictionary<int, List<string>>
             {
-                "pack://application:,,,/Data/Images/Econom_1.jpg",
-                "pack://application:,,,/Data/Images/Econom_2.jpg",
-                "pack://application:,,,/Data/Images/Econom_3.jpg",
-                "pack://application:,,,/Data/Images/Econom_4.jpg",
-                "pack://application:,,,/Data/Images/Econom_5.jpg"
+                { 1, new List<string> // Econom
+                {
+                    "pack://application:,,,/Data/Images/Econom_1.jpg",
+                    "pack://application:,,,/Data/Images/Econom_2.jpg",
+                    "pack://application:,,,/Data/Images/Econom_3.jpg",
+                    "pack://application:,,,/Data/Images/Econom_4.jpg",
+                    "pack://application:,,,/Data/Images/Econom_5.jpg"
+                }},
+                { 2, new List<string> // Standart
+                {
+                    "pack://application:,,,/Data/Images/Standart_1.jpg",
+                    "pack://application:,,,/Data/Images/Standart_2.jpg",
+                    "pack://application:,,,/Data/Images/Standart_3.jpg",
+                    "pack://application:,,,/Data/Images/Standart_4.jpg",
+                    "pack://application:,,,/Data/Images/Standart_5.jpg"
+                }},
+                { 3, new List<string> // Comfort
+                {
+                    "pack://application:,,,/Data/Images/Comfort_1.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_2.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_3.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_4.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_5.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_6.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_7.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_8.jpg",
+                    "pack://application:,,,/Data/Images/Comfort_9.jpg"
+                }},
+                { 4, new List<string> // Family
+                {
+                    "pack://application:,,,/Data/Images/Family_1.jpg",
+                    "pack://application:,,,/Data/Images/Family_2.jpg",
+                    "pack://application:,,,/Data/Images/Family_3.jpg",
+                    "pack://application:,,,/Data/Images/Family_4.jpg",
+                    "pack://application:,,,/Data/Images/Family_5.jpg",
+                    "pack://application:,,,/Data/Images/Family_6.jpg",
+                    "pack://application:,,,/Data/Images/Family_7.jpg"
+                }},
+                { 5, new List<string> // Business
+                {
+                    "pack://application:,,,/Data/Images/Business_1.jpg",
+                    "pack://application:,,,/Data/Images/Business_2.jpg",
+                    "pack://application:,,,/Data/Images/Business_3.jpg",
+                    "pack://application:,,,/Data/Images/Business_4.jpg",
+                    "pack://application:,,,/Data/Images/Business_5.jpg",
+                    "pack://application:,,,/Data/Images/Business_6.jpg",
+                    "pack://application:,,,/Data/Images/Business_7.jpg",
+                    "pack://application:,,,/Data/Images/Business_8.jpg",
+                    "pack://application:,,,/Data/Images/Business_9.jpg",
+                    "pack://application:,,,/Data/Images/Business_10.jpg"
+                }},
+                { 6, new List<string> // Lux
+                {
+                    "pack://application:,,,/Data/Images/Lux_1.jpg",
+                    "pack://application:,,,/Data/Images/Lux_2.jpg",
+                    "pack://application:,,,/Data/Images/Lux_3.jpg",
+                    "pack://application:,,,/Data/Images/Lux_4.jpg",
+                    "pack://application:,,,/Data/Images/Lux_5.jpg",
+                    "pack://application:,,,/Data/Images/Lux_6.jpg",
+                    "pack://application:,,,/Data/Images/Lux_7.jpg",
+                    "pack://application:,,,/Data/Images/Lux_8.jpg",
+                    "pack://application:,,,/Data/Images/Lux_9.jpg"
+                }}
             };
         }
 
-        private void BtnEconomImage_Click(object sender, RoutedEventArgs e)
+        private void OpenImageGallery(int categoryId, string categoryName)
         {
-            if (currentRoomImages != null && currentRoomImages.Count > 0)
+            if (roomImages.ContainsKey(categoryId) && roomImages[categoryId].Count > 0)
             {
-                var galleryWindow = new ImageGalleryWindow(currentRoomImages, "Эконом");
+                var galleryWindow = new ImageGalleryWindow(roomImages[categoryId], categoryName);
                 galleryWindow.Owner = this;
                 galleryWindow.ShowDialog();
             }
@@ -102,6 +186,79 @@ namespace EleonHotel.Windows.MainWindows
             {
                 MessageBox.Show("Нет доступных изображений", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void BtnEconomImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenImageGallery(1, "Эконом");
+        }
+
+        private void BtnStandartImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenImageGallery(2, "Стандарт");
+        }
+
+        private void BtnComfortImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenImageGallery(3, "Комфорт");
+        }
+
+        private void BtnFamilyImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenImageGallery(4, "Семейный");
+        }
+
+        private void BtnBusinessImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenImageGallery(5, "Бизнес");
+        }
+
+        private void BtnLuxImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenImageGallery(6, "Люкс");
+        }
+
+        private void BtnEconomBooking_Click(object sender, RoutedEventArgs e)
+        {
+            BookRoom(1, "Эконом");
+        }
+
+        private void BtnStandartBooking_Click(object sender, RoutedEventArgs e)
+        {
+            BookRoom(2, "Стандарт");
+        }
+
+        private void BtnComfortBooking_Click(object sender, RoutedEventArgs e)
+        {
+            BookRoom(3, "Комфорт");
+        }
+
+        private void BtnFamilyBooking_Click(object sender, RoutedEventArgs e)
+        {
+            BookRoom(4, "Семейный");
+        }
+
+        private void BtnBusinessBooking_Click(object sender, RoutedEventArgs e)
+        {
+            BookRoom(5, "Бизнес");
+        }
+
+        private void BtnLuxBooking_Click(object sender, RoutedEventArgs e)
+        {
+            BookRoom(6, "Люкс");
+        }
+
+        private void BookRoom(int categoryId, string categoryName)
+        {
+            int guestsCount = CbGuests.SelectedItem != null ? (int)CbGuests.SelectedItem : 1;
+            
+            MessageBox.Show(
+                $"Вы выбрали бронирование номера категории \"{categoryName}\".\n" +
+                $"Количество гостей: {guestsCount}\n\n" +
+                $"В ближайшее время будет подключена оплата через ЮKassa.",
+                "Бронирование номера",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
     }
 }
