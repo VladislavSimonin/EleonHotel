@@ -56,6 +56,13 @@ namespace EleonHotel.Windows.MainWindows
 
         private void LoadRoomData(string categoryName, int categoryId, TextBlock descBlock, TextBlock facilitiesBlock, TextBlock costBlock)
         {
+            // Проверка на наличие элементов управления
+            if (descBlock == null || facilitiesBlock == null || costBlock == null)
+            {
+                MessageBox.Show($"Ошибка: Элементы управления для категории {categoryName} не найдены. Проверьте x:Name в XAML.", "Ошибка инициализации", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             const string query = @"
         SELECT 
         rc.description,
@@ -81,18 +88,38 @@ namespace EleonHotel.Windows.MainWindows
                     conn.Open();
                     using (var cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                        // Явно указываем тип параметра
+                        cmd.Parameters.Add("@CategoryId", System.Data.SqlDbType.Int).Value = categoryId;
+                        
                         using (var reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                descBlock.Text = reader["description"]?.ToString() ?? "Нет описания";
+                                // Обработка описания
+                                object descObj = reader["description"];
+                                descBlock.Text = (descObj != DBNull.Value) ? descObj.ToString() : "Нет описания";
 
-                                var costVal = reader["cost"];
-                                costBlock.Text = costVal != DBNull.Value ?
-                                    $"{Convert.ToDecimal(costVal):#,##0} ₽" : "Цена не указана";
+                                // Обработка цены
+                                object costObj = reader["cost"];
+                                if (costObj != DBNull.Value && decimal.TryParse(costObj.ToString(), out decimal cost))
+                                {
+                                    costBlock.Text = $"{cost:#,##0} ₽";
+                                }
+                                else
+                                {
+                                    costBlock.Text = "Цена не указана";
+                                }
 
-                                facilitiesBlock.Text = reader["facilities"]?.ToString() ?? "Нет удобств";
+                                // Обработка удобств
+                                object facilitiesObj = reader["facilities"];
+                                facilitiesBlock.Text = (facilitiesObj != DBNull.Value) ? facilitiesObj.ToString() : "Нет удобств";
+                            }
+                            else
+                            {
+                                // Если данных нет
+                                descBlock.Text = "Информация о категории не найдена";
+                                facilitiesBlock.Text = string.Empty;
+                                costBlock.Text = "Цена не указана";
                             }
                         }
                     }
@@ -100,7 +127,7 @@ namespace EleonHotel.Windows.MainWindows
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке данных для {categoryName}: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка при загрузке данных для {categoryName}: {ex.Message}\n\nДетали: {ex.InnerException?.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
