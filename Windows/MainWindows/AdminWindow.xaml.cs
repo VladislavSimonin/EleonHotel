@@ -17,9 +17,12 @@ namespace EleonHotel.Windows.MainWindows
     /// </summary>
     public partial class AdminWindow : Window
     {
-        public AdminWindow()
+        public int UserId { get; private set; }
+
+        public AdminWindow(int userId)
         {
             InitializeComponent();
+            UserId = userId;
         }
     }
 }

@@ -8,52 +8,54 @@
         mc:Ignorable="d"
         xmlns:classes="clr-namespace:EleonHotel.Data.Classes"
         xmlns:converters="clr-namespace:EleonHotel.Data.Converters"
-        ResizeMode="CanResizeWithGrip"
-        Title="Создать аккаунт" Height="830" Width="660" MinWidth="480" MinHeight="740">
-    <Grid>
-        <Grid.Resources>
-            <converters:BoolToPackIconKindConverter x:Key="BoolToPackIconKindConverter"/>
-            <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
-        </Grid.Resources>
+        ResizeMode="NoResize"
+        Title="Создать аккаунт" Height="510" Width="560" MinWidth="660" MinHeight="430">
+    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Visible" Height="450">
+        <Grid>
+            <Grid.Resources>
+                <converters:BoolToPackIconKindConverter x:Key="BoolToPackIconKindConverter"/>
+                <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+            </Grid.Resources>
+        
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
         <Label Grid.Row="1" Grid.Column="0" Content="Фамилия" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Grid.Row="2" Grid.Column="0" Content="Имя" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Grid.Row="3" Grid.Column="0" Content="Отчество" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -148,5 +150,6 @@
         <Button x:Name="BtnCreateAccount" Grid.Row="26" Grid.ColumnSpan="1" Grid.Column="2" Content="Создать аккаунт" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BtnCreateAccount_Click" Grid.RowSpan="2"/>
         <RadioButton x:Name="RbGuest" Grid.Column="1" Content="Гость" HorizontalAlignment="Left" Grid.Row="23" VerticalAlignment="Center" />
         <RadioButton x:Name="RbEmployee" Grid.Column="1" Content="Сотрудник" HorizontalAlignment="Left" Grid.Row="24" VerticalAlignment="Center"/>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

@@ -1,0 +1,51 @@
+<Window x:Class="EleonHotel.Windows.MainWindows.ImageGalleryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Просмотр изображений" Height="700" Width="1000" 
+        WindowStartupLocation="CenterOwner" Background="#F5F5F5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Background="#333333">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20">
+                <TextBlock x:Name="TblTitle" Text="Просмотр изображений номера" Foreground="White" 
+                       FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+            <Button x:Name="BtnClose" Click="BtnClose_Click" 
+                HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Width="40" Height="40" Background="Transparent" Foreground="White" 
+                FontSize="18" Margin="10" Content="✕"/>
+        </Grid>
+
+        <!-- Main Image -->
+        <Grid Grid.Row="1" Background="Black" MouseDown="Grid_MouseDown">
+            <Image x:Name="MainImage" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <!-- Previous Button -->
+            <Button x:Name="BtnPrevious" Click="BtnPrevious_Click" 
+                    Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    Margin="20,0,0,0" Background="#2196F3" Foreground="White" FontSize="20" Content="‹"/>
+
+            <!-- Next Button -->
+            <Button x:Name="BtnNext" Click="BtnNext_Click" 
+                    Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                    Margin="0,0,20,0" Background="#2196F3" Foreground="White" FontSize="20" Content="›"/>
+
+            <!-- Image Counter -->
+            <TextBlock x:Name="TblCounter" Foreground="White" FontSize="14" 
+                       HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"
+                       Background="#000000" Opacity="0.7" Padding="10,5"/>
+        </Grid>
+
+        <!-- Thumbnails -->
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" 
+                      Padding="10" Background="#F5F5F5">
+            <StackPanel x:Name="ThumbnailsPanel" Orientation="Horizontal" Height="120"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

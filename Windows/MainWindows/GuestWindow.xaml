@@ -4,9 +4,83 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="GuestWindow" Height="450" Width="800">
+        ResizeMode="CanResizeWithGrip"
+        Title="Выбор номера" Height="940" Width="960" MinHeight="480" MinWidth="640">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="4" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed"
+               FontSize="24" Content="Пожалуйста, выберите номер" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+        <Button x:Name="BtnMainImage" Grid.Column="1" Margin="0,0,0,2" Grid.ColumnSpan="2" Grid.RowSpan="4" Grid.Row="9" 
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="Transparent" Click="BtnMainImage_Click"
+                Cursor="Hand" ToolTip="Нажмите для просмотра галереи">
+            <Image Source="/Data/Images/Econom_1.jpg" Width="100" Height="90" Stretch="UniformToFill"/>
+        </Button>
+
+        <Button x:Name="BtnThumb1" Grid.Column="1" Grid.Row="13" HorizontalAlignment="Left" 
+                Background="Transparent" Click="BtnMainImage_Click" Cursor="Hand" ToolTip="Просмотр галереи">
+            <Image Source="/Data/Images/Econom_2.jpg" Stretch="UniformToFill" Width="30" Height="30"/>
+        </Button>
+
+        <Button x:Name="BtnThumb2" Grid.Column="1" Grid.Row="13" Margin="35,0,0,0" HorizontalAlignment="Left" 
+                Background="Transparent" Click="BtnMainImage_Click" Cursor="Hand" ToolTip="Просмотр галереи">
+            <Image Source="/Data/Images/Econom_3.jpg" Stretch="UniformToFill" Width="30" Height="30"/>
+        </Button>
+
+        <Button x:Name="BtnThumb3" Grid.Column="1" Grid.Row="13" Margin="70,0,0,0" HorizontalAlignment="Left" 
+                Background="Transparent" Click="BtnMainImage_Click" Cursor="Hand" ToolTip="Просмотр галереи">
+            <Image Source="/Data/Images/Econom_5.jpg" Stretch="UniformToFill" Width="30" Height="30"/>
+        </Button>
+        <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Количество гостей" FontSize="18" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center"/>
+        <ComboBox x:Name="CbGuests" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="5" Width="120"/>
+        <TextBlock x:Name="TblDesc1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Row="10" TextWrapping="Wrap" Text="{Binding description}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="TblFacilities1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Row="11" TextWrapping="Wrap" Text="{Binding facilities, StringFormat='Удобства: {0}'}" VerticalAlignment="center"/>
+        <TextBlock x:Name="TblCost1" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="13" TextWrapping="Wrap" Text="{Binding cost, StringFormat='Цена: {0}'}" VerticalAlignment="Center"/>
+
+
     </Grid>
 </Window>

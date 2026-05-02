@@ -55,6 +55,7 @@ namespace EleonHotel.Windows.StartWindows
             using var tran = conn.BeginTransaction();
             try
             {
+                BtnCreateAccount.IsEnabled = false;
                 // 1. Получаем MAX(user_id)
                 using (var cmdMax = new SqlCommand(
                     "select isnull(max(user_id), 0) from Users", conn, tran))

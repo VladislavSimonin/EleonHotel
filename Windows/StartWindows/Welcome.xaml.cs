@@ -119,7 +119,7 @@ namespace EleonHotel.Windows.StartWindows
                             if (reader.Read())
                             {
                                 // Пользователь является гостем
-                                new GuestWindow().Show();
+                                new GuestWindow(userId).Show();
                                 this.Close();
                                 return;
                             }
@@ -138,7 +138,7 @@ namespace EleonHotel.Windows.StartWindows
                             if (reader.Read())
                             {
                                 // Пользователь является администратором
-                                new AdminWindow().Show();
+                                new AdminWindow(userId).Show();
                                 this.Close();
                                 return;
                             }
