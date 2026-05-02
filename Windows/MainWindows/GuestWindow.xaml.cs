@@ -58,14 +58,13 @@ namespace EleonHotel.Windows.MainWindows
                     {
                         if (reader.Read())
                         {
-                            TblDesc1.Text = reader["description"]?.ToString() ?? "Нет описания";
+                            TblEconomDesc.Text = reader["description"]?.ToString() ?? "Нет описания";
 
-                            // Безопасная работа с денежным типом
                             var costVal = reader["cost"];
-                            TblCost1.Text = costVal != DBNull.Value ?
+                            TblEconomCost.Text = costVal != DBNull.Value ?
                                 $"{Convert.ToDecimal(costVal):#,##0} ₽" : "Цена не указана";
 
-                            TblFacilities1.Text = reader["facilities"]?.ToString() ?? "Нет удобств";
+                            TblEconomFacilities.Text = reader["facilities"]?.ToString() ?? "Нет удобств";
                         }
                     }
                 }
@@ -86,11 +85,12 @@ namespace EleonHotel.Windows.MainWindows
                 "pack://application:,,,/Data/Images/Econom_1.jpg",
                 "pack://application:,,,/Data/Images/Econom_2.jpg",
                 "pack://application:,,,/Data/Images/Econom_3.jpg",
+                "pack://application:,,,/Data/Images/Econom_4.jpg",
                 "pack://application:,,,/Data/Images/Econom_5.jpg"
             };
         }
 
-        private void BtnMainImage_Click(object sender, RoutedEventArgs e)
+        private void BtnEconomImage_Click(object sender, RoutedEventArgs e)
         {
             if (currentRoomImages != null && currentRoomImages.Count > 0)
             {
