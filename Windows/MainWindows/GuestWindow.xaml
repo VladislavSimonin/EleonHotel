@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         ResizeMode="CanResizeWithGrip"
-        Title="Выбор номера" Height="940" Width="960" MinHeight="480" MinWidth="640">
+        Title="Выбор номера" Height="1940" Width="960" MinHeight="480" MinWidth="640">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
