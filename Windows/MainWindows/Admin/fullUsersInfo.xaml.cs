@@ -16,6 +16,7 @@ namespace EleonHotel.Windows.MainWindows.Admin
         public fullUsersInfo()
         {
             InitializeComponent();
+            LoadUsersData();
         }
 
         private void LoadUsersData()
@@ -23,15 +24,17 @@ namespace EleonHotel.Windows.MainWindows.Admin
             string query = @"
                 SELECT 
                     user_id AS [ID],
-                    first_name AS [Имя],
-                    last_name AS [Фамилия],
-                    middle_name AS [Отчество],
+                    surname AS [Фамилия],
+                    name AS [Имя],
+                    patronymic AS [Отчество],
                     passport_series AS [Серия паспорта],
                     passport_number AS [Номер паспорта],
-                    address AS [Адрес],
+                    who_gave_passport AS [Кем выдан],
+                    when_gave_passport AS [Дата выдачи],
+                    registration_address AS [Адрес регистрации],
                     phone AS [Телефон],
                     email AS [Email],
-                    date_of_birth AS [Дата рождения]
+                    birthsday AS [Дата рождения]
                 FROM Users";
 
             try
@@ -46,6 +49,7 @@ namespace EleonHotel.Windows.MainWindows.Admin
                         adapter.Fill(dt);
 
                         UsersDataGrid.ItemsSource = dt.DefaultView;
+                        UsersDataGrid.IsReadOnly = true;
                     }
                 }
             }
