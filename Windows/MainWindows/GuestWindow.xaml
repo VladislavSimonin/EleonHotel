@@ -1,4 +1,5 @@
 ﻿<Window x:Class="EleonHotel.Windows.MainWindows.GuestWindow"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,237 +8,306 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         ResizeMode="CanResizeWithGrip"
-        Title="Выбор номера" Height="940" Width="960" MinHeight="480" MinWidth="640">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        WindowStartupLocation="CenterScreen"
+        Title="Выбор номера" Height="940" Width="960" MinHeight="840" MinWidth="1240">
+    <ScrollViewer Background="#22220398" CanContentScroll="True" VerticalScrollBarVisibility="Auto" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed"
-               FontSize="24" Content="Пожалуйста, выберите номер" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
 
-        <!-- Эконом -->
-        <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Эконом" FontSize="20" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="4" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed"
+               FontSize="24" Content="Пожалуйста, выберите номер" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Количество гостей:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed" 
+   HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <ComboBox x:Name="CbGuests" SelectionChanged="CbGuests_SelectionChanged" Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" Width="120"/>
+
+            <TextBlock Grid.Column="3" HorizontalAlignment="Right" Grid.Row="1" TextWrapping="Wrap" Text="Дата въезда:" VerticalAlignment="Center" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"/>
+            <DatePicker x:Name="DtEnter" Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" DisplayDateStart="{x:Static sys:DateTime.Now}" IsEnabled="True" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"/>
+            <TextBlock Grid.Column="5" HorizontalAlignment="Right" Grid.Row="1" TextWrapping="Wrap" Text="Дата выезда:" VerticalAlignment="Center" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"/>
+            <DatePicker x:Name="DtOut" Grid.Column="6" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" DisplayDateStart="{x:Static sys:DateTime.Now}" IsEnabled="True" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"/>
+
+
+            <!-- Эконом -->
+            <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Эконом" FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Margin="10,5"/>
-        
-        <Button x:Name="BtnEconomImage" Grid.Column="1" Grid.Row="3" Grid.RowSpan="5"
+
+            <Button x:Name="BtnEconomImage" Grid.Column="1" Grid.Row="3" Grid.RowSpan="5"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="BtnEconomImage_Click"
                 Cursor="Hand" ToolTip="Нажмите для просмотра галереи" Height="229" Width="287" Grid.ColumnSpan="2" Margin="10,10,0,0">
-            <Image Source="/Data/Images/Econom_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
-        </Button>
+                <Image Source="/Data/Images/Econom_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
+            </Button>
 
-        <Label Grid.Column="3" Content="Количество гостей:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
-               HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <ComboBox x:Name="CbGuests" Grid.Column="4" HorizontalAlignment="Left" Grid.Row="3" Width="120" Margin="10,0,0,0"/>
-        
-        <TextBlock FontSize="14" x:Name="TblEconomDesc" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed" FontSize="18" x:Name="TblEconomDesc" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,5,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Удобства:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Grid.ColumnSpan="2" Content="Вместимость: 2 гостя" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Margin="10,5,0,0"/>
+
+
+            <Label Grid.Column="3" Content="Удобства:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblEconomFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
-                   HorizontalAlignment="Left" Grid.Row="7" TextWrapping="Wrap" 
-                   VerticalAlignment="Top" Margin="10,0,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Цена:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" FontSize="18" x:Name="TblEconomFacilities" Grid.Column="4" Grid.ColumnSpan="1" 
+                   HorizontalAlignment="Left" Grid.Row="6" TextWrapping="Wrap" Margin="10,9,0,0" 
+                   VerticalAlignment="Top"/>
+
+            <Label Grid.Column="3" Content="Цена за сутки:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Center" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblEconomCost" Grid.Column="4" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-ExtraBoldItalic.ttf#Roboto Condensed" FontSize="24" x:Name="TblEconomCost" Grid.Column="4" 
                    HorizontalAlignment="Left" Grid.Row="9" TextWrapping="Wrap" 
                    VerticalAlignment="Center" Margin="60,5,0,0"/>
-        
-        <Button x:Name="BtnEconomBooking" Grid.Column="1" Grid.ColumnSpan="2" Content="Забронировать" 
-                HorizontalAlignment="Left" Grid.Row="10" VerticalAlignment="Center" 
-                Width="150" Height="40" Margin="10,10,0,0" Click="BtnEconomBooking_Click"/>
 
-        <!-- Стандарт -->
-        <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Стандарт" FontSize="20" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            <Button FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="24" x:Name="BtnEconomBooking" Content="Забронировать" 
+                HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Row="5"
+                Grid.Column="6" Grid.ColumnSpan="2" Width="250" Height="40" Margin="10,10,0,0" Click="BtnEconomBooking_Click"/>
+            <TextBlock x:Name="TbEconomBlock" Grid.Column="6" Grid.Row="6" Visibility="Collapsed" HorizontalAlignment="Left" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Превышена максимальная вместимость номера!" VerticalAlignment="Top" Foreground="#FF2E69" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="16" TextAlignment="Center" Margin="10,0,0,0" Width="250"/>
+
+            <!-- Стандарт -->
+            <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Стандарт" FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="11" VerticalAlignment="Center" Margin="10,5"/>
-        
-        <Button x:Name="BtnStandartImage" Grid.Column="1" Grid.Row="12" Grid.RowSpan="5"
+
+            <Button x:Name="BtnStandartImage" Grid.Column="1" Grid.Row="12" Grid.RowSpan="5"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="BtnStandartImage_Click"
                 Cursor="Hand" ToolTip="Нажмите для просмотра галереи" Height="229" Width="287" Grid.ColumnSpan="2" Margin="10,10,0,0">
-            <Image Source="/Data/Images/Standart_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
-        </Button>
+                <Image Source="/Data/Images/Standart_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
+            </Button>
 
-        <TextBlock FontSize="14" x:Name="TblStandartDesc" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed" FontSize="18" x:Name="TblStandartDesc" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="12" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,10,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Удобства:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Grid.ColumnSpan="2" Content="Вместимость: 2 гостя" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            HorizontalAlignment="Left" Grid.Row="13" VerticalAlignment="Top" Margin="10,5,0,0"/>
+            
+            <Label Grid.Column="3" Content="Удобства:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="14" VerticalAlignment="Top" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblStandartFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblStandartFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="15" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,0,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Цена:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Content="Цена за сутки:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="17" VerticalAlignment="Center" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblStandartCost" Grid.Column="4" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-ExtraBoldItalic.ttf#Roboto Condensed" FontSize="24" x:Name="TblStandartCost" Grid.Column="4" 
                    HorizontalAlignment="Left" Grid.Row="17" TextWrapping="Wrap" 
                    VerticalAlignment="Center" Margin="60,5,0,0"/>
-        
-        <Button x:Name="BtnStandartBooking" Grid.Column="1" Grid.ColumnSpan="2" Content="Забронировать" 
-                HorizontalAlignment="Left" Grid.Row="18" VerticalAlignment="Center" 
-                Width="150" Height="40" Margin="10,10,0,0" Click="BtnStandartBooking_Click"/>
 
-        <!-- Комфорт -->
-        <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Комфорт" FontSize="20" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            <Button FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="24" x:Name="BtnStandartBooking" Content="Забронировать" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Grid.Column="6" Grid.ColumnSpan="2" Width="250" Height="40" Grid.Row="13" Margin="10,10,0,0" Click="BtnStandartBooking_Click"/>
+            <TextBlock x:Name="TbStandartBlock" Grid.Column="6" Grid.Row="14" Visibility="Collapsed" HorizontalAlignment="Left" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Превышена максимальная вместимость номера!" VerticalAlignment="Top" Foreground="#FF2E69" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="16" TextAlignment="Center" Margin="10,0,0,0" Width="250"/>
+
+            <!-- Комфорт -->
+            <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Комфорт" FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="19" VerticalAlignment="Center" Margin="10,5"/>
-        
-        <Button x:Name="BtnComfortImage" Grid.Column="1" Grid.Row="20" Grid.RowSpan="5"
+
+            <Button x:Name="BtnComfortImage" Grid.Column="1" Grid.Row="20" Grid.RowSpan="5"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="BtnComfortImage_Click"
                 Cursor="Hand" ToolTip="Нажмите для просмотра галереи" Height="229" Width="287" Grid.ColumnSpan="2" Margin="10,10,0,0">
-            <Image Source="/Data/Images/Comfort_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
-        </Button>
+                <Image Source="/Data/Images/Comfort_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
+            </Button>
 
-        <TextBlock FontSize="14" x:Name="TblComfortDesc" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblComfortDesc" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="20" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,10,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Удобства:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Grid.ColumnSpan="2" Content="Вместимость: 4 гостя" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            HorizontalAlignment="Left" Grid.Row="21" VerticalAlignment="Top" Margin="10,5,0,0"/>
+            
+            <Label Grid.Column="3" Content="Удобства:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="22" VerticalAlignment="Top" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblComfortFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblComfortFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="23" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,0,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Цена:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Content="Цена за сутки:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="25" VerticalAlignment="Center" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblComfortCost" Grid.Column="4" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-ExtraBoldItalic.ttf#Roboto Condensed" FontSize="24" x:Name="TblComfortCost" Grid.Column="4" 
                    HorizontalAlignment="Left" Grid.Row="25" TextWrapping="Wrap" 
                    VerticalAlignment="Center" Margin="60,5,0,0"/>
-        
-        <Button x:Name="BtnComfortBooking" Grid.Column="1" Grid.ColumnSpan="2" Content="Забронировать" 
-                HorizontalAlignment="Left" Grid.Row="26" VerticalAlignment="Center" 
-                Width="150" Height="40" Margin="10,10,0,0" Click="BtnComfortBooking_Click"/>
 
-        <!-- Семейный -->
-        <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Семейный" FontSize="20" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            <Button FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="24" x:Name="BtnComfortBooking" Content="Забронировать" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Grid.Column="6" Grid.ColumnSpan="2" Width="250" Height="40" Grid.Row="21" Margin="10,10,0,0" Click="BtnComfortBooking_Click"/>
+            <TextBlock x:Name="TbComfortBlock" Grid.Column="6" Grid.Row="22" Visibility="Collapsed" HorizontalAlignment="Left" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Превышена максимальная вместимость номера!" VerticalAlignment="Top" Foreground="#FF2E69" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="16" TextAlignment="Center" Margin="10,0,0,0" Width="250"/>
+
+            <!-- Семейный -->
+            <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Семейный" FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="27" VerticalAlignment="Center" Margin="10,5"/>
-        
-        <Button x:Name="BtnFamilyImage" Grid.Column="1" Grid.Row="28" Grid.RowSpan="5"
+
+            <Button x:Name="BtnFamilyImage" Grid.Column="1" Grid.Row="28" Grid.RowSpan="5"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="BtnFamilyImage_Click"
                 Cursor="Hand" ToolTip="Нажмите для просмотра галереи" Height="229" Width="287" Grid.ColumnSpan="2" Margin="10,10,0,0">
-            <Image Source="/Data/Images/Family_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
-        </Button>
+                <Image Source="/Data/Images/Family_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
+            </Button>
 
-        <TextBlock FontSize="14" x:Name="TblFamilyDesc" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblFamilyDesc" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="28" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,10,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Удобства:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Grid.ColumnSpan="2" Content="Вместимость: 5 гостей" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            HorizontalAlignment="Left" Grid.Row="29" VerticalAlignment="Top" Margin="10,5,0,0"/>
+
+            <Label Grid.Column="3" Content="Удобства:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="30" VerticalAlignment="Top" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblFamilyFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblFamilyFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="31" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,0,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Цена:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Content="Цена за сутки:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="33" VerticalAlignment="Center" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblFamilyCost" Grid.Column="4" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-ExtraBoldItalic.ttf#Roboto Condensed" FontSize="24" x:Name="TblFamilyCost" Grid.Column="4" 
                    HorizontalAlignment="Left" Grid.Row="33" TextWrapping="Wrap" 
                    VerticalAlignment="Center" Margin="60,5,0,0"/>
-        
-        <Button x:Name="BtnFamilyBooking" Grid.Column="1" Grid.ColumnSpan="2" Content="Забронировать" 
-                HorizontalAlignment="Left" Grid.Row="34" VerticalAlignment="Center" 
-                Width="150" Height="40" Margin="10,10,0,0" Click="BtnFamilyBooking_Click"/>
 
-        <!-- Бизнес -->
-        <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Бизнес" FontSize="20" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            <Button FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="24" x:Name="BtnFamilyBooking" Content="Забронировать" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Grid.Column="6" Grid.ColumnSpan="2" Width="250" Height="40" Grid.Row="29" Margin="10,10,0,0" Click="BtnFamilyBooking_Click"/>
+            <TextBlock x:Name="TbFamilyBlock" Grid.Column="6" Grid.Row="30" Visibility="Collapsed" HorizontalAlignment="Left" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Превышена максимальная вместимость номера!" VerticalAlignment="Top" Foreground="#FF2E69" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="16" TextAlignment="Center" Margin="10,0,0,0" Width="250"/>
+
+            <!-- Бизнес -->
+            <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Бизнес" FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="35" VerticalAlignment="Center" Margin="10,5"/>
-        
-        <Button x:Name="BtnBusinessImage" Grid.Column="1" Grid.Row="36" Grid.RowSpan="5"
+
+            <Button x:Name="BtnBusinessImage" Grid.Column="1" Grid.Row="36" Grid.RowSpan="5"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="BtnBusinessImage_Click"
                 Cursor="Hand" ToolTip="Нажмите для просмотра галереи" Height="229" Width="287" Grid.ColumnSpan="2" Margin="10,10,0,0">
-            <Image Source="/Data/Images/Business_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
-        </Button>
+                <Image Source="/Data/Images/Business_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
+            </Button>
 
-        <TextBlock FontSize="14" x:Name="TblBusinessDesc" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblBusinessDesc" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="36" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,10,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Удобства:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            <Label Grid.Column="3" Grid.ColumnSpan="2" Content="Вместимость: 5 гостей" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            HorizontalAlignment="Left" Grid.Row="37" VerticalAlignment="Top" Margin="10,5,0,0"/>
+            
+            <Label Grid.Column="3" Content="Удобства:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="38" VerticalAlignment="Top" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblBusinessFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblBusinessFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="39" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,0,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Цена:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Content="Цена за сутки:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="41" VerticalAlignment="Center" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblBusinessCost" Grid.Column="4" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-ExtraBoldItalic.ttf#Roboto Condensed" FontSize="24" x:Name="TblBusinessCost" Grid.Column="4" 
                    HorizontalAlignment="Left" Grid.Row="41" TextWrapping="Wrap" 
                    VerticalAlignment="Center" Margin="60,5,0,0"/>
-        
-        <Button x:Name="BtnBusinessBooking" Grid.Column="1" Grid.ColumnSpan="2" Content="Забронировать" 
-                HorizontalAlignment="Left" Grid.Row="42" VerticalAlignment="Center" 
-                Width="150" Height="40" Margin="10,10,0,0" Click="BtnBusinessBooking_Click"/>
 
-        <!-- Люкс -->
-        <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Люкс" FontSize="20" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            <Button FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="24" x:Name="BtnBusinessBooking" Content="Забронировать" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Grid.Column="6" Grid.ColumnSpan="2" Width="250" Height="40" Grid.Row="37" Margin="10,10,0,0" Click="BtnBusinessBooking_Click"/>
+            <TextBlock x:Name="TbBusinessBlock" Grid.Column="6" Grid.Row="38" Visibility="Collapsed" HorizontalAlignment="Left" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Превышена максимальная вместимость номера!" VerticalAlignment="Top" Foreground="#FF2E69" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="16" TextAlignment="Center" Margin="10,0,0,0" Width="250"/>
+
+            <!-- Люкс -->
+            <Label Grid.Column="0" Grid.ColumnSpan="6" Content="Люкс" FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="43" VerticalAlignment="Center" Margin="10,5"/>
-        
-        <Button x:Name="BtnLuxImage" Grid.Column="1" Grid.Row="44" Grid.RowSpan="5"
+
+            <Button x:Name="BtnLuxImage" Grid.Column="1" Grid.Row="44" Grid.RowSpan="5"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Click="BtnLuxImage_Click"
                 Cursor="Hand" ToolTip="Нажмите для просмотра галереи" Height="229" Width="287" Grid.ColumnSpan="2" Margin="10,10,0,0">
-            <Image Source="/Data/Images/Lux_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
-        </Button>
+                <Image Source="/Data/Images/Lux_1.jpg" Height="210" Width="270" Stretch="UniformToFill"/>
+            </Button>
 
-        <TextBlock FontSize="14" x:Name="TblLuxDesc" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblLuxDesc" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="44" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,10,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Удобства:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Grid.ColumnSpan="2" Content="Вместимость: 6 гостей" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+            HorizontalAlignment="Left" Grid.Row="45" VerticalAlignment="Top" Margin="10,5,0,0"/>
+            
+            <Label Grid.Column="3" Content="Удобства:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="46" VerticalAlignment="Top" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblLuxFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
+            <TextBlock FontSize="18" x:Name="TblLuxFacilities" Grid.Column="3" Grid.ColumnSpan="3" 
                    HorizontalAlignment="Left" Grid.Row="47" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Margin="10,0,0,0" MaxWidth="400"/>
-        
-        <Label Grid.Column="3" Content="Цена:" FontSize="14" FontFamily="/Resources/Roboto/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
+
+            <Label Grid.Column="3" Content="Цена за сутки:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" 
                HorizontalAlignment="Left" Grid.Row="49" VerticalAlignment="Center" Margin="10,5,0,0"/>
-        <TextBlock FontSize="14" x:Name="TblLuxCost" Grid.Column="4" 
+            <TextBlock FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-ExtraBoldItalic.ttf#Roboto Condensed" FontSize="24" x:Name="TblLuxCost" Grid.Column="4" 
                    HorizontalAlignment="Left" Grid.Row="49" TextWrapping="Wrap" 
                    VerticalAlignment="Center" Margin="60,5,0,0"/>
-        
-        <Button x:Name="BtnLuxBooking" Grid.Column="1" Grid.ColumnSpan="2" Content="Забронировать" 
-                HorizontalAlignment="Left" Grid.Row="50" VerticalAlignment="Center" 
-                Width="150" Height="40" Margin="10,10,0,0" Click="BtnLuxBooking_Click"/>
-    </Grid>
+
+            <Button FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="24" x:Name="BtnLuxBooking" Content="Забронировать" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Grid.Column="6" Grid.ColumnSpan="2" Width="250" Height="40" Grid.Row="45" Margin="10,10,0,0" Click="BtnLuxBooking_Click"/>
+            <TextBlock x:Name="TbLuxBlock" Grid.Column="6" Grid.Row="46" Visibility="Collapsed" HorizontalAlignment="Left" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Превышена максимальная вместимость номера!" VerticalAlignment="Top" Foreground="#FF2E69" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" FontSize="16" TextAlignment="Center" Margin="10,0,0,0" Width="250"/>
+
+        </Grid>
+    </ScrollViewer>
 </Window>

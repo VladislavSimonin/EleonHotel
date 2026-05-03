@@ -1,5 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
+	  <Content Remove="C:\Users\Vladislav\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-Italic.ttf" />
+	</ItemGroup>
+	<ItemGroup>
 	  <None Remove="Data\Images\Business_1.jpg" />
 	  <None Remove="Data\Images\Business_10.jpg" />
 	  <None Remove="Data\Images\Business_2.jpg" />
@@ -45,6 +48,25 @@
 	  <None Remove="Data\Images\Standart_3.jpg" />
 	  <None Remove="Data\Images\Standart_4.jpg" />
 	  <None Remove="Data\Images\Standart_5.jpg" />
+	  <None Remove="Resources\Roboto_Condensed\RobotoCondensed-Italic-VariableFont_wght.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-Black.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-BlackItalic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-Bold.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-BoldItalic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraBold.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraBoldItalic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraLight.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraLightItalic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-Italic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-Light.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-LightItalic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-Medium.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-MediumItalic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-Regular.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-SemiBold.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-SemiBoldItalic.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-Thin.ttf" />
+	  <None Remove="Resources\Roboto_Condensed\static\RobotoCondensed-ThinItalic.ttf" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="appsettings.json">
@@ -94,6 +116,7 @@
 	
 
   <ItemGroup>
+    <Resource Include="C:\Users\Vladislav\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-Italic.ttf" />
     <Resource Include="Data\Images\Business_1.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -227,6 +250,63 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\Images\Standart_5.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\RobotoCondensed-Italic-VariableFont_wght.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-BlackItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-BoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraLight.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-LightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-MediumItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-Thin.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Roboto_Condensed\static\RobotoCondensed-ThinItalic.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
