@@ -8,9 +8,11 @@
         mc:Ignorable="d"
         xmlns:classes="clr-namespace:EleonHotel.Data.Classes"
         xmlns:converters="clr-namespace:EleonHotel.Data.Converters"
+        xmlns:easy="clr-namespace:EasyCaptcha.Wpf;assembly=EasyCaptcha.Wpf"
         ResizeMode="NoResize"
-        Title="Создать аккаунт" Height="510" Width="560" MinWidth="660" MinHeight="430">
-    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Visible" Height="450">
+        Loaded="Window_Loaded"
+        Title="Создать аккаунт" Height="570" Width="560" MinWidth="660" MinHeight="570">
+    <ScrollViewer Background="#22220398" CanContentScroll="True" VerticalScrollBarVisibility="Auto" >
         <Grid>
             <Grid.Resources>
                 <converters:BoolToPackIconKindConverter x:Key="BoolToPackIconKindConverter"/>
@@ -47,6 +49,12 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -69,7 +77,8 @@
         <Label Grid.Row="11" Grid.Column="0" Content="Электронная почта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Grid.Row="12" Grid.Column="0" Content="Придумайте логин" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Grid.Row="13" Grid.Column="0" Content="Придумайте пароль" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+        
+            
         <TextBox x:Name="TbSurname" MaxLength="30" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
         <TextBox x:Name="TbName" MaxLength="30" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
         <TextBox x:Name="TbPatronymic" MaxLength="30" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
@@ -144,12 +153,23 @@
             </StackPanel>
         </StackPanel>
 
-        <Label Content="Кто Вы?" HorizontalAlignment="Center" Grid.Row="23" VerticalAlignment="Center"/>
+            <Label Content="Кто Вы?" HorizontalAlignment="Center" Grid.Row="23" VerticalAlignment="Center"/>
+            <RadioButton x:Name="RbGuest" Grid.Column="1" Content="Гость" HorizontalAlignment="Left" Grid.Row="23" VerticalAlignment="Center" />
+            <RadioButton x:Name="RbEmployee" Grid.Column="1" Content="Сотрудник" HorizontalAlignment="Left" Grid.Row="24" VerticalAlignment="Center"/>
+            
 
+            <StackPanel Grid.Row="26" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2">
+                <!-- Контрол капчи -->
+                <easy:Captcha x:Name="MyCaptcha" Width="200" Height="200" Margin="10"/>
 
-        <Button x:Name="BtnCreateAccount" Grid.Row="26" Grid.ColumnSpan="1" Grid.Column="2" Content="Создать аккаунт" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BtnCreateAccount_Click" Grid.RowSpan="2"/>
-        <RadioButton x:Name="RbGuest" Grid.Column="1" Content="Гость" HorizontalAlignment="Left" Grid.Row="23" VerticalAlignment="Center" />
-        <RadioButton x:Name="RbEmployee" Grid.Column="1" Content="Сотрудник" HorizontalAlignment="Left" Grid.Row="24" VerticalAlignment="Center"/>
+                <!-- Поле для ввода ответа пользователем -->
+                <TextBox x:Name="AnswerTextBox" Width="200" Margin="10"/>
+
+                <Button x:Name="CheckButton" Content="Проверить" Click="CheckButton_Click" Width="150"/>
+                <Button x:Name="RefreshButton" Content="Обновить" Click="RefreshButton_Click" Width="150" Margin="5"/>
+            </StackPanel>
+
+            <Button x:Name="BtnCreateAccount" Width="200" Height="40" Grid.Row="32" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2" Content="Создать аккаунт" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnCreateAccount_Click"/>
         </Grid>
     </ScrollViewer>
 </Window>

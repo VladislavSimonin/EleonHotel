@@ -32,6 +32,14 @@
           }
         }
       },
+      "BouncyCastle.Cryptography/2.6.2": {
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.6.2.46322"
+          }
+        }
+      },
       "ControlzEx/4.4.0": {
         "dependencies": {
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.77"
@@ -40,6 +48,14 @@
           "lib/netcoreapp3.1/ControlzEx.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.4.0.50"
+          }
+        }
+      },
+      "EasyCaptcha.Wpf/0.9.0.3": {
+        "runtime": {
+          "lib/net45/EasyCaptcha.Wpf.dll": {
+            "assemblyVersion": "0.9.0.3",
+            "fileVersion": "0.9.0.3"
           }
         }
       },
@@ -114,37 +130,48 @@
           }
         }
       },
-      "MaterialDesignColors/5.3.1": {
+      "MailKit/4.16.0": {
+        "dependencies": {
+          "MimeKit": "4.16.0"
+        },
         "runtime": {
-          "lib/net10.0-windows7.0/MaterialDesignColors.dll": {
-            "assemblyVersion": "5.3.1.0",
-            "fileVersion": "5.3.1.0"
+          "lib/net10.0/MailKit.dll": {
+            "assemblyVersion": "4.16.0.0",
+            "fileVersion": "4.16.0.0"
           }
         }
       },
-      "MaterialDesignThemes/5.3.1": {
+      "MaterialDesignColors/5.3.2": {
+        "runtime": {
+          "lib/net10.0-windows7.0/MaterialDesignColors.dll": {
+            "assemblyVersion": "5.3.2.0",
+            "fileVersion": "5.3.2.0"
+          }
+        }
+      },
+      "MaterialDesignThemes/5.3.2": {
         "dependencies": {
-          "MaterialDesignColors": "5.3.1",
+          "MaterialDesignColors": "5.3.2",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.77"
         },
         "runtime": {
           "lib/net10.0-windows7.0/MaterialDesignThemes.Wpf.dll": {
-            "assemblyVersion": "5.3.1.0",
-            "fileVersion": "5.3.1.0"
+            "assemblyVersion": "5.3.2.0",
+            "fileVersion": "5.3.2.0"
           }
         }
       },
-      "MaterialDesignThemes.MahApps/5.3.1": {
+      "MaterialDesignThemes.MahApps/5.3.2": {
         "dependencies": {
           "MahApps.Metro": "2.4.11",
-          "MaterialDesignColors": "5.3.1",
-          "MaterialDesignThemes": "5.3.1",
+          "MaterialDesignColors": "5.3.2",
+          "MaterialDesignThemes": "5.3.2",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.77"
         },
         "runtime": {
           "lib/net10.0-windows7.0/MaterialDesignThemes.MahApps.dll": {
-            "assemblyVersion": "5.3.1.0",
-            "fileVersion": "5.3.1.0"
+            "assemblyVersion": "5.3.2.0",
+            "fileVersion": "5.3.2.0"
           }
         }
       },
@@ -1068,6 +1095,17 @@
           }
         }
       },
+      "MimeKit/4.16.0": {
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.6.2"
+        },
+        "runtime": {
+          "lib/net10.0/MimeKit.dll": {
+            "assemblyVersion": "4.16.0.0",
+            "fileVersion": "4.16.0.0"
+          }
+        }
+      },
       "Mono.TextTemplating/3.0.0": {
         "runtime": {
           "lib/net6.0/Mono.TextTemplating.dll": {
@@ -1314,12 +1352,26 @@
       "path": "azure.identity/1.14.2",
       "hashPath": "azure.identity.1.14.2.nupkg.sha512"
     },
+    "BouncyCastle.Cryptography/2.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w==",
+      "path": "bouncycastle.cryptography/2.6.2",
+      "hashPath": "bouncycastle.cryptography.2.6.2.nupkg.sha512"
+    },
     "ControlzEx/4.4.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-pZ5z4hYWwE4R13UMCVs6vII//nL7hz+Nwn4oJlnsZJRGqJNy6Z9KnJiTZfly6lKFu0pMc1aWBZpx+VqFTQKP1Q==",
       "path": "controlzex/4.4.0",
       "hashPath": "controlzex.4.4.0.nupkg.sha512"
+    },
+    "EasyCaptcha.Wpf/0.9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sOn7iRbV8NJrPccB/KrC+j3mXcBN0IraGZj3EivQK3UIUVFFfk12Bo8GAC8HzEQWTTI6urNS0064Yps/nKTarw==",
+      "path": "easycaptcha.wpf/0.9.0.3",
+      "hashPath": "easycaptcha.wpf.0.9.0.3.nupkg.sha512"
     },
     "EntityFramework/6.5.2": {
       "type": "package",
@@ -1363,26 +1415,33 @@
       "path": "mahapps.metro/2.4.11",
       "hashPath": "mahapps.metro.2.4.11.nupkg.sha512"
     },
-    "MaterialDesignColors/5.3.1": {
+    "MailKit/4.16.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QtVKQnA+3c/tAC2gdBDZcOdGBe/nIsQUVpaea10nmatUwuZRYVoRXMd0VqgwmYHpyxv/5vWy+z6l0HgNgZMs2w==",
-      "path": "materialdesigncolors/5.3.1",
-      "hashPath": "materialdesigncolors.5.3.1.nupkg.sha512"
+      "sha512": "sha512-trJ82DOpAmo8i1jO1vNE+dGn4mPRyeYfy4swRcAGgMJhPoI1Kohf4OFJJf0+YIj4iUxgxPn8W+ht7e7KiYzSjg==",
+      "path": "mailkit/4.16.0",
+      "hashPath": "mailkit.4.16.0.nupkg.sha512"
     },
-    "MaterialDesignThemes/5.3.1": {
+    "MaterialDesignColors/5.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IjsWlh22m2jRQEMwlg5LIDZLsSEgeROyBQU7yMjqOQATx1ls/dZoLxDcLgwjNMbO2LcGPsHAeY1Q9tjKkN45ig==",
-      "path": "materialdesignthemes/5.3.1",
-      "hashPath": "materialdesignthemes.5.3.1.nupkg.sha512"
+      "sha512": "sha512-ru09iYhsnGcTI/La30zuzSeg/DXwvdFgDfvG17XU+/+XkIY915YiQFStZlykui5vpWzMEtyADh2c2T7CodrGrg==",
+      "path": "materialdesigncolors/5.3.2",
+      "hashPath": "materialdesigncolors.5.3.2.nupkg.sha512"
     },
-    "MaterialDesignThemes.MahApps/5.3.1": {
+    "MaterialDesignThemes/5.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-x3fGdmHv60sFbFsGrVSGiPNy8zU9sv9kDFQhHgneiOnEK9UEruo+LxWWr5CYY0wg6csK6fglCPuQo25VkknE/Q==",
-      "path": "materialdesignthemes.mahapps/5.3.1",
-      "hashPath": "materialdesignthemes.mahapps.5.3.1.nupkg.sha512"
+      "sha512": "sha512-G/aQKjpxcwQt7aZ3JzGX64gr1CzsJK7vtm+l57zpejCs6GebWN4MZ536PHLWpyrgrLySrKxPSjSlWCw2A1HWig==",
+      "path": "materialdesignthemes/5.3.2",
+      "hashPath": "materialdesignthemes.5.3.2.nupkg.sha512"
+    },
+    "MaterialDesignThemes.MahApps/5.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jY5KarRJmEujOeJKSy+6fMMBjUbnmaaOXDtAR/iG3CC6NPOYsueX+zLLVk044vmi9CYHE1bw5fdP9KAL6/llGg==",
+      "path": "materialdesignthemes.mahapps/5.3.2",
+      "hashPath": "materialdesignthemes.mahapps.5.3.2.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/10.0.7": {
       "type": "package",
@@ -1775,6 +1834,13 @@
       "sha512": "sha512-MCu674ZETgU18EbxfwIlRpUPJ02YbZenLsMCXTkpeA7KUBpXfFaOUDlEO+7UWu5AFnUoydg+aQENJkuaZPheMQ==",
       "path": "microsoft.xaml.behaviors.wpf/1.1.77",
       "hashPath": "microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512"
+    },
+    "MimeKit/4.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X0LFxeM4gPRIhODyY/HYS9b+zRZ7y//v59rFzgS6wLxcPuZThnMtNZHtrr0fjLyRRkg3gqJBtvW36XfUzZ7Djw==",
+      "path": "mimekit/4.16.0",
+      "hashPath": "mimekit.4.16.0.nupkg.sha512"
     },
     "Mono.TextTemplating/3.0.0": {
       "type": "package",

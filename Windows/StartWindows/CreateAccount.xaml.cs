@@ -28,7 +28,7 @@ namespace EleonHotel.Windows.StartWindows
     public partial class CreateAccount : Window
     {
         private const string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
-
+        bool captchaStatus = false;
         public CreateAccount()
         {
             InitializeComponent();
@@ -43,7 +43,8 @@ namespace EleonHotel.Windows.StartWindows
                 string.IsNullOrWhiteSpace(TbEmail.Text) || string.IsNullOrWhiteSpace(TbPassportSeries.Text) ||
                 string.IsNullOrWhiteSpace(TbPassportNumber.Text) || string.IsNullOrWhiteSpace(TbWhoGavePassport.Text) ||
                 WhenPassportGave.SelectedDate == null || string.IsNullOrWhiteSpace(TbRegistrationAddress.Text) ||
-                RbGuest.IsChecked == false && RbEmployee.IsChecked == false)
+                RbGuest.IsChecked == false && RbEmployee.IsChecked == false || string.IsNullOrWhiteSpace(AnswerTextBox.Text.Trim()) ||
+                captchaStatus == false)
             {
                 MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -162,6 +163,34 @@ namespace EleonHotel.Windows.StartWindows
                 }
                 MessageBox.Show("Ошибка при регистрации: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Генерируем капчу при загрузке (5 символов, буквы и цифры)
+            MyCaptcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 5);
+        }
+
+        private void CheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Сравниваем текст из TextBox с текстом на капче
+            if (AnswerTextBox.Text.ToLower() == MyCaptcha.CaptchaText.ToLower())
+            {
+                captchaStatus = true;
+                MessageBox.Show("Верно!");
+            }
+            else
+            {
+                captchaStatus = false;
+                MessageBox.Show("Ошибка! Попробуйте снова.");
+                // Обновляем капчу при ошибке
+                MyCaptcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 5);
+            }
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyCaptcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 5);
         }
     }
 }

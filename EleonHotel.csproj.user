@@ -29,6 +29,12 @@
     <Compile Update="Windows\MainWindows\GuestWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\StartWindows\AccountRecovery.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\StartWindows\ChangePassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\StartWindows\CreateAccount.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

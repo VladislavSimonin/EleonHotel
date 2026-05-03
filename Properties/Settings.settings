@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EleonHotel.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="smtpServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="smtpPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="senderEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">vladislavsimonin@gmail.com</Value>
+    </Setting>
+    <Setting Name="senderPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">wafc mbmk gddu joed</Value>
+    </Setting>
+    <Setting Name="senderName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Служба поддержки Отеля Элеон</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

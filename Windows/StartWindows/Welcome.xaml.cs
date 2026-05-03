@@ -155,5 +155,11 @@ namespace EleonHotel.Windows.StartWindows
                 MessageBox.Show($"Ошибка при навигации: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void BtnForgotAcc_Click(object sender, RoutedEventArgs e)
+        {
+            new AccountRecovery().ShowDialog();
+            return;
+        }
     }
 }

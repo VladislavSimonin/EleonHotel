@@ -26,8 +26,10 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("roboto-thinitalic.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("robotocondensed-bold.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("robotocondensed-bolditalic.ttf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("robotocondensed-italic.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("robotocondensed-light.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("robotocondensed-lightitalic.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("robotocondensed-regular.ttf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/net10.0-windows/eleon-hotel-icon.ico")]
 
 

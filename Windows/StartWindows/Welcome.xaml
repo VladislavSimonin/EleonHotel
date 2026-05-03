@@ -35,7 +35,8 @@
     Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"/>
 
             <Button FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed" x:Name="Enter" Grid.Column="1" Content="Войти" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Width="198" Click="Enter_Click" Height="40"/>
-            <Button FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Light.ttf#Roboto Condensed" Grid.Column="2" Content="Создать аккаунт" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="CreateAccount_Click" Grid.RowSpan="2" Width="172" Height="32" Margin="115,131,0,0"/>
+            <Button FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Light.ttf#Roboto Condensed" x:Name="BtnCreateAccount" Grid.Column="2" Content="Создать аккаунт" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="CreateAccount_Click" Grid.RowSpan="2" Width="172" Height="32" Margin="115,131,0,0"/>
+            <Button FontSize="12" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Light.ttf#Roboto Condensed" x:Name="BtnForgotAcc" Grid.Column="1" Grid.RowSpan="1" Content="Забыли пароль?" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Bottom" Width="140" Height="22" Click="BtnForgotAcc_Click" />
 
         </Grid>
     </Grid>
