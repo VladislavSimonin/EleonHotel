@@ -5,9 +5,9 @@
         WindowStartupLocation="CenterOwner" Background="#F5F5F5">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
@@ -37,7 +37,7 @@
                     Margin="0,0,20,0" Background="#2196F3" Foreground="White" FontSize="20" Content="›"/>
 
             <!-- Image Counter -->
-            <TextBlock x:Name="TblCounter" Foreground="White" FontSize="14" 
+            <TextBlock x:Name="TblCounter" Foreground="White" FontSize="18" 
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"
                        Background="#000000" Opacity="0.7" Padding="10,5"/>
         </Grid>
