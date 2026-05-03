@@ -8,6 +8,7 @@ namespace EleonHotel.Windows.MainWindows
 {
     public partial class GuestWindow : Window
     {
+
         private const string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         public int UserId { get; private set; }
         private Dictionary<int, List<string>> roomImages;
@@ -23,6 +24,7 @@ namespace EleonHotel.Windows.MainWindows
             { "Business", 5 },
             { "Lux", 6 }
         };
+
 
         public GuestWindow(int userId)
         {
@@ -128,6 +130,10 @@ namespace EleonHotel.Windows.MainWindows
 
         private void InitializeAllRoomImages()
         {
+            // Чтобы даты отображались с завтрашнего дня
+            DtEnter.DisplayDateStart = DateTime.Today.AddDays(1);
+            DtOut.DisplayDateStart = DateTime.Today.AddDays(1);
+
             roomImages = new Dictionary<int, List<string>>
             {
                 { 1, new List<string> // Econom
@@ -240,6 +246,82 @@ namespace EleonHotel.Windows.MainWindows
             OpenImageGallery(6, "Люкс");
         }
 
+
+        private void CbGuests_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            // Получаем выбранное количество гостей
+            if (CbGuests.SelectedItem == null || !int.TryParse(CbGuests.SelectedItem.ToString(), out int guestsCount))
+                return;
+
+            // Эконом: макс. 2 гостя
+            if (guestsCount > 2)
+            {
+                BtnEconomBooking.IsEnabled = false;
+                TbEconomBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnEconomBooking.IsEnabled = true;
+                TbEconomBlock.Visibility = Visibility.Collapsed;
+            }
+
+            // Стандарт: макс. 2 гостя
+            if (guestsCount > 2)
+            {
+                BtnStandartBooking.IsEnabled = false;
+                TbStandartBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnStandartBooking.IsEnabled = true;
+                TbStandartBlock.Visibility = Visibility.Collapsed;
+            }
+
+            // Комфорт: макс. 4 гостя
+            if (guestsCount > 4)
+            {
+                BtnComfortBooking.IsEnabled = false;
+                TbComfortBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnComfortBooking.IsEnabled = true;
+                TbComfortBlock.Visibility = Visibility.Collapsed;
+            }
+
+            // Семейный и Бизнес: макс. 5 гостей
+            if (guestsCount > 5)
+            {
+                BtnFamilyBooking.IsEnabled = false;
+                TbFamilyBlock.Visibility = Visibility.Visible;
+                BtnBusinessBooking.IsEnabled = false;
+                TbBusinessBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnFamilyBooking.IsEnabled = true;
+                TbFamilyBlock.Visibility = Visibility.Collapsed;
+                BtnBusinessBooking.IsEnabled = true;
+                TbBusinessBlock.Visibility = Visibility.Collapsed;
+            }
+
+            // Люкс: макс. 6 гостей
+            if (guestsCount > 6)
+            {
+                BtnLuxBooking.IsEnabled = false;
+                TbLuxBlock.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnLuxBooking.IsEnabled = true;
+                TbLuxBlock.Visibility = Visibility.Collapsed;
+
+            }
+
+        }
+
+        // Бронирование номеров
         private void BtnEconomBooking_Click(object sender, RoutedEventArgs e)
         {
             BookRoom(1, "Эконом");

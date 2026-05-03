@@ -53,7 +53,7 @@ namespace EleonHotel.Windows.MainWindows.Admin {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/admin/staffinfo.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/admin/staffinfo.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Windows\MainWindows\Admin\staffInfo.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
