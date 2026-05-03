@@ -31,31 +31,31 @@
             </Grid.RowDefinitions>
 
             <TextBlock FontSize="36" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed" Grid.Column="2" Grid.ColumnSpan="4" TextWrapping="Wrap" Text="Что Вы хотите сделать?" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" Width="460" Grid.Row="0"/>
-            <Button x:Name="fullUsersInfo" Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88">
+            <Button x:Name="fullUsersInfo" Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88" Click="fullUsersInfo_Click">
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" Text="Полная информация о пользователях" VerticalAlignment="Center"/>
             </Button>
 
-            <Button x:Name="roomsCondition" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88">
+            <Button x:Name="roomsCondition" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88" Click="roomsCondition_Click">
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" Text="Состояние номерного фонда" VerticalAlignment="Center"/>
             </Button>
 
-            <Button x:Name="deleteUser" Grid.Column="4"  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88">
+            <Button x:Name="deleteUser" Grid.Column="4"  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88" Click="deleteUser_Click">
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" Text="Удалить пользователя" VerticalAlignment="Center"/>
             </Button>
 
-            <Button x:Name="roomsCost" Grid.Column="6"  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88">
+            <Button x:Name="roomsCost" Grid.Column="6"  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88" Click="roomsCost_Click">
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" Text="Прейскурант номеров" VerticalAlignment="Center"/>
             </Button>
 
-            <Button x:Name="staffInfo" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88">
+            <Button x:Name="staffInfo" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88" Click="staffInfo_Click">
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" Text="Информация о сотрудниках" VerticalAlignment="Center"></TextBlock>
             </Button>
 
-            <Button x:Name="Conflicts" Grid.Column="2"  Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88">
+            <Button x:Name="Conflicts" Grid.Column="2"  Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88" Click="Conflicts_Click">
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" Text="Конфликты на рабочем месте, штрафы" VerticalAlignment="Center"/>
             </Button>
 
-            <Button x:Name="guestsInfo" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88">
+            <Button x:Name="guestsInfo" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="152" Height="88" Click="guestsInfo_Click">
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" TextAlignment="Center" Text="Информация о гостях" VerticalAlignment="Center"></TextBlock>
             </Button>
 

@@ -186,3 +186,17 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\EleonHotel.pdb
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\EleonHotel.genruntimeconfig.cache
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\ref\EleonHotel.dll
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\Conflicts.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\deleteUser.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\fullUsersInfo.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\guestsInfo.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\roomsCondition.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\roomsCost.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\staffInfo.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\Conflicts.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\deleteUser.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\fullUsersInfo.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\guestsInfo.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\roomsCondition.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\roomsCost.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Admin\staffInfo.baml
