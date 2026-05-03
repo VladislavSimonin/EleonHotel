@@ -18,6 +18,13 @@ namespace EleonHotel.Windows.MainWindows
         public int UserId { get; private set; }
         private readonly HotelDbContext _context;
 
+
+
+
+
+
+
+
         public AdminWindow(int userId)
         {
             InitializeComponent();
