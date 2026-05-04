@@ -67,5 +67,17 @@ namespace EleonHotel.Properties {
                 return ((string)(this["senderName"]));
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RecoveryLogin {
+            get {
+                return ((string)(this["RecoveryLogin"]));
+            }
+            set {
+                this["RecoveryLogin"] = value;
+            }
+        }
     }
 }

@@ -124,28 +124,38 @@ namespace EleonHotel.Windows.StartWindows
         {
             try
             {
-                // 1. Генерация кода (6 цифр)
+                // 1. Проверка существования пользователя с указанным логином и email
+                string login = TbLogin.Text.Trim();
+                string email = TbEmail.Text.Trim();
+
+                if (!UserExists(login, email))
+                {
+                    MessageBox.Show("Пользователь с указанным логином и Email не найден. Пожалуйста, проверьте введенные данные.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // 2. Генерация кода (6 цифр)
                 Random random = new Random();
                 _generatedCode = random.Next(100000, 999999).ToString();
 
-                // 2. НАСТРОЙКИ SMTP 
+                // 3. НАСТРОЙКИ SMTP 
                 string smtpServer = Properties.Settings.Default.smtpServer; 
                 int smtpPort = Properties.Settings.Default.smtpPort;
                 string senderEmail = Properties.Settings.Default.senderEmail;
                 string senderPassword = Properties.Settings.Default.senderPassword;
                 string senderName = Properties.Settings.Default.senderName;
 
-                // 3. Создание письма
+                // 4. Создание письма
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress(senderName, senderEmail));
-                message.To.Add(new MailboxAddress("", TbEmail.Text.Trim()));
+                message.To.Add(new MailboxAddress("", email));
                 message.Subject = "Код восстановления доступа - Отель Элеон";
 
                 var bodyBuilder = new BodyBuilder();
                 bodyBuilder.TextBody = $"Здравствуйте!\n\nВаш код подтверждения для восстановления доступа: {_generatedCode}\n\nВведите этот код в поле 'Код подтверждения' в приложении.\n\nЕсли вы не запрашивали восстановление, просто проигнорируйте это письмо.";
                 message.Body = bodyBuilder.ToMessageBody();
 
-                // 4. Отправка
+                // 5. Отправка
                 using (var client = new SmtpClient())
                 {
                     client.Connect(smtpServer, smtpPort, SecureSocketOptions.StartTls);
@@ -157,18 +167,50 @@ namespace EleonHotel.Windows.StartWindows
                     client.Disconnect(true);
                 }
 
-                MessageBox.Show($"Код успешно отправлен на {TbEmail.Text}!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Код успешно отправлен на {email}!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Активируем поле ввода кода
                 TbCode.IsEnabled = true;
                 TbCode.Focus();
 
                 BtnAccept.Content = "Подтвердить код";
+
+                // Сохраняем логин для последующего использования при смене пароля
+                Properties.Settings.Default.RecoveryLogin = login;
+                Properties.Settings.Default.Save();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при отправке письма: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 _generatedCode = null; // Сбрасываем код при ошибке
+            }
+        }
+
+        // Метод для проверки существования пользователя с указанным логином и email
+        private bool UserExists(string login, string email)
+        {
+            try
+            {
+                using (var conn = new System.Data.SqlClient.SqlConnection("Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;"))
+                {
+                    conn.Open();
+
+                    using (var cmd = new System.Data.SqlClient.SqlCommand(
+                        "SELECT COUNT(*) FROM Users WHERE login = @login AND email = @email",
+                        conn))
+                    {
+                        cmd.Parameters.AddWithValue("@login", login);
+                        cmd.Parameters.AddWithValue("@email", email);
+
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при проверке пользователя: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
         }
 
