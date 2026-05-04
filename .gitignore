@@ -4,8 +4,10 @@ bin/
 obj/
 *.exe
 *.dll
-*.pdb
-*.userprefs
+*.so
+*.a
+*.out
+.vs/
 
 # Dependencies
 packages/

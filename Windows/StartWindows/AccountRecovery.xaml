@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         Title="Восстановление аккаунта" Height="850" Width="800">
-    <Grid>
+    <Grid Background="#22220398">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />

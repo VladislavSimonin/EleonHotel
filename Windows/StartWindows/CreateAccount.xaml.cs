@@ -27,7 +27,7 @@ namespace EleonHotel.Windows.StartWindows
     /// </summary>
     public partial class CreateAccount : Window
     {
-        private const string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
+        private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         bool captchaStatus = false;
         public CreateAccount()
         {
