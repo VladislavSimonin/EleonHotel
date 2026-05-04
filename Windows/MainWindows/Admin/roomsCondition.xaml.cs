@@ -85,9 +85,6 @@ namespace EleonHotel.Windows.AdminWindows
 
                     // Присваиваем список статусов контексту данных окна
                     this.DataContext = new { StatusesList = _statusesTable };
-
-                    // Сбрасываем DataContext для самого DataGrid, чтобы он брал данные из ItemsSource, 
-                    // а не наследовал контекст окна, что могло вызывать ошибку привязки
                 }
             }
         }
@@ -121,11 +118,29 @@ namespace EleonHotel.Windows.AdminWindows
             string newDescription = rowView["description"]?.ToString() ?? "";
 
             string updateQuery = @"
-                UPDATE Rooms
-                SET room_status_id = @status_id,
-                    cost = @cost,
-                    description = @description
-                WHERE room_id = @room_id";
+                BEGIN TRANSACTION;
+
+BEGIN TRY
+    UPDATE rc
+    SET rc.cost = @cost, 
+        rc.description = @description
+    FROM Room_categories AS rc
+    INNER JOIN Rooms AS r ON r.room_category_id = rc.room_category_id
+    WHERE r.room_id = @room_id;
+
+    UPDATE Rooms 
+    SET room_status_id = @status_id 
+    WHERE room_id = @room_id;
+
+    COMMIT TRANSACTION;
+    PRINT 'Данные успешно обновлены в обеих таблицах.';
+END TRY
+BEGIN CATCH
+    -- Если произошла ошибка, откатываем все изменения
+    ROLLBACK TRANSACTION;
+    PRINT 'Произошла ошибка. Изменения отменены.';
+    THROW; -- Выводит детали ошибки
+END CATCH;";
 
             try
             {
