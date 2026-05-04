@@ -12,7 +12,7 @@ namespace EleonHotel.Windows.MainWindows.Admin
     /// </summary>
     public partial class fullUsersInfo : Window
     {
-        private string ConnectionString = Properties.Settings.Default.ConnectionString;
+        private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
 
         public fullUsersInfo()
         {
