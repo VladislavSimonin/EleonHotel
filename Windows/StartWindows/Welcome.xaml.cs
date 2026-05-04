@@ -13,6 +13,7 @@ using EleonHotel.Data.Classes;
 using System.Data;
 using System.Data.SqlClient;
 using EleonHotel.Windows.MainWindows;
+using EleonHotel.Properties;
 
 namespace EleonHotel.Windows.StartWindows
 {
@@ -21,8 +22,6 @@ namespace EleonHotel.Windows.StartWindows
     /// </summary>
     public partial class Welcome : Window
     {
-        private const string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
-
         public Welcome()
         {
             InitializeComponent();
@@ -50,7 +49,7 @@ namespace EleonHotel.Windows.StartWindows
 
             try
             {
-                using (var conn = new SqlConnection(ConnectionString))
+                using (var conn = new SqlConnection(Settings.Default.ConnectionString))
                 {
                     conn.Open();
 
@@ -103,7 +102,7 @@ namespace EleonHotel.Windows.StartWindows
         {
             try
             {
-                using (var conn = new SqlConnection(ConnectionString))
+                using (var conn = new SqlConnection(Settings.Default.ConnectionString))
                 {
                     conn.Open();
 
