@@ -1,24 +1,22 @@
 ```
 # Build artifacts
-bin/
-obj/
+*.o
+*.obj
 *.exe
 *.dll
 *.so
 *.a
 *.out
-.vs/
 
 # Dependencies
-packages/
-
-# Logs
-*.log
-
-# Environment
-.env
-.env.local
-*.env.*
+node_modules/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+target/
+.gradle/
 
 # Editors
 .vscode/
@@ -26,16 +24,40 @@ packages/
 *.swp
 *.swo
 
-# OS
+# System files
 .DS_Store
 Thumbs.db
+.env
+.env.local
+*.env.*
 
-# User-specific settings
-*.user
-*.userosscache
-*.suo
+# Logs and coverage
+*.log
+coverage/
+htmlcov/
+.coverage
 
-# Temporary files
-*.tmp
-temp/
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 ```

@@ -38,7 +38,7 @@
                             <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.StatusesList}"
                                       SelectedValue="{Binding room_status_id, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValuePath="room_status_id"
-                                      DisplayMemberPath="room_status_name"
+                                      DisplayMemberPath="room_status"
                                       VerticalAlignment="Center"
                                       Margin="2"/>
                         </DataTemplate>
