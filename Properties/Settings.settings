@@ -17,8 +17,8 @@
     <Setting Name="senderName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Служба поддержки Отеля Элеон</Value>
     </Setting>
-    <Setting Name="ConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;</Value>
+    <Setting Name="RecoveryLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)"></Value>
     </Setting>
-  </Settings>
+  </Settings>  
 </SettingsFile>
