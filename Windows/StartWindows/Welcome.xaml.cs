@@ -51,7 +51,7 @@ namespace EleonHotel.Windows.StartWindows
 
             try
             {
-                using (var conn = new SqlConnection(Settings.Default.ConnectionString))
+                using (var conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
 
@@ -104,7 +104,7 @@ namespace EleonHotel.Windows.StartWindows
         {
             try
             {
-                using (var conn = new SqlConnection(Settings.Default.ConnectionString))
+                using (var conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
 

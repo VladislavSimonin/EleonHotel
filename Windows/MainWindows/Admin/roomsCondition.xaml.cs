@@ -1,78 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
 using EleonHotel.Properties;
 
-namespace EleonHotel.Windows.MainWindows.Admin
+namespace EleonHotel.Windows.AdminWindows
 {
-    /// <summary>
-    /// Логика взаимодействия для roomsCondition.xaml
-    /// </summary>
     public partial class roomsCondition : Window
     {
-        private const string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
-        private List<string> _roomStatuses = new List<string>();
+        private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
+        private DataTable _roomsTable;
+        private DataTable _statusesTable; 
 
         public roomsCondition()
         {
             InitializeComponent();
-            LoadRoomStatuses();
-            LoadRoomsData();
+            LoadData();
         }
 
-        private void LoadRoomStatuses()
+        private void LoadData()
         {
-            string query = "SELECT room_status FROM Room_statuses";
-            try
-            {
-                using (var conn = new SqlConnection(ConnectionString))
-                {
-                    conn.Open();
-                    using (var cmd = new SqlCommand(query, conn))
-                    {
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            _roomStatuses.Add(reader.GetString(0));
-                        }
-                    }
-                }
 
-                var statusColumn = RoomsDataGrid.Columns[5] as DataGridComboBoxColumn;
-                if (statusColumn != null)
-                {
-                    statusColumn.ItemsSource = _roomStatuses;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при загрузке статусов: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void LoadRoomsData()
-        {
             string query = @"
                 SELECT 
                     r.room_id,
                     rc.room_category_name,
                     rc.max_occupancy,
+                    r.number,
+                    rs.room_status_id,
+                    rs.room_status,
                     rc.cost,
                     rc.description,
-                    rs.room_status,
-                    ISNULL(STUFF((
-                        SELECT ', ' + fl.room_facility_name
-                        FROM Room_facilities rf
-                        INNER JOIN Facilities_list fl ON rf.room_facility_id = fl.room_facility_id
-                        WHERE rf.room_id = r.room_id
-                        FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 2, ''), 'Нет') AS room_facility_name
+                    COALESCE(
+                        STUFF((
+                            SELECT ', ' + f.room_facility_name
+                            FROM Room_facilities rf_link
+                            JOIN Facilities_list f ON rf_link.room_facility_id = f.room_facility_id
+                            WHERE rf_link.room_id = r.room_id
+                            FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 
+                        1, 2, ''), 
+                    'Нет удобств') as facilities_list
                 FROM Rooms r
-                INNER JOIN Room_categories rc ON r.room_category_id = rc.room_category_id
-                INNER JOIN Room_statuses rs ON r.room_status_id = rs.room_status_id
-                ORDER BY r.room_id";
+                JOIN Room_categories rc ON r.room_category_id = rc.room_category_id
+                JOIN Room_statuses rs ON r.room_status_id = rs.room_status_id
+                ORDER BY r.number";
 
             try
             {
@@ -80,101 +52,130 @@ namespace EleonHotel.Windows.MainWindows.Admin
                 {
                     conn.Open();
                     using (var cmd = new SqlCommand(query, conn))
+                    using (var adapter = new SqlDataAdapter(cmd))
                     {
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        RoomsDataGrid.ItemsSource = dt.DefaultView;
+                        _roomsTable = new DataTable();
+                        adapter.Fill(_roomsTable);
+
+                        // Загружаем список статусов отдельно для ComboBox
+                        LoadStatusesList();
+
+                        RoomsDataGrid.ItemsSource = _roomsTable.DefaultView;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void RoomsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LoadStatusesList()
         {
+            string query = "SELECT room_status_id, room_status FROM Room_statuses ORDER BY room_status_id";
+
+            using (var conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(query, conn))
+                using (var adapter = new SqlDataAdapter(cmd))
+                {
+                    _statusesTable = new DataTable();
+                    adapter.Fill(_statusesTable);
+
+                    // Присваиваем список статусов контексту данных окна
+                    this.DataContext = new { StatusesList = _statusesTable };
+
+                    // Сбрасываем DataContext для самого DataGrid, чтобы он брал данные из ItemsSource, 
+                    // а не наследовал контекст окна, что могло вызывать ошибку привязки
+                }
+            }
         }
 
         private void RoomsDataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            var row = e.Row.DataContext as DataRowView;
-            if (row == null) return;
-
-            int roomId = Convert.ToInt32(row["room_id"]);
-            string newStatus = row["room_status"]?.ToString();
-            decimal newCost;
-            string newDescription = row["description"]?.ToString();
-
-            if (!decimal.TryParse(row["cost"]?.ToString(), out newCost))
+            if (e.EditAction == DataGridEditAction.Commit)
             {
-                MessageBox.Show("Некорректное значение цены", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                e.Cancel = true;
+                DataRowView rowView = e.Row.Item as DataRowView;
+                if (rowView != null)
+                {
+                    SaveRoomChanges(rowView);
+                }
+            }
+        }
+
+        private void SaveRoomChanges(DataRowView rowView)
+        {
+            int roomId = Convert.ToInt32(rowView["room_id"]);
+            int newStatusId = Convert.ToInt32(rowView["room_status_id"]);
+
+            // Проверка на случай если цена пустая или некорректная
+            decimal newcost = 0;
+            if (!decimal.TryParse(rowView["cost"]?.ToString(), out newcost))
+            {
+                MessageBox.Show("Некорректное значение цены.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                rowView.Row.RejectChanges();
                 return;
             }
+
+            string newDescription = rowView["description"]?.ToString() ?? "";
+
+            string updateQuery = @"
+                UPDATE Rooms
+                SET room_status_id = @status_id,
+                    cost = @cost,
+                    description = @description
+                WHERE room_id = @room_id";
 
             try
             {
                 using (var conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-
-                    if (!string.IsNullOrEmpty(newStatus))
+                    using (var cmd = new SqlCommand(updateQuery, conn))
                     {
-                        string getStatusIdQuery = "SELECT room_status_id FROM Room_statuses WHERE room_status = @status";
-                        using (var cmd = new SqlCommand(getStatusIdQuery, conn))
+                        cmd.Parameters.AddWithValue("@status_id", newStatusId);
+                        cmd.Parameters.AddWithValue("@cost", newcost);
+                        cmd.Parameters.AddWithValue("@description", newDescription);
+                        cmd.Parameters.AddWithValue("@room_id", roomId);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
                         {
-                            cmd.Parameters.AddWithValue("@status", newStatus);
-                            var statusIdObj = cmd.ExecuteScalar();
-                            if (statusIdObj != null)
-                            {
-                                int statusId = Convert.ToInt32(statusIdObj);
-                                string updateStatusQuery = "UPDATE Rooms SET room_status_id = @statusId WHERE room_id = @roomId";
-                                using (var updateCmd = new SqlCommand(updateStatusQuery, conn))
-                                {
-                                    updateCmd.Parameters.AddWithValue("@statusId", statusId);
-                                    updateCmd.Parameters.AddWithValue("@roomId", roomId);
-                                    updateCmd.ExecuteNonQuery();
-                                }
-                            }
+                            // Обновляем отображаемое имя статуса в таблице после сохранения
+                            UpdateStatusNameInTable(rowView, newStatusId);
+
+                            // Принимаем изменения в DataTable, чтобы они считались сохраненными
+                            rowView.Row.AcceptChanges();
+
+                            MessageBox.Show("Данные успешно обновлены!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не удалось обновить запись в БД.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            rowView.Row.RejectChanges();
                         }
                     }
-
-                    string updateCostQuery = @"
-                        UPDATE Room_categories 
-                        SET cost = @cost, description = @description
-                        WHERE room_category_id = (
-                            SELECT room_category_id FROM Rooms WHERE room_id = @roomId
-                        )";
-                    using (var updateCmd = new SqlCommand(updateCostQuery, conn))
-                    {
-                        updateCmd.Parameters.AddWithValue("@cost", newCost);
-                        updateCmd.Parameters.AddWithValue("@description", (object)newDescription ?? DBNull.Value);
-                        updateCmd.Parameters.AddWithValue("@roomId", roomId);
-                        updateCmd.ExecuteNonQuery();
-                    }
                 }
-
-                MessageBox.Show("Данные успешно обновлены", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                LoadRoomsData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при обновлении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                e.Cancel = true;
+                MessageBox.Show($"Ошибка при сохранении изменений: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                rowView.Row.RejectChanges();
             }
         }
 
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateStatusNameInTable(DataRowView rowView, int newStatusId)
         {
-            LoadRoomsData();
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
+            if (_statusesTable != null)
+            {
+                DataRow[] foundRows = _statusesTable.Select($"room_status_id = {newStatusId}");
+                if (foundRows.Length > 0)
+                {
+                    // Обновляем только имя статуса, чтобы интерфейс отрисовал новое значение
+                    rowView["room_status"] = foundRows[0]["room_status"].ToString();
+                }
+            }
         }
     }
 }

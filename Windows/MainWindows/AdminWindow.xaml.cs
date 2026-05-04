@@ -1,4 +1,5 @@
-﻿using EleonHotel.Windows.MainWindows.Admin;
+﻿using EleonHotel.Windows.AdminWindows;
+using EleonHotel.Windows.MainWindows.Admin;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -39,11 +40,6 @@ namespace EleonHotel.Windows.MainWindows
         private void deleteUser_Click(object sender, RoutedEventArgs e)
         {
             new deleteUser().ShowDialog();
-        }
-
-        private void roomsCost_Click(object sender, RoutedEventArgs e)
-        {
-            new roomsCost().ShowDialog();
         }
 
         private void staffInfo_Click(object sender, RoutedEventArgs e)

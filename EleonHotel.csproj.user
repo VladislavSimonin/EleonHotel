@@ -20,9 +20,6 @@
     <Compile Update="Windows\MainWindows\Admin\roomsCondition.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\MainWindows\Admin\roomsCost.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\MainWindows\Admin\staffInfo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

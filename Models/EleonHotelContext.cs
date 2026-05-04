@@ -239,6 +239,7 @@ public partial class EleonHotelContext : DbContext
             entity.Property(e => e.RoomId)
                 .ValueGeneratedNever()
                 .HasColumnName("room_id");
+            entity.Property(e => e.Number).HasColumnName("number");
             entity.Property(e => e.RoomCategoryId).HasColumnName("room_category_id");
             entity.Property(e => e.RoomStatusId).HasColumnName("room_status_id");
 

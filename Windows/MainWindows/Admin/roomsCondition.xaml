@@ -1,39 +1,79 @@
-﻿<Window x:Class="EleonHotel.Windows.MainWindows.Admin.roomsCondition"
+﻿<Window x:Class="EleonHotel.Windows.AdminWindows.roomsCondition"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Admin"
         mc:Ignorable="d"
-        Title="Управление комнатами" Height="600" Width="1000"
+        Title="Управление номерами" Height="600" Width="1000"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Управление состоянием комнат" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBlock Grid.Row="0" Text="Список номеров и их состояние" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-        <DataGrid Grid.Row="1" Name="RoomsDataGrid" AutoGenerateColumns="False" 
-                  CanUserAddRows="False" IsReadOnly="False"
-                  SelectionChanged="RoomsDataGrid_SelectionChanged"
+        <DataGrid x:Name="RoomsDataGrid" 
+                  Grid.Row="1"
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False"
+                  IsReadOnly="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
                   RowEditEnding="RoomsDataGrid_RowEditEnding">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID комнаты" Binding="{Binding room_id}" IsReadOnly="True" Width="80"/>
-                <DataGridTextColumn Header="Категория" Binding="{Binding room_category_name}" IsReadOnly="True" Width="100"/>
-                <DataGridTextColumn Header="Вместимость" Binding="{Binding max_occupancy}" IsReadOnly="True" Width="80"/>
-                <DataGridTextColumn Header="Цена" Binding="{Binding cost, StringFormat={}{0:F2}}" Width="80"/>
-                <DataGridTextColumn Header="Описание" Binding="{Binding description}" Width="150"/>
-                <DataGridComboBoxColumn Header="Статус" SelectedItemBinding="{Binding room_status_name}" Width="120"/>
-                <DataGridTextColumn Header="Удобства" Binding="{Binding room_facility_name}" IsReadOnly="True" Width="150"/>
+                <!-- Room ID (Только чтение) -->
+                <DataGridTextColumn Header="ID номера" Binding="{Binding room_id}" IsReadOnly="True" Width="60"/>
+
+                <!-- Категория (Только чтение для справки, можно сделать редактируемым если нужно менять категорию) -->
+                <DataGridTextColumn Header="Категория" Binding="{Binding room_category_name}" IsReadOnly="True" Width="150"/>
+
+                <!-- Вместимость (Из категории) -->
+                <DataGridTextColumn Header="Вместимость" Binding="{Binding capacity}" IsReadOnly="True" Width="80"/>
+
+                <!-- Номер комнаты -->
+                <DataGridTextColumn Header="Номер" Binding="{Binding number}" IsReadOnly="True" Width="80"/>
+
+                <!-- Статус (Редактируемый ComboBox) -->
+                <DataGridTemplateColumn Header="Статус" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding room_status_name}" Margin="5,0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.StatusesList}"
+                                      SelectedValue="{Binding room_status_id, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValuePath="room_status_id"
+                                      DisplayMemberPath="room_status_name"
+                                      VerticalAlignment="Center"
+                                      Margin="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Цена (Редактируемая) -->
+                <DataGridTextColumn Header="Цена" Binding="{Binding price, UpdateSourceTrigger=PropertyChanged}" Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <!-- Описание (Редактируемое) -->
+                <DataGridTextColumn Header="Описание" Binding="{Binding description, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+
+                <!-- Удобства (Только просмотр списка, редактирование через отдельное окно или сложную логику, пока оставим текстом) -->
+                <DataGridTextColumn Header="Удобства" Binding="{Binding facilities_list}" IsReadOnly="True" Width="200"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Content="Обновить" Click="RefreshButton_Click" Padding="15,5" Margin="0,0,10,0"/>
-            <Button Content="Закрыть" Click="CloseButton_Click" Padding="15,5"/>
-        </StackPanel>
     </Grid>
 </Window>

@@ -11,6 +11,8 @@ public partial class Room
 
     public int RoomStatusId { get; set; }
 
+    public int Number { get; set; }
+
     public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();
 
     public virtual RoomCategory RoomCategory { get; set; } = null!;
