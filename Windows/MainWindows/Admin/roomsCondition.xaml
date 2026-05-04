@@ -23,23 +23,14 @@
                   SelectionUnit="FullRow"
                   RowEditEnding="RoomsDataGrid_RowEditEnding">
             <DataGrid.Columns>
-                <!-- Room ID (Только чтение) -->
-                <DataGridTextColumn Header="ID номера" Binding="{Binding room_id}" IsReadOnly="True" Width="60"/>
-
-                <!-- Категория (Только чтение для справки, можно сделать редактируемым если нужно менять категорию) -->
-                <DataGridTextColumn Header="Категория" Binding="{Binding room_category_name}" IsReadOnly="True" Width="150"/>
-
-                <!-- Вместимость (Из категории) -->
-                <DataGridTextColumn Header="Вместимость" Binding="{Binding capacity}" IsReadOnly="True" Width="80"/>
-
-                <!-- Номер комнаты -->
-                <DataGridTextColumn Header="Номер" Binding="{Binding number}" IsReadOnly="True" Width="80"/>
-
-                <!-- Статус (Редактируемый ComboBox) -->
+                <DataGridTextColumn Header="ID номера" Binding="{Binding room_id}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding room_category_name}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Вместимость" Binding="{Binding max_occupancy}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding number}" IsReadOnly="True" Width="100"/>
                 <DataGridTemplateColumn Header="Статус" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding room_status}" Margin="5,0"/>
+                            <TextBlock Text="{Binding room_status}" Width="300" Margin="5,0"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -53,8 +44,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-
-                <!-- Цена (Редактируемая) -->
                 <DataGridTextColumn Header="Цена" Binding="{Binding cost, UpdateSourceTrigger=PropertyChanged}" Width="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -67,12 +56,8 @@
                         </Style>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
-
-                <!-- Описание (Редактируемое) -->
-                <DataGridTextColumn Header="Описание" Binding="{Binding description, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-
-                <!-- Удобства (Только просмотр списка, редактирование через отдельное окно или сложную логику, пока оставим текстом) -->
-                <DataGridTextColumn Header="Удобства" Binding="{Binding facilities_list}" IsReadOnly="True" Width="200"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding description, UpdateSourceTrigger=PropertyChanged}" Width="700"/>
+                <DataGridTextColumn Header="Удобства" Binding="{Binding facilities_list}" IsReadOnly="True" Width="500"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
