@@ -39,7 +39,7 @@
                 <DataGridTemplateColumn Header="Статус" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding room_status_name}" Margin="5,0"/>
+                            <TextBlock Text="{Binding room_status}" Margin="5,0"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
@@ -47,7 +47,7 @@
                             <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.StatusesList}"
                                       SelectedValue="{Binding room_status_id, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValuePath="room_status_id"
-                                      DisplayMemberPath="room_status_name"
+                                      DisplayMemberPath="room_status"
                                       VerticalAlignment="Center"
                                       Margin="2"/>
                         </DataTemplate>
@@ -55,7 +55,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Цена (Редактируемая) -->
-                <DataGridTextColumn Header="Цена" Binding="{Binding price, UpdateSourceTrigger=PropertyChanged}" Width="100">
+                <DataGridTextColumn Header="Цена" Binding="{Binding cost, UpdateSourceTrigger=PropertyChanged}" Width="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right"/>

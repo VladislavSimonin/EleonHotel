@@ -84,10 +84,7 @@ namespace EleonHotel.Windows.AdminWindows
                     adapter.Fill(_statusesTable);
 
                     // Присваиваем список статусов контексту данных окна
-                    this.DataContext = new { StatusesList = _statusesTable };
-
-                    // Сбрасываем DataContext для самого DataGrid, чтобы он брал данные из ItemsSource, 
-                    // а не наследовал контекст окна, что могло вызывать ошибку привязки
+                    this.DataContext = new { StatusesList = _statusesTable.DefaultView };
                 }
             }
         }
