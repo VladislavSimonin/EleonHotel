@@ -1,10 +1,7 @@
 using System;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using EleonHotel.Data;
-using EleonHotel.Models;
 
 namespace EleonHotel.Windows.MainWindows
 {
@@ -145,55 +142,104 @@ namespace EleonHotel.Windows.MainWindows
             {
                 try
                 {
-                    using (var context = new HotelDbContext())
+                    using (var conn = new SqlConnection(ConnectionString))
                     {
-                        // Находим пользователя
-                        var user = context.Users.FirstOrDefault(u => u.UserId == _userId);
-                        if (user == null)
-                            return false;
+                        conn.Open();
+
+                        // Проверяем, существует ли пользователь
+                        string checkUserQuery = "SELECT COUNT(*) FROM Users WHERE user_id = @userId";
+                        using (var cmd = new SqlCommand(checkUserQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@userId", _userId);
+                            int userCount = (int)cmd.ExecuteScalar();
+                            if (userCount == 0)
+                                return false;
+                        }
 
                         // Проверяем, есть ли уже запись Guest для этого пользователя
-                        var guest = context.Guests.FirstOrDefault(g => g.UserId == _userId);
-                        
-                        if (guest == null)
+                        int guestId = -1;
+                        string checkGuestQuery = "SELECT guest_id FROM Guests WHERE user_id = @userId";
+                        using (var cmd = new SqlCommand(checkGuestQuery, conn))
                         {
-                            // Создаем новую запись Guest
-                            guest = new Guest
+                            cmd.Parameters.AddWithValue("@userId", _userId);
+                            object result = cmd.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
                             {
-                                UserId = _userId
-                            };
-                            context.Guests.Add(guest);
-                            context.SaveChanges();
+                                guestId = (int)result;
+                            }
+                        }
+
+                        // Если записи Guest нет, создаем новую
+                        if (guestId == -1)
+                        {
+                            string createGuestQuery = "INSERT INTO Guests (user_id) VALUES (@userId); SELECT SCOPE_IDENTITY();";
+                            using (var cmd = new SqlCommand(createGuestQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@userId", _userId);
+                                guestId = Convert.ToInt32(cmd.ExecuteScalar());
+                            }
                         }
 
                         // Находим свободный номер выбранной категории
-                        // RoomStatusId = 1 означает "свободен" (предположительно)
-                        var availableRoom = context.Rooms
-                            .FirstOrDefault(r => r.RoomCategoryId == _categoryId && r.RoomStatusId == 1);
-
-                        if (availableRoom == null)
+                        // RoomStatusId = 1 означает "свободен"
+                        int roomId = -1;
+                        string findRoomQuery = @"
+                            SELECT TOP 1 room_id 
+                            FROM Rooms 
+                            WHERE room_category_id = @categoryId AND room_status_id = 1
+                            ORDER BY room_id";
+                        using (var cmd = new SqlCommand(findRoomQuery, conn))
                         {
-                            // Если нет свободных номеров с status_id = 1, пробуем найти любой номер этой категории
-                            availableRoom = context.Rooms
-                                .FirstOrDefault(r => r.RoomCategoryId == _categoryId);
+                            cmd.Parameters.AddWithValue("@categoryId", _categoryId);
+                            object result = cmd.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
+                            {
+                                roomId = (int)result;
+                            }
                         }
 
-                        if (availableRoom == null)
+                        // Если нет свободных номеров с status_id = 1, пробуем найти любой номер этой категории
+                        if (roomId == -1)
+                        {
+                            string findAnyRoomQuery = @"
+                                SELECT TOP 1 room_id 
+                                FROM Rooms 
+                                WHERE room_category_id = @categoryId
+                                ORDER BY room_id";
+                            using (var cmd = new SqlCommand(findAnyRoomQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@categoryId", _categoryId);
+                                object result = cmd.ExecuteScalar();
+                                if (result != null && result != DBNull.Value)
+                                {
+                                    roomId = (int)result;
+                                }
+                            }
+                        }
+
+                        if (roomId == -1)
                             return false;
 
-                        // Привязываем номер к гостю
-                        guest.RoomId = availableRoom.RoomId;
-                        context.SaveChanges();
+                        // Привязываем номер к гостю (обновляем таблицу Guests)
+                        string updateGuestQuery = "UPDATE Guests SET room_id = @roomId WHERE guest_id = @guestId";
+                        using (var cmd = new SqlCommand(updateGuestQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@roomId", roomId);
+                            cmd.Parameters.AddWithValue("@guestId", guestId);
+                            cmd.ExecuteNonQuery();
+                        }
 
                         // Создаем запись в Payment_invoices
-                        var paymentInvoice = new PaymentInvoice
+                        string createPaymentQuery = @"
+                            INSERT INTO Payment_invoices (guest_id, total, is_paid) 
+                            VALUES (@guestId, @total, @isPaid)";
+                        using (var cmd = new SqlCommand(createPaymentQuery, conn))
                         {
-                            GuestId = guest.GuestId,
-                            Total = _totalAmount,
-                            IsPaid = true
-                        };
-                        context.PaymentInvoices.Add(paymentInvoice);
-                        context.SaveChanges();
+                            cmd.Parameters.AddWithValue("@guestId", guestId);
+                            cmd.Parameters.AddWithValue("@total", _totalAmount);
+                            cmd.Parameters.AddWithValue("@isPaid", true);
+                            cmd.ExecuteNonQuery();
+                        }
 
                         return true;
                     }
