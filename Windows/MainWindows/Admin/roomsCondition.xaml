@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Управление номерами" Height="600" Width="1000"
+        Title="Управление номерами" MinHeight="900" MinWidth="1800"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
 
         <TextBlock Grid.Row="0" Text="Список номеров и их состояние" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-        <DataGrid x:Name="RoomsDataGrid" 
+        <DataGrid x:Name="RoomsDataGrid" HorizontalScrollBarVisibility="Visible"
                   Grid.Row="1"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"

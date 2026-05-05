@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Admin"
         mc:Ignorable="d"
-        Title="deleteUser" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Удаление пользователя" MinHeight="450" MinWidth="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" Background="#22220398" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <DataGrid IsReadOnly="True" Name="UsersDataGrid" d:ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="UsersDataGrid_SelectedRowChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding user_id}" Width="50"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding name}" Width="*"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding patronymic}" Width="*"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="*"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Удалить" Width="120" Height="30" Margin="5" Click="DeleteButton_Click" Background="#FFDC3C3C"/>
+            <Button Content="Закрыть" Width="120" Height="30" Margin="5" Click="CloseButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
+
+
