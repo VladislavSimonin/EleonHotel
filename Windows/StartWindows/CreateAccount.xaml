@@ -11,7 +11,7 @@
         xmlns:easy="clr-namespace:EasyCaptcha.Wpf;assembly=EasyCaptcha.Wpf"
         ResizeMode="NoResize"
         Loaded="Window_Loaded"
-        Title="Создать аккаунт" Height="570" Width="560" MinWidth="660" MinHeight="570">
+        Title="Создать аккаунт" Height="570" Width="560" MinWidth="680" MinHeight="570">
     <ScrollViewer Background="#22220398" CanContentScroll="True" VerticalScrollBarVisibility="Auto" >
         <Grid>
             <Grid.Resources>
@@ -20,7 +20,7 @@
             </Grid.Resources>
         
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -63,38 +63,39 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-        <Label Grid.Row="1" Grid.Column="0" Content="Фамилия" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Имя" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Отчество" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="4" Grid.Column="0" Content="Ваш день рождения" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="5" Grid.Column="0" Content="Серия паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="6" Grid.Column="0" Content="Номер паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="7" Grid.Column="0" Content="Кем выдан паспорт" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="8" Grid.Column="0" Content="Дата выдачи паспорта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="9" Grid.Column="0" Content="Адрес регистрации" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="10" Grid.Column="0" Content="Номер телефона" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="11" Grid.Column="0" Content="Электронная почта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="12" Grid.Column="0" Content="Придумайте логин" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Grid.Row="13" Grid.Column="0" Content="Придумайте пароль" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
-            
-        <TextBox x:Name="TbSurname" MaxLength="30" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbName" MaxLength="30" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPatronymic" MaxLength="30" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Фамилия" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Имя" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Отчество" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Ваш день рождения" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Серия паспорта" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="6" Grid.Column="0" Content="Номер паспорта" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="7" Grid.Column="0" Content="Кем выдан паспорт" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="8" Grid.Column="0" Content="Дата выдачи паспорта" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="9" Grid.Column="0" Content="Адрес регистрации" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="10" Grid.Column="0" Content="Номер телефона" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="11" Grid.Column="0" Content="Электронная почта" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="12" Grid.Column="0" Content="Придумайте логин" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <Label Grid.Row="13" Grid.Column="0" Content="Придумайте пароль" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+
+
+            <TextBox x:Name="TbSurname" MaxLength="30" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <TextBox x:Name="TbName" MaxLength="30" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <TextBox x:Name="TbPatronymic" MaxLength="30" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
         <DatePicker x:Name="Birthsday" Grid.Column="2" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="TbPassportSeries" MaxLength="4" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPassportNumber" MaxLength="6" Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbWhoGavePassport" MaxLength="100" Grid.Row="7" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+            <TextBox x:Name="TbPassportSeries" MaxLength="4" Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <TextBox x:Name="TbPassportNumber" MaxLength="6" Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <TextBox x:Name="TbWhoGavePassport" MaxLength="100" Grid.Row="7" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
         <DatePicker x:Name="WhenPassportGave" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="TbRegistrationAddress" Grid.Row="9" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbPhone" Grid.Row="10" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbEmail" Grid.Row="11" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
-        <TextBox x:Name="TbLogin" Grid.Row="12" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330"/>
+            <TextBox x:Name="TbRegistrationAddress" Grid.Row="9" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <TextBox x:Name="TbPhone" Grid.Row="10" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <TextBox x:Name="TbEmail" Grid.Row="11" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <TextBox x:Name="TbLogin" Grid.Row="12" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" VerticalAlignment="Center" Width="330" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
         <TextBox x:Name="TbPassword" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint=""
                      materialDesign:TextFieldAssist.HasClearButton="True" 
+                  FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"
                  Grid.Row="13" Grid.ColumnSpan="3" Grid.Column="1" 
                  HorizontalAlignment="Center" TextWrapping="NoWrap" 
                  VerticalAlignment="Center" Width="330"/>
@@ -153,9 +154,9 @@
             </StackPanel>
         </StackPanel>
 
-            <Label Content="Кто Вы?" HorizontalAlignment="Center" Grid.Row="23" VerticalAlignment="Center"/>
-            <RadioButton x:Name="RbGuest" Grid.Column="1" Content="Гость" HorizontalAlignment="Left" Grid.Row="23" VerticalAlignment="Center" />
-            <RadioButton x:Name="RbEmployee" Grid.Column="1" Content="Сотрудник" HorizontalAlignment="Left" Grid.Row="24" VerticalAlignment="Center"/>
+            <Label Content="Кто Вы?" HorizontalAlignment="Center" Grid.Row="23" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <RadioButton x:Name="RbGuest" Grid.Column="1" Content="Гость" HorizontalAlignment="Left" Grid.Row="23" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
+            <RadioButton x:Name="RbEmployee" Grid.Column="1" Content="Сотрудник" HorizontalAlignment="Left" Grid.Row="24" VerticalAlignment="Center" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
             
 
             <StackPanel Grid.Row="26" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="2">
@@ -163,7 +164,7 @@
                 <easy:Captcha x:Name="MyCaptcha" Width="200" Height="200" Margin="10"/>
 
                 <!-- Поле для ввода ответа пользователем -->
-                <TextBox x:Name="AnswerTextBox" Width="200" Margin="10"/>
+                <TextBox x:Name="AnswerTextBox" Width="200" Margin="10" FontSize="16" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-MediumItalic.ttf#Roboto Condensed"/>
 
                 <Button x:Name="CheckButton" Content="Проверить" Click="CheckButton_Click" Width="150"/>
                 <Button x:Name="RefreshButton" Content="Обновить" Click="RefreshButton_Click" Width="150" Margin="5"/>

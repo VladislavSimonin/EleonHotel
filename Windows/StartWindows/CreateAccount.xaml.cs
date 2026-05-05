@@ -19,6 +19,9 @@ using System.Windows.Shapes;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static System.Data.Entity.Infrastructure.Design.Executor;
 using static System.Net.Mime.MediaTypeNames;
+using Dadata;
+using Dadata.Model;
+
 
 namespace EleonHotel.Windows.StartWindows
 {
@@ -29,19 +32,19 @@ namespace EleonHotel.Windows.StartWindows
     {
         private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         bool captchaStatus = false;
-        
+
         // Регулярные выражения для валидации
-        private static readonly System.Text.RegularExpressions.Regex CyrillicLettersRegex = 
+        private static readonly System.Text.RegularExpressions.Regex CyrillicLettersRegex =
             new System.Text.RegularExpressions.Regex(@"^[а-яА-ЯёЁa-zA-Z\s]+$");
-        private static readonly System.Text.RegularExpressions.Regex DigitsRegex = 
+        private static readonly System.Text.RegularExpressions.Regex DigitsRegex =
             new System.Text.RegularExpressions.Regex(@"^\d+$");
-        private static readonly System.Text.RegularExpressions.Regex PhoneRegex = 
+        private static readonly System.Text.RegularExpressions.Regex PhoneRegex =
             new System.Text.RegularExpressions.Regex(@"^\+7\d{10}$");
-        private static readonly System.Text.RegularExpressions.Regex EmailRegex = 
+        private static readonly System.Text.RegularExpressions.Regex EmailRegex =
             new System.Text.RegularExpressions.Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-        private static readonly System.Text.RegularExpressions.Regex LoginRegex = 
+        private static readonly System.Text.RegularExpressions.Regex LoginRegex =
             new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9_]{3,20}$");
-        
+
         public CreateAccount()
         {
             InitializeComponent();
@@ -49,20 +52,25 @@ namespace EleonHotel.Windows.StartWindows
             InitializeValidation();
         }
 
+        /// <summary>
+        /// Инициализация автодополнения DaData для TextBox
+        /// </summary>
+        
+
         private void InitializeValidation()
         {
             // Валидация ФИО - только буквы и пробелы
             TbSurname.PreviewTextInput += TbName_PreviewTextInput;
             TbName.PreviewTextInput += TbName_PreviewTextInput;
             TbPatronymic.PreviewTextInput += TbName_PreviewTextInput;
-            
+
             // Валидация серии и номера паспорта - только цифры
             TbPassportSeries.PreviewTextInput += TbPassportSeries_PreviewTextInput;
             TbPassportNumber.PreviewTextInput += TbPassportNumber_PreviewTextInput;
-            
+
             // Валидация телефона - только цифры и +
             TbPhone.PreviewTextInput += TbPhone_PreviewTextInput;
-            
+
             // Валидация при потере фокуса
             TbSurname.LostFocus += TbSurname_LostFocus;
             TbName.LostFocus += TbName_LostFocus;
@@ -78,7 +86,7 @@ namespace EleonHotel.Windows.StartWindows
         }
 
         #region PreviewTextInput Handlers
-        
+
         private void TbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             // Разрешаем только буквы и пробелы
@@ -110,69 +118,69 @@ namespace EleonHotel.Windows.StartWindows
                 e.Handled = !DigitsRegex.IsMatch(e.Text);
             }
         }
-        
+
         #endregion
 
         #region LostFocus Handlers
-        
+
         private void TbSurname_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbSurname, "Фамилия должна содержать только буквы", 
+            ValidateTextBox(TbSurname, "Фамилия должна содержать только буквы",
                 text => !string.IsNullOrWhiteSpace(text) && CyrillicLettersRegex.IsMatch(text));
         }
 
         private void TbName_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbName, "Имя должно содержать только буквы", 
+            ValidateTextBox(TbName, "Имя должно содержать только буквы",
                 text => !string.IsNullOrWhiteSpace(text) && CyrillicLettersRegex.IsMatch(text));
         }
 
         private void TbPatronymic_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbPatronymic, "Отчество должно содержать только буквы", 
+            ValidateTextBox(TbPatronymic, "Отчество должно содержать только буквы",
                 text => string.IsNullOrWhiteSpace(text) || CyrillicLettersRegex.IsMatch(text));
         }
 
         private void TbPassportSeries_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbPassportSeries, "Серия паспорта должна содержать ровно 4 цифры", 
+            ValidateTextBox(TbPassportSeries, "Серия паспорта должна содержать ровно 4 цифры",
                 text => !string.IsNullOrWhiteSpace(text) && text.Length == 4 && DigitsRegex.IsMatch(text));
         }
 
         private void TbPassportNumber_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbPassportNumber, "Номер паспорта должен содержать ровно 6 цифр", 
+            ValidateTextBox(TbPassportNumber, "Номер паспорта должен содержать ровно 6 цифр",
                 text => !string.IsNullOrWhiteSpace(text) && text.Length == 6 && DigitsRegex.IsMatch(text));
         }
 
         private void TbWhoGavePassport_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbWhoGavePassport, "Поле 'Кем выдан паспорт' не может быть пустым", 
+            ValidateTextBox(TbWhoGavePassport, "Поле 'Кем выдан паспорт' не может быть пустым",
                 text => !string.IsNullOrWhiteSpace(text));
         }
 
         private void TbPhone_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbPhone, "Номер телефона должен быть в формате +7XXXXXXXXXX", 
+            ValidateTextBox(TbPhone, "Номер телефона должен быть в формате +7XXXXXXXXXX",
                 text => !string.IsNullOrWhiteSpace(text) && PhoneRegex.IsMatch(text));
         }
 
         private void TbEmail_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbEmail, "Некорректный формат электронной почты", 
+            ValidateTextBox(TbEmail, "Некорректный формат электронной почты",
                 text => !string.IsNullOrWhiteSpace(text) && EmailRegex.IsMatch(text));
         }
 
         private void TbLogin_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBox(TbLogin, "Логин должен содержать от 3 до 20 символов (буквы, цифры, _)", 
+            ValidateTextBox(TbLogin, "Логин должен содержать от 3 до 20 символов (буквы, цифры, _)",
                 text => !string.IsNullOrWhiteSpace(text) && LoginRegex.IsMatch(text));
         }
-        
+
         #endregion
 
         #region DatePicker Handlers
-        
+
         private void Birthsday_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Birthsday.SelectedDate.HasValue)
@@ -180,18 +188,18 @@ namespace EleonHotel.Windows.StartWindows
                 var birthDate = Birthsday.SelectedDate.Value;
                 var today = DateTime.Today;
                 var age = today.Year - birthDate.Year;
-                
+
                 if (birthDate > today)
                 {
-                    MessageBox.Show("Дата рождения не может быть в будущем!", "Ошибка", 
+                    MessageBox.Show("Дата рождения не может быть в будущем!", "Ошибка",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                     Birthsday.SelectedDate = null;
                     return;
                 }
-                
+
                 if (age < 14)
                 {
-                    MessageBox.Show("Регистрация возможна только с 14 лет!", "Ошибка", 
+                    MessageBox.Show("Регистрация возможна только с 14 лет!", "Ошибка",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                     Birthsday.SelectedDate = null;
                     return;
@@ -206,32 +214,32 @@ namespace EleonHotel.Windows.StartWindows
                 var passportDate = WhenPassportGave.SelectedDate.Value;
                 var birthDate = Birthsday.SelectedDate.Value;
                 var today = DateTime.Today;
-                
+
                 if (passportDate > today)
                 {
-                    MessageBox.Show("Дата выдачи паспорта не может быть в будущем!", "Ошибка", 
+                    MessageBox.Show("Дата выдачи паспорта не может быть в будущем!", "Ошибка",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                     WhenPassportGave.SelectedDate = null;
                     return;
                 }
-                
+
                 if (passportDate < birthDate.AddYears(14))
                 {
-                    MessageBox.Show("Дата выдачи паспорта не может быть раньше 14-летия!", "Ошибка", 
+                    MessageBox.Show("Дата выдачи паспорта не может быть раньше 14-летия!", "Ошибка",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                     WhenPassportGave.SelectedDate = null;
                     return;
                 }
             }
         }
-        
+
         #endregion
 
         private void ValidateTextBox(TextBox textBox, string errorMessage, Func<string, bool> validationFunc)
         {
             if (!string.IsNullOrWhiteSpace(textBox.Text) && !validationFunc(textBox.Text.Trim()))
             {
-                MessageBox.Show(errorMessage, "Ошибка валидации", 
+                MessageBox.Show(errorMessage, "Ошибка валидации",
                     MessageBoxButton.OK, MessageBoxImage.Warning);
                 textBox.Focus();
                 textBox.SelectAll();
@@ -264,7 +272,7 @@ namespace EleonHotel.Windows.StartWindows
                 var birthDate = Birthsday.SelectedDate.Value;
                 var today = DateTime.Today;
                 var age = today.Year - birthDate.Year;
-                
+
                 if (birthDate > today)
                     errors.Add("Дата рождения не может быть в будущем");
                 else if (age < 14)
@@ -337,7 +345,7 @@ namespace EleonHotel.Windows.StartWindows
 
             if (errors.Count > 0)
             {
-                MessageBox.Show(string.Join("\n", errors), "Ошибка валидации", 
+                MessageBox.Show(string.Join("\n", errors), "Ошибка валидации",
                     MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
@@ -495,5 +503,6 @@ namespace EleonHotel.Windows.StartWindows
         {
             MyCaptcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 5);
         }
+
     }
 }

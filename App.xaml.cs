@@ -14,20 +14,24 @@ namespace EleonHotel
     public partial class App : Application
     {
         public static IServiceProvider ServiceProvider { get; private set; }
+        public static IConfiguration Configuration { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            // Загружаем конфигурацию
-            var configuration = new ConfigurationBuilder()
+            // Загружаем конфигурацию из appsettings.json и User Secrets
+            var configBuilder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .Build();
+                .AddUserSecrets<App>(); // Добавляем поддержку User Secrets
+
+            Configuration = configBuilder.Build();
 
             // Настраиваем DI контейнер
             var services = new ServiceCollection();
+            services.AddSingleton<IConfiguration>(Configuration);
             services.AddDbContext<HotelDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             ServiceProvider = services.BuildServiceProvider();
 
