@@ -352,17 +352,92 @@ namespace EleonHotel.Windows.MainWindows
             BookRoom(6, "Люкс");
         }
 
+
         private void BookRoom(int categoryId, string categoryName)
         {
+            // Проверка выбранных дат
+            if (DtEnter.SelectedDate == null || DtOut.SelectedDate == null)
+            {
+                MessageBox.Show(
+                    "Пожалуйста, выберите даты въезда и выезда.",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            DateTime checkIn = DtEnter.SelectedDate.Value;
+            DateTime checkOut = DtOut.SelectedDate.Value;
+
+            // Проверка корректности дат
+            if (checkOut <= checkIn)
+            {
+                MessageBox.Show(
+                    "Дата выезда должна быть позже даты въезда.",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
             int guestsCount = CbGuests.SelectedItem != null ? (int)CbGuests.SelectedItem : 1;
+
+            // Получение цены за сутки из базы данных
+            decimal pricePerNight = GetRoomCategoryPrice(categoryId);
+
+            if (pricePerNight <= 0)
+            {
+                MessageBox.Show(
+                    "Не удалось получить цену номера. Пожалуйста, попробуйте позже.",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                return;
+            }
+
+            // Открытие окна оплаты
+            var paymentWindow = new PaymentWindow(UserId, categoryId, categoryName, checkIn, checkOut, pricePerNight);
+            paymentWindow.Owner = this;
             
-            MessageBox.Show(
-                $"Вы выбрали бронирование номера категории \"{categoryName}\".\n" +
-                $"Количество гостей: {guestsCount}\n\n" +
-                $"В ближайшее время будет подключена оплата через ЮKassa.",
-                "Бронирование номера",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
+            if (paymentWindow.ShowDialog() == true)
+            {
+                // Оплата прошла успешно
+                MessageBox.Show(
+                    $"Бронирование успешно оформлено!\n\n" +
+                    $"Категория номера: {categoryName}\n" +
+                    $"Дата въезда: {checkIn:dd.MM.yyyy}\n" +
+                    $"Дата выезда: {checkOut:dd.MM.yyyy}\n" +
+                    $"Количество гостей: {guestsCount}",
+                    "Успешно",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+        }
+
+        private decimal GetRoomCategoryPrice(int categoryId)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT cost FROM Room_categories WHERE room_category_id = @CategoryId";
+                    using (var cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.Add("@CategoryId", System.Data.SqlDbType.Int).Value = categoryId;
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            return Convert.ToDecimal(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при получении цены: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return 0;
         }
     }
 }
