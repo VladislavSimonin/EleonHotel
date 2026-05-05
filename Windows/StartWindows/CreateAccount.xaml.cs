@@ -29,24 +29,327 @@ namespace EleonHotel.Windows.StartWindows
     {
         private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         bool captchaStatus = false;
+        
+        // Регулярные выражения для валидации
+        private static readonly System.Text.RegularExpressions.Regex CyrillicLettersRegex = 
+            new System.Text.RegularExpressions.Regex(@"^[а-яА-ЯёЁa-zA-Z\s]+$");
+        private static readonly System.Text.RegularExpressions.Regex DigitsRegex = 
+            new System.Text.RegularExpressions.Regex(@"^\d+$");
+        private static readonly System.Text.RegularExpressions.Regex PhoneRegex = 
+            new System.Text.RegularExpressions.Regex(@"^\+7\d{10}$");
+        private static readonly System.Text.RegularExpressions.Regex EmailRegex = 
+            new System.Text.RegularExpressions.Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        private static readonly System.Text.RegularExpressions.Regex LoginRegex = 
+            new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9_]{3,20}$");
+        
         public CreateAccount()
         {
             InitializeComponent();
             DataContext = new RegistrationViewModel();
+            InitializeValidation();
+        }
+
+        private void InitializeValidation()
+        {
+            // Валидация ФИО - только буквы и пробелы
+            TbSurname.PreviewTextInput += TbName_PreviewTextInput;
+            TbName.PreviewTextInput += TbName_PreviewTextInput;
+            TbPatronymic.PreviewTextInput += TbName_PreviewTextInput;
+            
+            // Валидация серии и номера паспорта - только цифры
+            TbPassportSeries.PreviewTextInput += TbPassportSeries_PreviewTextInput;
+            TbPassportNumber.PreviewTextInput += TbPassportNumber_PreviewTextInput;
+            
+            // Валидация телефона - только цифры и +
+            TbPhone.PreviewTextInput += TbPhone_PreviewTextInput;
+            
+            // Валидация при потере фокуса
+            TbSurname.LostFocus += TbSurname_LostFocus;
+            TbName.LostFocus += TbName_LostFocus;
+            TbPatronymic.LostFocus += TbPatronymic_LostFocus;
+            TbPassportSeries.LostFocus += TbPassportSeries_LostFocus;
+            TbPassportNumber.LostFocus += TbPassportNumber_LostFocus;
+            TbWhoGavePassport.LostFocus += TbWhoGavePassport_LostFocus;
+            TbPhone.LostFocus += TbPhone_LostFocus;
+            TbEmail.LostFocus += TbEmail_LostFocus;
+            TbLogin.LostFocus += TbLogin_LostFocus;
+            Birthsday.SelectedDateChanged += Birthsday_SelectedDateChanged;
+            WhenPassportGave.SelectedDateChanged += WhenPassportGave_SelectedDateChanged;
+        }
+
+        #region PreviewTextInput Handlers
+        
+        private void TbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Разрешаем только буквы и пробелы
+            e.Handled = !CyrillicLettersRegex.IsMatch(e.Text);
+        }
+
+        private void TbPassportSeries_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Разрешаем только цифры
+            e.Handled = !DigitsRegex.IsMatch(e.Text);
+        }
+
+        private void TbPassportNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Разрешаем только цифры
+            e.Handled = !DigitsRegex.IsMatch(e.Text);
+        }
+
+        private void TbPhone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Разрешаем только цифры и + (в начале)
+            var textBox = sender as TextBox;
+            if (e.Text == "+" && textBox.Text.Length == 0)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = !DigitsRegex.IsMatch(e.Text);
+            }
+        }
+        
+        #endregion
+
+        #region LostFocus Handlers
+        
+        private void TbSurname_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbSurname, "Фамилия должна содержать только буквы", 
+                text => !string.IsNullOrWhiteSpace(text) && CyrillicLettersRegex.IsMatch(text));
+        }
+
+        private void TbName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbName, "Имя должно содержать только буквы", 
+                text => !string.IsNullOrWhiteSpace(text) && CyrillicLettersRegex.IsMatch(text));
+        }
+
+        private void TbPatronymic_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbPatronymic, "Отчество должно содержать только буквы", 
+                text => string.IsNullOrWhiteSpace(text) || CyrillicLettersRegex.IsMatch(text));
+        }
+
+        private void TbPassportSeries_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbPassportSeries, "Серия паспорта должна содержать ровно 4 цифры", 
+                text => !string.IsNullOrWhiteSpace(text) && text.Length == 4 && DigitsRegex.IsMatch(text));
+        }
+
+        private void TbPassportNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbPassportNumber, "Номер паспорта должен содержать ровно 6 цифр", 
+                text => !string.IsNullOrWhiteSpace(text) && text.Length == 6 && DigitsRegex.IsMatch(text));
+        }
+
+        private void TbWhoGavePassport_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbWhoGavePassport, "Поле 'Кем выдан паспорт' не может быть пустым", 
+                text => !string.IsNullOrWhiteSpace(text));
+        }
+
+        private void TbPhone_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbPhone, "Номер телефона должен быть в формате +7XXXXXXXXXX", 
+                text => !string.IsNullOrWhiteSpace(text) && PhoneRegex.IsMatch(text));
+        }
+
+        private void TbEmail_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbEmail, "Некорректный формат электронной почты", 
+                text => !string.IsNullOrWhiteSpace(text) && EmailRegex.IsMatch(text));
+        }
+
+        private void TbLogin_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ValidateTextBox(TbLogin, "Логин должен содержать от 3 до 20 символов (буквы, цифры, _)", 
+                text => !string.IsNullOrWhiteSpace(text) && LoginRegex.IsMatch(text));
+        }
+        
+        #endregion
+
+        #region DatePicker Handlers
+        
+        private void Birthsday_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Birthsday.SelectedDate.HasValue)
+            {
+                var birthDate = Birthsday.SelectedDate.Value;
+                var today = DateTime.Today;
+                var age = today.Year - birthDate.Year;
+                
+                if (birthDate > today)
+                {
+                    MessageBox.Show("Дата рождения не может быть в будущем!", "Ошибка", 
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Birthsday.SelectedDate = null;
+                    return;
+                }
+                
+                if (age < 14)
+                {
+                    MessageBox.Show("Регистрация возможна только с 14 лет!", "Ошибка", 
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Birthsday.SelectedDate = null;
+                    return;
+                }
+            }
+        }
+
+        private void WhenPassportGave_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (WhenPassportGave.SelectedDate.HasValue && Birthsday.SelectedDate.HasValue)
+            {
+                var passportDate = WhenPassportGave.SelectedDate.Value;
+                var birthDate = Birthsday.SelectedDate.Value;
+                var today = DateTime.Today;
+                
+                if (passportDate > today)
+                {
+                    MessageBox.Show("Дата выдачи паспорта не может быть в будущем!", "Ошибка", 
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    WhenPassportGave.SelectedDate = null;
+                    return;
+                }
+                
+                if (passportDate < birthDate.AddYears(14))
+                {
+                    MessageBox.Show("Дата выдачи паспорта не может быть раньше 14-летия!", "Ошибка", 
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    WhenPassportGave.SelectedDate = null;
+                    return;
+                }
+            }
+        }
+        
+        #endregion
+
+        private void ValidateTextBox(TextBox textBox, string errorMessage, Func<string, bool> validationFunc)
+        {
+            if (!string.IsNullOrWhiteSpace(textBox.Text) && !validationFunc(textBox.Text.Trim()))
+            {
+                MessageBox.Show(errorMessage, "Ошибка валидации", 
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                textBox.Focus();
+                textBox.SelectAll();
+            }
+        }
+
+        private bool ValidateAllFields()
+        {
+            var errors = new List<string>();
+
+            // Валидация ФИО
+            if (string.IsNullOrWhiteSpace(TbSurname.Text))
+                errors.Add("Фамилия не заполнена");
+            else if (!CyrillicLettersRegex.IsMatch(TbSurname.Text.Trim()))
+                errors.Add("Фамилия должна содержать только буквы");
+
+            if (string.IsNullOrWhiteSpace(TbName.Text))
+                errors.Add("Имя не заполнено");
+            else if (!CyrillicLettersRegex.IsMatch(TbName.Text.Trim()))
+                errors.Add("Имя должно содержать только буквы");
+
+            if (!string.IsNullOrWhiteSpace(TbPatronymic.Text) && !CyrillicLettersRegex.IsMatch(TbPatronymic.Text.Trim()))
+                errors.Add("Отчество должно содержать только буквы");
+
+            // Валидация даты рождения
+            if (!Birthsday.SelectedDate.HasValue)
+                errors.Add("Дата рождения не выбрана");
+            else
+            {
+                var birthDate = Birthsday.SelectedDate.Value;
+                var today = DateTime.Today;
+                var age = today.Year - birthDate.Year;
+                
+                if (birthDate > today)
+                    errors.Add("Дата рождения не может быть в будущем");
+                else if (age < 14)
+                    errors.Add("Регистрация возможна только с 14 лет");
+            }
+
+            // Валидация паспорта
+            if (string.IsNullOrWhiteSpace(TbPassportSeries.Text))
+                errors.Add("Серия паспорта не заполнена");
+            else if (TbPassportSeries.Text.Length != 4 || !DigitsRegex.IsMatch(TbPassportSeries.Text))
+                errors.Add("Серия паспорта должна содержать ровно 4 цифры");
+
+            if (string.IsNullOrWhiteSpace(TbPassportNumber.Text))
+                errors.Add("Номер паспорта не заполнен");
+            else if (TbPassportNumber.Text.Length != 6 || !DigitsRegex.IsMatch(TbPassportNumber.Text))
+                errors.Add("Номер паспорта должен содержать ровно 6 цифр");
+
+            if (string.IsNullOrWhiteSpace(TbWhoGavePassport.Text))
+                errors.Add("Поле 'Кем выдан паспорт' не заполнено");
+
+            // Валидация даты выдачи паспорта
+            if (!WhenPassportGave.SelectedDate.HasValue)
+                errors.Add("Дата выдачи паспорта не выбрана");
+            else if (WhenPassportGave.SelectedDate.Value > DateTime.Today)
+                errors.Add("Дата выдачи паспорта не может быть в будущем");
+            else if (Birthsday.SelectedDate.HasValue && WhenPassportGave.SelectedDate.Value < Birthsday.SelectedDate.Value.AddYears(14))
+                errors.Add("Дата выдачи паспорта не может быть раньше 14-летия");
+
+            // Валидация адреса
+            if (string.IsNullOrWhiteSpace(TbRegistrationAddress.Text))
+                errors.Add("Адрес регистрации не заполнен");
+
+            // Валидация телефона
+            if (string.IsNullOrWhiteSpace(TbPhone.Text))
+                errors.Add("Номер телефона не заполнен");
+            else if (!PhoneRegex.IsMatch(TbPhone.Text.Trim()))
+                errors.Add("Номер телефона должен быть в формате +7XXXXXXXXXX");
+
+            // Валидация email
+            if (string.IsNullOrWhiteSpace(TbEmail.Text))
+                errors.Add("Электронная почта не заполнена");
+            else if (!EmailRegex.IsMatch(TbEmail.Text.Trim()))
+                errors.Add("Некорректный формат электронной почты");
+
+            // Валидация логина
+            if (string.IsNullOrWhiteSpace(TbLogin.Text))
+                errors.Add("Логин не заполнен");
+            else if (!LoginRegex.IsMatch(TbLogin.Text.Trim()))
+                errors.Add("Логин должен содержать от 3 до 20 символов (буквы, цифры, _)");
+
+            // Валидация пароля (проверка через ViewModel)
+            if (string.IsNullOrWhiteSpace(TbPassword.Text))
+                errors.Add("Пароль не заполнен");
+            else
+            {
+                var viewModel = DataContext as RegistrationViewModel;
+                if (viewModel != null && viewModel.StrengthPercent < 20)
+                    errors.Add("Пароль слишком слабый. Используйте заглавные буквы, цифры и спецсимволы");
+            }
+
+            // Валидация роли
+            if (RbGuest.IsChecked != true && RbEmployee.IsChecked != true)
+                errors.Add("Выберите кто Вы: Гость или Сотрудник");
+
+            // Валидация капчи
+            if (string.IsNullOrWhiteSpace(AnswerTextBox.Text.Trim()))
+                errors.Add("Введите код с капчи");
+            else if (!captchaStatus)
+                errors.Add("Неправильный код капчи");
+
+            if (errors.Count > 0)
+            {
+                MessageBox.Show(string.Join("\n", errors), "Ошибка валидации", 
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
 
         private void BtnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TbLogin.Text) || string.IsNullOrWhiteSpace(TbPassword.Text) ||
-                string.IsNullOrWhiteSpace(TbSurname.Text) || string.IsNullOrWhiteSpace(TbName.Text) ||
-                string.IsNullOrWhiteSpace(TbPatronymic.Text) || Birthsday.SelectedDate == null || string.IsNullOrWhiteSpace(TbPhone.Text) ||
-                string.IsNullOrWhiteSpace(TbEmail.Text) || string.IsNullOrWhiteSpace(TbPassportSeries.Text) ||
-                string.IsNullOrWhiteSpace(TbPassportNumber.Text) || string.IsNullOrWhiteSpace(TbWhoGavePassport.Text) ||
-                WhenPassportGave.SelectedDate == null || string.IsNullOrWhiteSpace(TbRegistrationAddress.Text) ||
-                RbGuest.IsChecked == false && RbEmployee.IsChecked == false || string.IsNullOrWhiteSpace(AnswerTextBox.Text.Trim()) ||
-                captchaStatus == false)
+            // Комплексная валидация всех полей перед отправкой
+            if (!ValidateAllFields())
             {
-                MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
