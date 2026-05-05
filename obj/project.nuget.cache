@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "o88NiyWE1+s=",
+  "dgSpecHash": "WnVoNJZldqk=",
   "success": true,
   "projectFilePath": "C:\\Users\\Vladislav\\Desktop\\Лето 2048\\ДИПЛОМ\\EleonHotel\\EleonHotel.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,7 @@
     "C:\\Users\\Vladislav\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
-    "C:\\Users\\Vladislav\\.nuget\\packages\\dadata\\18.9.0\\dadata.18.9.0.nupkg.sha512",
+    "C:\\Users\\Vladislav\\.nuget\\packages\\dadata\\25.7.0\\dadata.25.7.0.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\easycaptcha.wpf\\0.9.0.3\\easycaptcha.wpf.0.9.0.3.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\entityframework\\6.5.2\\entityframework.6.5.2.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\entityframework.sqlservercompact\\6.5.2\\entityframework.sqlservercompact.6.5.2.nupkg.sha512",
@@ -106,30 +106,6 @@
     "C:\\Users\\Vladislav\\.nuget\\packages\\z.expressions.eval\\6.3.9\\z.expressions.eval.6.3.9.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "message": "EleonHotel зависит от Dadata (>= 3.0.1), но версия Dadata 3.0.1 не найдена. Использовалась версия Dadata 18.9.0.",
-      "projectPath": "C:\\Users\\Vladislav\\Desktop\\Лето 2048\\ДИПЛОМ\\EleonHotel\\EleonHotel.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Vladislav\\Desktop\\Лето 2048\\ДИПЛОМ\\EleonHotel\\EleonHotel.csproj",
-      "libraryId": "Dadata",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "message": "Пакет \"Dadata 18.9.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net10.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "projectPath": "C:\\Users\\Vladislav\\Desktop\\Лето 2048\\ДИПЛОМ\\EleonHotel\\EleonHotel.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\Vladislav\\Desktop\\Лето 2048\\ДИПЛОМ\\EleonHotel\\EleonHotel.csproj",
-      "libraryId": "Dadata",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

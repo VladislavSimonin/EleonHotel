@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using EleonHotel.Data;
 using EleonHotel.Models;
+using System.Windows.Controls;
 
 namespace EleonHotel.Windows.MainWindows
 {
     public partial class PaymentWindow : Window
     {
+        private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         private readonly int _userId;
         private readonly int _categoryId;
         private readonly string _categoryName;
@@ -18,7 +20,6 @@ namespace EleonHotel.Windows.MainWindows
         private readonly decimal _pricePerNight;
         private readonly int _nights;
         private readonly decimal _totalAmount;
-        private readonly string ConnectionString = Properties.Settings.Default.ConnectionString;
 
         public PaymentWindow(int userId, int categoryId, string categoryName, DateTime checkIn, DateTime checkOut, decimal pricePerNight)
         {
@@ -63,6 +64,7 @@ namespace EleonHotel.Windows.MainWindows
 
                 // Выполняем оплату и обновляем базу данных
                 bool success = await ProcessPaymentAsync();
+
 
                 if (success)
                 {
