@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static System.Data.Entity.Infrastructure.Design.Executor;
 using static System.Net.Mime.MediaTypeNames;
+using EleonHotel.Helpers;
 
 namespace EleonHotel.Windows.StartWindows
 {
@@ -29,6 +30,14 @@ namespace EleonHotel.Windows.StartWindows
     {
         private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         bool captchaStatus = false;
+        
+        // Помощники DaData для автодополнения
+        private DadataTextBoxHelper _addressHelper;
+        private DadataTextBoxHelper _surnameHelper;
+        private DadataTextBoxHelper _nameHelper;
+        private DadataTextBoxHelper _patronymicHelper;
+        private DadataTextBoxHelper _phoneHelper;
+        private DadataTextBoxHelper _emailHelper;
         
         // Регулярные выражения для валидации
         private static readonly System.Text.RegularExpressions.Regex CyrillicLettersRegex = 
@@ -47,6 +56,27 @@ namespace EleonHotel.Windows.StartWindows
             InitializeComponent();
             DataContext = new RegistrationViewModel();
             InitializeValidation();
+            InitializeDadataAutoComplete();
+        }
+
+        /// <summary>
+        /// Инициализация автодополнения DaData для TextBox
+        /// </summary>
+        private void InitializeDadataAutoComplete()
+        {
+            // Подключаем автодополнение для адреса регистрации
+            _addressHelper = new DadataTextBoxHelper(TbRegistrationAddress, DadataTextBoxHelper.PopupType.Address);
+            
+            // Подключаем автодополнение для ФИО (фамилия, имя, отчество)
+            _surnameHelper = new DadataTextBoxHelper(TbSurname, DadataTextBoxHelper.PopupType.Fio);
+            _nameHelper = new DadataTextBoxHelper(TbName, DadataTextBoxHelper.PopupType.Fio);
+            _patronymicHelper = new DadataTextBoxHelper(TbPatronymic, DadataTextBoxHelper.PopupType.Fio);
+            
+            // Подключаем автодополнение для телефона
+            _phoneHelper = new DadataTextBoxHelper(TbPhone, DadataTextBoxHelper.PopupType.Phone);
+            
+            // Подключаем автодополнение для email
+            _emailHelper = new DadataTextBoxHelper(TbEmail, DadataTextBoxHelper.PopupType.Email);
         }
 
         private void InitializeValidation()
@@ -494,6 +524,22 @@ namespace EleonHotel.Windows.StartWindows
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             MyCaptcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 5);
+        }
+
+        /// <summary>
+        /// Очистка ресурсов DaData при закрытии окна
+        /// </summary>
+        protected override void OnClosed(EventArgs e)
+        {
+            // Освобождаем ресурсы помощников DaData
+            _addressHelper?.Cleanup();
+            _surnameHelper?.Cleanup();
+            _nameHelper?.Cleanup();
+            _patronymicHelper?.Cleanup();
+            _phoneHelper?.Cleanup();
+            _emailHelper?.Cleanup();
+            
+            base.OnClosed(e);
         }
     }
 }
