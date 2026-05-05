@@ -59,7 +59,7 @@ namespace EleonHotel.Windows.StartWindows
 
         private void InitializeValidation()
         {
-            // Валидация ФИО - только буквы и пробелы
+            //  Валидация ФИО - только буквы и пробелы
             TbSurname.PreviewTextInput += TbName_PreviewTextInput;
             TbName.PreviewTextInput += TbName_PreviewTextInput;
             TbPatronymic.PreviewTextInput += TbName_PreviewTextInput;
