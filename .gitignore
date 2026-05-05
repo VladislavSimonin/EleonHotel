@@ -1,65 +1,75 @@
 ```
 # Build artifacts
-*.o
-*.obj
-*.exe
 *.dll
+*.exe
+*.pdb
+*.obj
+*.lib
 *.so
-*.a
-*.out
-.vs/
-.appsettings
+*.dylib
+*.class
+*.o
 
 # Dependencies
+packages/
 node_modules/
-venv/
-.venv/
-__pycache__/
-.mypy_cache/
-.pytest_cache/
-target/
-.gradle/
+vendor/
 
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
+# Logs
+*.log
 
-# System files
-.DS_Store
-Thumbs.db
+# Environment
 .env
 .env.local
 *.env.*
 
-# Logs and coverage
-*.log
+# Editors
+.vs/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
 coverage/
 htmlcov/
 .coverage
 
-# Compressed files
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
+# Distribution / packaging
+dist/
+build/
 *.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+*.whl
+*.egg
+*.egg-info/
+
+# Testing
+*.tmp
+*.temp
+
+# MyPy
+.mypy_cache/
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Gradle
+.gradle/
+build/
+
+# Target
+target/
+
+# Julia
+julia-*/
+
+# Zig
+zig*/
 ```
