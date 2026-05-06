@@ -1,78 +1,64 @@
-<<<<<<< Updated upstream
-Nothing should be ignored based on the provided file changes. The modified file 'Windows/StartWindows/CreateAccount.xaml.cs' is a source code file that should not be added to .gitignore.
-=======
 ```
 # Build artifacts
-*.dll
-*.exe
-*.pdb
-*.obj
-*.lib
-*.so
-*.dylib
-*.class
 *.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
 
 # Dependencies
-packages/
 node_modules/
-vendor/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+target/
+.gradle/
 
-# Logs
-*.log
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Editors
-.vs/
+# Editors/IDEs
+.vscode/
 .idea/
 *.swp
 *.swo
 
-# OS
+# System files
 .DS_Store
 Thumbs.db
+Nothing should be ignored based on the provided file changes. The modified file 'Windows/StartWindows/CreateAccount.xaml.cs' is a source code file that should not be added to .gitignore.
+.env
+.env.local
+*.env.*
 
-# Coverage
+# Logs and coverage
+*.log
 coverage/
 htmlcov/
 .coverage
 
-# Distribution / packaging
-dist/
-build/
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
 *.tar.gz
-*.whl
-*.egg
-*.egg-info/
-
-# Testing
-*.tmp
-*.temp
-
-# MyPy
-.mypy_cache/
-.pytest_cache/
-
-# Virtual environments
-venv/
-.venv/
-env/
-ENV/
-
-# Gradle
-.gradle/
-build/
-
-# Target
-target/
-
-# Julia
-julia-*/
-
-# Zig
-zig*/
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 ```
