@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Admin"
         mc:Ignorable="d"
-        Title="guestsInfo" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Информация о гостях" MinHeight="500" MinWidth="1200">
     <Grid>
-        
+        <ScrollViewer Background="#22220398" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <DataGrid Name="GuestsDataGrid" 
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      GridLinesVisibility="Horizontal"
+                      AlternatingRowBackground="#FFE0E0E0"
+                      RowHeight="40"
+                      HeadersVisibility="Column"
+                      d:ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <!-- Пользовательские данные -->
+                    <DataGridTextColumn Header="ID" Binding="{Binding user_id}" Width="50"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}" Width="120"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding name}" Width="100"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding patronymic}" Width="100"/>
+                    <DataGridTextColumn Header="Серия паспорта" Binding="{Binding passport_series}" Width="80"/>
+                    <DataGridTextColumn Header="Номер паспорта" Binding="{Binding passport_number}" Width="80"/>
+                    <DataGridTextColumn Header="Кем выдан" Binding="{Binding who_gave_passport}" Width="150"/>
+                    <DataGridTextColumn Header="Дата выдачи" Binding="{Binding when_gave_passport, StringFormat={}{0:dd.MM.yyyy}}" Width="90"/>
+                    <DataGridTextColumn Header="Адрес регистрации" Binding="{Binding registration_address}" Width="150"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="120"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="150"/>
+                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding birthsday, StringFormat={}{0:dd.MM.yyyy}}" Width="90"/>
+                    
+                    <!-- Номер комнаты -->
+                    <DataGridTextColumn Header="Номер комнаты" Binding="{Binding room_number}" Width="100"/>
+                    
+                    <!-- Заказанные блюда -->
+                    <DataGridTextColumn Header="Заказанные блюда" Binding="{Binding ordered_dishes}" Width="200"/>
+                    
+                    <!-- Заказанные услуги -->
+                    <DataGridTextColumn Header="Заказанные услуги" Binding="{Binding ordered_services}" Width="200"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Window>
