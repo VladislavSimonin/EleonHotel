@@ -231,11 +231,12 @@
                 Background="#80000000" 
                 Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:PackIcon Kind="Loading" 
-                                         Width="60" 
-                                         Height="60" 
-                                         Foreground="White"
-                                         Spin="True"/>
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                             Width="60" 
+                            Height="60" 
+                            Foreground="White"
+                            Value="0" 
+             IsIndeterminate="True" />
                 <TextBlock Text="Обработка платежа..." 
                            FontSize="18" 
                            Foreground="White"

@@ -70,16 +70,13 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
-      "Dadata/18.9.0": {
+      "Dadata/25.7.0": {
         "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "12.0.2"
-        },
         "compile": {
-          "lib/net45/Dadata.dll": {}
+          "lib/netstandard2.0/Dadata.dll": {}
         },
         "runtime": {
-          "lib/net45/Dadata.dll": {}
+          "lib/netstandard2.0/Dadata.dll": {}
         }
       },
       "EasyCaptcha.Wpf/0.9.0.3": {
@@ -2160,16 +2157,17 @@
         "logo-mini.png"
       ]
     },
-    "Dadata/18.9.0": {
-      "sha512": "AdH4KZSdnIsBaxsrT8UL6MOMvAD8YzsUkCLx7vyUPmFQO9bYb5BNli+Lsmud81diFFZWycTJkwqOOL8wt90TNw==",
+    "Dadata/25.7.0": {
+      "sha512": "1afj7JlKi69v9aZZfOp4gc5yu9MhZGjcypQW6i+HlN/2OEImDEQI7F7QsuebPAFW69KwWnLeBgRSDLyb6C9AdQ==",
       "type": "package",
-      "path": "dadata/18.9.0",
+      "path": "dadata/25.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "dadata.18.9.0.nupkg.sha512",
+        "README.md",
+        "dadata.25.7.0.nupkg.sha512",
         "dadata.nuspec",
-        "lib/net45/Dadata.dll"
+        "lib/netstandard2.0/Dadata.dll"
       ]
     },
     "EasyCaptcha.Wpf/0.9.0.3": {
@@ -5680,7 +5678,7 @@
   },
   "projectFileDependencyGroups": {
     "net10.0-windows7.0": [
-      "Dadata >= 3.0.1",
+      "Dadata >= 25.7.0",
       "EasyCaptcha.Wpf >= 0.9.0.3",
       "EntityFramework >= 6.5.2",
       "EntityFramework.SqlServerCompact >= 6.5.2",
@@ -5765,7 +5763,7 @@
         "dependencies": {
           "Dadata": {
             "target": "Package",
-            "version": "[3.0.1, )"
+            "version": "[25.7.0, )"
           },
           "EasyCaptcha.Wpf": {
             "target": "Package",
@@ -6194,26 +6192,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "EleonHotel зависит от Dadata (>= 3.0.1), но версия Dadata 3.0.1 не найдена. Использовалась версия Dadata 18.9.0.",
-      "libraryId": "Dadata",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Dadata 18.9.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net10.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Dadata",
-      "targetGraphs": [
-        "net10.0-windows7.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",
