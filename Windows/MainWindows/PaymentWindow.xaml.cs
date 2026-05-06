@@ -4,11 +4,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using EleonHotel.Data;
 using EleonHotel.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace EleonHotel.Windows.MainWindows
 {
     public partial class PaymentWindow : Window
     {
+        private readonly string _smtpServer = Properties.Settings.Default.smtpServer;
+        private readonly int _smtpPort = Properties.Settings.Default.smtpPort;
+        private readonly string _senderEmail = Properties.Settings.Default.senderEmail;
+        private readonly string _senderPassword = Properties.Settings.Default.senderPassword;
+        private readonly string _senderName = Properties.Settings.Default.senderName;
+
         private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         private readonly int _userId;
         private readonly int _categoryId;
@@ -172,17 +180,6 @@ namespace EleonHotel.Windows.MainWindows
                             }
                         }
 
-                        // Если записи Guest нет, создаем новую
-                        if (guestId == -1)
-                        {
-                            string createGuestQuery = "INSERT INTO Guests (user_id) VALUES (@userId); SELECT SCOPE_IDENTITY();";
-                            using (var cmd = new SqlCommand(createGuestQuery, conn))
-                            {
-                                cmd.Parameters.AddWithValue("@userId", _userId);
-                                guestId = Convert.ToInt32(cmd.ExecuteScalar());
-                            }
-                        }
-
                         // Находим свободный номер выбранной категории
                         // RoomStatusId = 1 означает "свободен"
                         int roomId = -1;
@@ -233,18 +230,58 @@ namespace EleonHotel.Windows.MainWindows
                         }
 
                         // Создаем запись в Payment_invoices
-                        string createPaymentQuery = @"
-                            INSERT INTO Payment_invoices (guest_id, total, is_paid) 
-                            VALUES (@guestId, @total, @isPaid)";
-                        using (var cmd = new SqlCommand(createPaymentQuery, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@guestId", guestId);
-                            cmd.Parameters.AddWithValue("@total", _totalAmount);
-                            cmd.Parameters.AddWithValue("@isPaid", true);
-                            cmd.ExecuteNonQuery();
-                        }
 
-                        return true;
+                        using (var cmdMaxPayment_invoices = new SqlCommand(
+                            "select isnull(max(payment_id), 0) from Payment_invoices", conn))
+                        {
+                            int newPayment_invoices = (int)cmdMaxPayment_invoices.ExecuteScalar() + 1;
+
+                            string createPaymentQuery = @"
+                            INSERT INTO Payment_invoices (payment_id, guest_id, total, is_paid) 
+                            VALUES (@paymentId, @guestId, @total, @isPaid)";
+                            using (var cmd = new SqlCommand(createPaymentQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@paymentId", newPayment_invoices);
+                                cmd.Parameters.AddWithValue("@guestId", guestId);
+                                cmd.Parameters.AddWithValue("@total", _totalAmount);
+                                cmd.Parameters.AddWithValue("@isPaid", true);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Получаем email пользователя и номер комнаты для отправки письма
+                            string userEmail = "";
+                            int roomNumber = 0;
+
+                            string getUserEmailQuery = "SELECT Email FROM Users WHERE user_id = @userId";
+                            using (var cmd = new SqlCommand(getUserEmailQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@userId", _userId);
+                                object result = cmd.ExecuteScalar();
+                                if (result != null && result != DBNull.Value)
+                                {
+                                    userEmail = result.ToString();
+                                }
+                            }
+
+                            string getRoomNumberQuery = "SELECT Number FROM Rooms WHERE room_id = @roomId";
+                            using (var cmd = new SqlCommand(getRoomNumberQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@roomId", roomId);
+                                object result = cmd.ExecuteScalar();
+                                if (result != null && result != DBNull.Value)
+                                {
+                                    roomNumber = (int)result;
+                                }
+                            }
+
+                            // Отправляем email с информацией о бронировании
+                            if (!string.IsNullOrEmpty(userEmail))
+                            {
+                                SendBookingConfirmationEmail(userEmail, roomNumber);
+                            }
+
+                            return true;
+                        }
                     }
                 }
                 catch (Exception)
@@ -252,6 +289,86 @@ namespace EleonHotel.Windows.MainWindows
                     return false;
                 }
             });
+        }
+
+        private void SendBookingConfirmationEmail(string userEmail, int roomNumber)
+        {
+            try
+            {
+                var fromAddress = new MailAddress(_senderEmail, _senderName);
+                var toAddress = new MailAddress(userEmail);
+
+                var message = new MailMessage
+                {
+                    From = fromAddress,
+                    Subject = $"Подтверждение бронирования номера {roomNumber}",
+                    IsBodyHtml = true
+                };
+                message.To.Add(toAddress);
+
+                string body = $@"
+                    <html>
+                    <body style='font-family: Arial, sans-serif;'>
+                        <h2 style='color: #4CAF50;'>Бронирование подтверждено!</h2>
+                        <p>Уважаемый гость,</p>
+                        <p>Ваше бронирование успешно оформлено. Ниже представлена информация о вашем пребывании:</p>
+
+                        <table style='border-collapse: collapse; width: 100%; max-width: 500px; margin: 20px 0;'>
+                            <tr style='background-color: #f2f2f2;'>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Номер комнаты:</td>
+                                <td style='padding: 12px; border: 1px solid #ddd;'>{roomNumber}</td>
+                            </tr>
+                            <tr>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Категория номера:</td>
+                                <td style='padding: 12px; border: 1px solid #ddd;'>{_categoryName}</td>
+                            </tr>
+                            <tr style='background-color: #f2f2f2;'>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Дата заезда:</td>
+                                <td style='padding: 12px; border: 1px solid #ddd;'>{_checkIn:dd.MM.yyyy}</td>
+                            </tr>
+                            <tr>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Дата выезда:</td>
+                                <td style='padding: 12px; border: 1px solid #ddd;'>{_checkOut:dd.MM.yyyy}</td>
+                            </tr>
+                            <tr style='background-color: #f2f2f2;'>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Количество суток:</td>
+                                <td style='padding: 12px; border: 1px solid #ddd;'>{_nights}</td>
+                            </tr>
+                            <tr>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Стоимость за сутки:</td>
+                                <td style='padding: 12px; border: 1px solid #ddd;'>{_pricePerNight:#,##0} ₽</td>
+                            </tr>
+                            <tr style='background-color: #4CAF50; color: white;'>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Итоговая сумма:</td>
+                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>{_totalAmount:#,##0} ₽</td>
+                            </tr>
+                        </table>
+
+                        <p>Ждем вас в нашем отеле!</p>
+                        <p style='color: #666; font-size: 12px;'>С уважением,<br>{_senderName}</p>
+                    </body>
+                    </html>
+                ";
+
+                message.Body = body;
+
+                var smtp = new SmtpClient
+                {
+                    Host = _smtpServer,
+                    Port = _smtpPort,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(_senderEmail, _senderPassword)
+                };
+
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+                // Логируем ошибку отправки email, но не прерываем процесс оплаты
+                System.Diagnostics.Debug.WriteLine($"Ошибка отправки email: {ex.Message}");
+            }
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)

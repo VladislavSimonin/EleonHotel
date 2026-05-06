@@ -16,5 +16,5 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\App.xaml
 394742689007
 Windows\MainWindows\AdminWindow.xaml;Windows\MainWindows\Admin\Conflicts.xaml;Windows\MainWindows\Admin\deleteUser.xaml;Windows\MainWindows\Admin\fullUsersInfo.xaml;Windows\MainWindows\Admin\guestsInfo.xaml;Windows\MainWindows\Admin\roomsCondition.xaml;Windows\MainWindows\Admin\staffInfo.xaml;Windows\MainWindows\GuestWindow.xaml;Windows\MainWindows\ImageGalleryWindow.xaml;Windows\MainWindows\PaymentWindow.xaml;Windows\StartWindows\AccountRecovery.xaml;Windows\StartWindows\ChangePassword.xaml;Windows\StartWindows\CreateAccount.xaml;Windows\StartWindows\Welcome.xaml;
 
-True
+False
 

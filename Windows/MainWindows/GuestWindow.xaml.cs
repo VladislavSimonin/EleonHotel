@@ -6,11 +6,12 @@ using System.Windows.Controls;
 using EleonHotel.Data;
 using EleonHotel.Models;
 
+
 namespace EleonHotel.Windows.MainWindows
 {
+
     public partial class GuestWindow : Window
     {
-
         private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
         public int UserId { get; private set; }
         private Dictionary<int, List<string>> roomImages;

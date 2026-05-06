@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Просмотр изображений" Height="700" Width="1000" 
         WindowStartupLocation="CenterOwner" Background="#F5F5F5">
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -23,7 +25,7 @@
         </Grid>
 
         <!-- Main Image -->
-        <Grid Grid.Row="1" Background="Black" MouseDown="Grid_MouseDown">
+        <Grid Grid.Row="1" Grid.RowSpan="3" Background="Black" MouseDown="Grid_MouseDown">
             <Image x:Name="MainImage" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
             <!-- Previous Button -->
@@ -43,8 +45,8 @@
         </Grid>
 
         <!-- Thumbnails -->
-        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" 
-                      Padding="10" Background="#F5F5F5">
+        <ScrollViewer Grid.Row="4" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" 
+                      Padding="10" Background="#22220398">
             <StackPanel x:Name="ThumbnailsPanel" Orientation="Horizontal" Height="120"/>
         </ScrollViewer>
     </Grid>
