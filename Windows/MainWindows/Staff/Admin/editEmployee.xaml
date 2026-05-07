@@ -24,10 +24,10 @@
                 <TextBox Name="SalaryTextBox" Margin="5" Padding="5"/>
 
                 <TextBlock Text="Смена:" Margin="5,15,5,5"/>
-                <ComboBox Name="ShiftComboBox" Margin="5" DisplayMemberPath="DisplayText" SelectedValuePath="ShiftId"/>
+                <ComboBox Name="ShiftComboBox" Margin="5" DisplayMemberPath="DisplayText" SelectedValuePath="shift_id"/>
 
                 <TextBlock Text="Должность:" Margin="5,15,5,5"/>
-                <ComboBox Name="PositionComboBox" Margin="5" DisplayMemberPath="DisplayText" SelectedValuePath="PositionId"/>
+                <ComboBox Name="PositionComboBox" Margin="5" DisplayMemberPath="DisplayText" SelectedValuePath="position_id"/>
 
                 <!-- Информация о пользователе (только для просмотра) -->
                 <TextBlock Text="Информация о пользователе (только просмотр):" FontWeight="Bold" Margin="5,20,5,5"/>

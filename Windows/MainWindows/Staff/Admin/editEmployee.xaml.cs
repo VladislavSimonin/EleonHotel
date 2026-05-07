@@ -171,8 +171,23 @@ namespace EleonHotel.Windows.MainWindows.Admin
                 salary = parsedSalary;
             }
 
-            int? shiftId = ShiftComboBox.SelectedValue as int?;
-            int? positionId = PositionComboBox.SelectedValue as int?;
+            int? shiftId = null;
+            if (ShiftComboBox.SelectedItem is DataRowView selectedShiftRow)
+            {
+                if (selectedShiftRow["shift_id"] != DBNull.Value)
+                {
+                    shiftId = Convert.ToInt32(selectedShiftRow["shift_id"]);
+                }
+            }
+
+            int? positionId = null;
+            if (PositionComboBox.SelectedItem is DataRowView selectedPositionRow)
+            {
+                if (selectedPositionRow["position_id"] != DBNull.Value)
+                {
+                    positionId = Convert.ToInt32(selectedPositionRow["position_id"]);
+                }
+            }
 
             string updateQuery = @"
                 UPDATE Employees

@@ -1,0 +1,57 @@
+﻿<Window x:Class="EleonHotel.Windows.MainWindows.Admin.assignEmployeeDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Admin"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Назначение данных сотрудника" MinHeight="500" MinWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Назначение смены, зарплаты и должности"
+                   FontSize="16" Margin="10" HorizontalAlignment="Center"/>
+
+        <ScrollViewer Grid.Row="1" Background="#22220398" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10">
+                <!-- Сотрудник информация -->
+                <TextBlock Text="Зарплата:" Margin="5"/>
+                <TextBox Name="SalaryTextBox" Margin="5" Padding="5"/>
+
+                <TextBlock Text="Смена:" Margin="5,15,5,5"/>
+                <ComboBox Name="ShiftComboBox" Margin="5" DisplayMemberPath="DisplayText" SelectedValuePath="shift_id"/>
+
+                <TextBlock Text="Должность:" Margin="5,15,5,5"/>
+                <ComboBox Name="PositionComboBox" Margin="5" DisplayMemberPath="DisplayText" SelectedValuePath="position_id"/>
+
+                <!-- Информация о пользователе (только для просмотра) -->
+                <TextBlock Text="Информация о пользователе (только просмотр):" FontWeight="Bold" Margin="5,20,5,5"/>
+
+                <TextBlock Text="Фамилия:" Margin="5,10,5,0"/>
+                <TextBox Name="SurnameTextBox" IsReadOnly="True" Margin="5" Padding="5" Background="#FFE0E0E0"/>
+
+                <TextBlock Text="Имя:" Margin="5,10,5,0"/>
+                <TextBox Name="NameTextBox" IsReadOnly="True" Margin="5" Padding="5" Background="#FFE0E0E0"/>
+
+                <TextBlock Text="Отчество:" Margin="5,10,5,0"/>
+                <TextBox Name="PatronymicTextBox" IsReadOnly="True" Margin="5" Padding="5" Background="#FFE0E0E0"/>
+
+                <TextBlock Text="Телефон:" Margin="5,10,5,0"/>
+                <TextBox Name="PhoneTextBox" IsReadOnly="True" Margin="5" Padding="5" Background="#FFE0E0E0"/>
+
+                <TextBlock Text="Email:" Margin="5,10,5,0"/>
+                <TextBox Name="EmailTextBox" IsReadOnly="True" Margin="5" Padding="5" Background="#FFE0E0E0"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Сохранить" Width="120" Height="30" Margin="5" Click="SaveButton_Click" Background="#FF3CDC5C"/>
+            <Button Content="Отмена" Width="120" Height="30" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

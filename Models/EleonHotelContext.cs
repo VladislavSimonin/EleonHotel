@@ -188,17 +188,17 @@ public partial class EleonHotelContext : DbContext
             entity.Property(e => e.Amount)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("amount");
-            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.IsPaid).HasColumnName("is_paid");
             entity.Property(e => e.IssueDate).HasColumnName("issue_date");
             entity.Property(e => e.Reason)
                 .HasMaxLength(400)
                 .IsUnicode(false)
                 .HasColumnName("reason");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
 
-            entity.HasOne(d => d.Employee).WithMany(p => p.Penalties)
-                .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("fk8");
+            entity.HasOne(d => d.User).WithMany(p => p.Penalties)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_Penalties_Users");
         });
 
         modelBuilder.Entity<Position>(entity =>
@@ -245,12 +245,10 @@ public partial class EleonHotelContext : DbContext
 
             entity.HasOne(d => d.RoomCategory).WithMany(p => p.Rooms)
                 .HasForeignKey(d => d.RoomCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk20");
 
             entity.HasOne(d => d.RoomStatus).WithMany(p => p.Rooms)
                 .HasForeignKey(d => d.RoomStatusId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk21");
 
             entity.HasMany(d => d.RoomFacilities).WithMany(p => p.Rooms)

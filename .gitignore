@@ -1,46 +1,40 @@
 ```
-# Compiled and build artifacts
-*.pyc
-__pycache__/
+# Build artifacts
 *.o
 *.obj
-*.dll
 *.exe
+*.dll
 *.so
-*.class
+*.a
 *.out
+.vs/
 
 # Dependencies
-.venv/
-venv/
 node_modules/
-dist/
-build/
-target/
-.gradle/
+venv/
+.venv/
+__pycache__/
 .mypy_cache/
 .pytest_cache/
+target/
+.gradle/
 
-# Logs and temp files
-*.log
-*.tmp
+# Editors/IDEs
+.vscode/
+.idea/
 *.swp
 *.swo
 
-# Environment
+# System files
+.DS_Store
+Thumbs.db
+Nothing should be ignored based on the provided file changes. The modified file 'Windows/StartWindows/CreateAccount.xaml.cs' is a source code file that should not be added to .gitignore.
 .env
 .env.local
 *.env.*
 
-# Editors
-.vscode/
-.idea/
-
-# OS specific
-.DS_Store
-Thumbs.db
-
-# Coverage
+# Logs and coverage
+*.log
 coverage/
 htmlcov/
 .coverage
@@ -64,4 +58,8 @@ htmlcov/
 *.Z
 *.lz
 *.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 ```

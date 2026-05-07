@@ -5,6 +5,9 @@
     <Compile Update="Windows\MainWindows\Staff\Admin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\MainWindows\Staff\Admin\assignEmployeeDetails.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\MainWindows\Staff\Admin\Conflicts.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

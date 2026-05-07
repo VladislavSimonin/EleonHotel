@@ -213,3 +213,9 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\fullUsersInfo.baml
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\guestsInfo.baml
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\staffInfo.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\addEmployee.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\editEmployee.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\addEmployee.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\editEmployee.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\assignEmployeeDetails.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\assignEmployeeDetails.baml

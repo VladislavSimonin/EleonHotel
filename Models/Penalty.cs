@@ -7,7 +7,7 @@ public partial class Penalty
 {
     public int PenaltyId { get; set; }
 
-    public int EmployeeId { get; set; }
+    public int UserId { get; set; }
 
     public decimal Amount { get; set; }
 
@@ -17,5 +17,5 @@ public partial class Penalty
 
     public bool IsPaid { get; set; }
 
-    public virtual Employee Employee { get; set; } = null!;
+    public virtual User User { get; set; } = null!;
 }

@@ -38,4 +38,6 @@ public partial class User
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
     public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();
+
+    public virtual ICollection<Penalty> Penalties { get; set; } = new List<Penalty>();
 }

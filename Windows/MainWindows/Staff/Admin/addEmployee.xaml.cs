@@ -76,37 +76,14 @@ namespace EleonHotel.Windows.MainWindows.Admin
 
             int userId = Convert.ToInt32(_selectedRow["user_id"]);
 
-            // Создаем новую запись сотрудника с минимальными данными
-            string insertQuery = @"
-                INSERT INTO Employees (user_id, shift_id, salary, position_id)
-                VALUES (@userId, NULL, NULL, NULL)";
+            // Открываем диалоговое окно для назначения смены, зарплаты и должности
+            var assignWindow = new assignEmployeeDetails(userId);
+            bool? result = assignWindow.ShowDialog();
 
-            try
+            if (result == true)
             {
-                using (var conn = new SqlConnection(ConnectionString))
-                {
-                    conn.Open();
-                    using (var cmd = new SqlCommand(insertQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userId", userId);
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Сотрудник успешно добавлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                            this.DialogResult = true;
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Не удалось добавить сотрудника.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при добавлении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Перезагружаем список пользователей после успешного добавления
+                LoadUsersData();
             }
         }
 

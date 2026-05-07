@@ -15,8 +15,6 @@ public partial class Employee
 
     public int? PositionId { get; set; }
 
-    public virtual ICollection<Penalty> Penalties { get; set; } = new List<Penalty>();
-
     public virtual Position? Position { get; set; }
 
     public virtual Shift? Shift { get; set; }
