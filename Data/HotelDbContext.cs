@@ -308,7 +308,8 @@ public partial class HotelDbContext : DbContext
             entity.Property(e => e.ShiftId)
                 .ValueGeneratedNever()
                 .HasColumnName("shift_id");
-            entity.Property(e => e.ShiftTime).HasColumnName("shift_time");
+            entity.Property(e => e.ShiftTimeStart).HasColumnName("shift_time_start");
+            entity.Property(e => e.ShiftTimeEnd).HasColumnName("shift_time_end");
         });
 
         modelBuilder.Entity<User>(entity =>

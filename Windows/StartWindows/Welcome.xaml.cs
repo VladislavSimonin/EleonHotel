@@ -124,7 +124,7 @@ namespace EleonHotel.Windows.StartWindows
                                 if (reader["room_id"] != DBNull.Value)
                                 {
                                     // Номер уже закреплен - переводим на BookedGuestWindow
-                                    new BookedGuestWindow(userId).Show();
+                                    // new BookedGuestWindow(userId).Show();
                                     this.Close();
                                     return;
                                 }

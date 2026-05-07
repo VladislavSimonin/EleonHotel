@@ -310,7 +310,8 @@ public partial class EleonHotelContext : DbContext
             entity.Property(e => e.ShiftId)
                 .ValueGeneratedNever()
                 .HasColumnName("shift_id");
-            entity.Property(e => e.ShiftTime).HasColumnName("shift_time");
+            entity.Property(e => e.ShiftTimeEnd).HasColumnName("shift_time_end");
+            entity.Property(e => e.ShiftTimeStart).HasColumnName("shift_time_start");
         });
 
         modelBuilder.Entity<User>(entity =>

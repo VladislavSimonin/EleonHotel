@@ -1,9 +1,5 @@
-﻿
+﻿C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\GeneratedInternalTypeHelper.g.cs
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\App.xaml;;
-FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\AccountRecovery.xaml;;
-FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\ChangePassword.xaml;;
-FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\CreateAccount.xaml;;
-FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\Welcome.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Guest\AfterBooking\BookedGuestWindow.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Guest\BeforeBooking\GuestWindow.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Guest\BeforeBooking\PaymentWindow.xaml;;
@@ -13,4 +9,8 @@ FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWi
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Staff\Admin\fullUsersInfo.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Staff\Admin\guestsInfo.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Staff\Admin\staffInfo.xaml;;
+FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\AccountRecovery.xaml;;
+FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\ChangePassword.xaml;;
+FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\CreateAccount.xaml;;
+FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\Welcome.xaml;;
 
