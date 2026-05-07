@@ -1,42 +1,65 @@
 ```
-# Build artifacts and binaries
+# Build artifacts
+*.o
+*.obj
 *.exe
 *.dll
-*.pdb
-*.nupkg
-*.snupkg
-**/bin/
-**/obj/
-**/Debug/
-**/Release/
+*.so
+*.a
+*.out
+.vs/
 
 # Dependencies
-packages/
 node_modules/
-**/vendor/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+target/
+.gradle/
 
-# IDE files
-.vs/
-*.user
-*.userosscache
-*.suo
-*.csproj.user
-*.userprefs
+# Editors/IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Temp files
-*.tmp
-*.temp
-*.cache
-
-# Logs
-*.log
-
-# OS files
-Thumbs.db
+# System files
 .DS_Store
-Desktop.ini
+Thumbs.db
+Nothing should be ignored based on the provided file changes. The modified file 'Windows/StartWindows/CreateAccount.xaml.cs' is a source code file that should not be added to .gitignore.
+.env
+.env.local
+*.env.*
 
-# Configuration files
-*.local.settings.json
-appsettings.*.json
+# Logs and coverage
+*.log
+coverage/
+htmlcov/
+.coverage
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 ```

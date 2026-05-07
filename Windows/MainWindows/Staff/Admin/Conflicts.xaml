@@ -27,13 +27,13 @@
                       SelectionChanged="PenaltiesDataGrid_SelectionChanged"
                       d:ItemsSource="{Binding}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
-                    <DataGridTextColumn Header="Сумма штрафа" Binding="{Binding Amount, StringFormat={}{0:F2}}" Width="*"/>
-                    <DataGridTextColumn Header="Причина" Binding="{Binding Reason}" Width="2*"/>
-                    <DataGridTextColumn Header="Дата выписки" Binding="{Binding IssueDate, StringFormat={}{0:dd.MM.yyyy}}" Width="*"/>
-                    <DataGridCheckBoxColumn Header="Оплачено" Binding="{Binding IsPaid}" Width="*"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding surname}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding name}" Width="*"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding patronymic}" Width="*"/>
+                    <DataGridTextColumn Header="Сумма штрафа" Binding="{Binding amount, StringFormat={}{0:F2}}" Width="*"/>
+                    <DataGridTextColumn Header="Причина" Binding="{Binding reason}" Width="2*"/>
+                    <DataGridTextColumn Header="Дата выписки" Binding="{Binding issue_date, StringFormat={}{0:dd.MM.yyyy}}" Width="*"/>
+                    <DataGridCheckBoxColumn Header="Оплачено" Binding="{Binding is_paid}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

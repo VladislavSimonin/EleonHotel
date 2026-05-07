@@ -219,3 +219,7 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\editEmployee.baml
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\assignEmployeeDetails.g.cs
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\assignEmployeeDetails.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\AddPenaltyWindow.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\EditPenaltyWindow.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\AddPenaltyWindow.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Admin\EditPenaltyWindow.baml

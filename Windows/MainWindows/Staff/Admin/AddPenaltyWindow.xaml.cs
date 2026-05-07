@@ -88,47 +88,57 @@ namespace EleonHotel.Windows.MainWindows.Admin
                 return;
             }
 
-            int userId = Convert.ToInt32(_selectedRow["user_id"]);
-            DateOnly issueDate = DateOnly.FromDateTime(IssueDatePicker.SelectedDate.Value);
-            bool isPaid = IsPaidCheckBox.IsChecked == true;
 
-            string insertQuery = @"
-                INSERT INTO Penalties (user_id, amount, reason, issue_date, is_paid)
-                VALUES (@userId, @amount, @reason, @issueDate, @isPaid)";
+                
 
-            try
-            {
-                using (var conn = new SqlConnection(ConnectionString))
+                int userId = Convert.ToInt32(_selectedRow["user_id"]);
+                DateOnly issueDate = DateOnly.FromDateTime(IssueDatePicker.SelectedDate.Value);
+                bool isPaid = IsPaidCheckBox.IsChecked == true;
+
+                string insertQuery = @"
+                INSERT INTO Penalties (penalty_id, user_id, amount, reason, issue_date, is_paid)
+                VALUES (@penaltyId, @userId, @amount, @reason, @issueDate, @isPaid)";
+
+                try
                 {
-                    conn.Open();
-                    using (var cmd = new SqlCommand(insertQuery, conn))
+                    using (var conn = new SqlConnection(ConnectionString))
                     {
-                        cmd.Parameters.AddWithValue("@userId", userId);
-                        cmd.Parameters.AddWithValue("@amount", amount);
-                        cmd.Parameters.AddWithValue("@reason", ReasonTextBox.Text);
-                        cmd.Parameters.AddWithValue("@issueDate", issueDate.ToDateTime(TimeOnly.MinValue));
-                        cmd.Parameters.AddWithValue("@isPaid", isPaid);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
+                        conn.Open();
+                    int newpenaltyId;
+                    using (var cmdMax = new SqlCommand(
+                        "select isnull(max(penalty_id), 0) from Penalties", conn))
+                    {
+                        newpenaltyId = (int)cmdMax.ExecuteScalar() + 1;
+                    }
+                    using (var cmd = new SqlCommand(insertQuery, conn))
                         {
-                            MessageBox.Show("Штраф успешно добавлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                            this.DialogResult = true;
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Не удалось добавить штраф.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            cmd.Parameters.AddWithValue("@penaltyId", newpenaltyId);
+                            cmd.Parameters.AddWithValue("@userId", userId);
+                            cmd.Parameters.AddWithValue("@amount", amount);
+                            cmd.Parameters.AddWithValue("@reason", ReasonTextBox.Text);
+                            cmd.Parameters.AddWithValue("@issueDate", issueDate.ToDateTime(TimeOnly.MinValue));
+                            cmd.Parameters.AddWithValue("@isPaid", isPaid);
+
+                            int rowsAffected = cmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Штраф успешно добавлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                                this.DialogResult = true;
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Не удалось добавить штраф.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при сохранении: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {

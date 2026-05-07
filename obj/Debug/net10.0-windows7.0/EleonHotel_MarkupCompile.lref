@@ -1,4 +1,4 @@
-﻿C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\App.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Guest\AfterBooking\BookedGuestWindow.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Guest\BeforeBooking\GuestWindow.xaml;;
@@ -16,4 +16,6 @@ FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartW
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\ChangePassword.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\CreateAccount.xaml;;
 FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\StartWindows\Welcome.xaml;;
+FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Staff\Admin\AddPenaltyWindow.xaml;;
+FC:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\Windows\MainWindows\Staff\Admin\EditPenaltyWindow.xaml;;
 

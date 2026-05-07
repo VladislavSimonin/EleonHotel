@@ -184,10 +184,10 @@ public partial class HotelDbContext : DbContext
             entity.Property(e => e.PenaltyId)
                 .ValueGeneratedNever()
                 .HasColumnName("penalty_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Amount)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("amount");
-            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
             entity.Property(e => e.IsPaid).HasColumnName("is_paid");
             entity.Property(e => e.IssueDate).HasColumnName("issue_date");
             entity.Property(e => e.Reason)
@@ -195,9 +195,9 @@ public partial class HotelDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("reason");
 
-            entity.HasOne(d => d.Employee).WithMany(p => p.Penalties)
-                .HasForeignKey(d => d.EmployeeId)
-                .HasConstraintName("fk8");
+            entity.HasOne(d => d.User).WithMany(p => p.Penalties)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_Penalties_Users");
         });
 
         modelBuilder.Entity<Position>(entity =>
