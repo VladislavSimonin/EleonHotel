@@ -229,6 +229,14 @@ namespace EleonHotel.Windows.MainWindows
                             cmd.ExecuteNonQuery();
                         }
 
+                        // Обновляем статус комнаты
+                        string updateRoomStatusQuery = "UPDATE Rooms SET room_status_id = 2 WHERE room_id = @roomId";
+                        using (var cmd = new SqlCommand(updateRoomStatusQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@roomId", roomId);
+                            cmd.ExecuteNonQuery();
+                        }
+
                         // Создаем запись в Payment_invoices
 
                         using (var cmdMaxPayment_invoices = new SqlCommand(
@@ -248,41 +256,6 @@ namespace EleonHotel.Windows.MainWindows
                                 cmd.ExecuteNonQuery();
                             }
 
-                        // Получаем email пользователя и номер комнаты для отправки письма
-                        string userEmail = "";
-                        int roomNumber = 0;
-                        
-                        string getUserEmailQuery = "SELECT Email FROM Users WHERE user_id = @userId";
-                        using (var cmd = new SqlCommand(getUserEmailQuery, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@userId", _userId);
-                            object result = cmd.ExecuteScalar();
-                            if (result != null && result != DBNull.Value)
-                            {
-                                userEmail = result.ToString();
-                            }
-                        }
-                        
-                        string getRoomNumberQuery = "SELECT Number FROM Rooms WHERE room_id = @roomId";
-                        using (var cmd = new SqlCommand(getRoomNumberQuery, conn))
-                        {
-                            cmd.Parameters.AddWithValue("@roomId", roomId);
-                            object result = cmd.ExecuteScalar();
-                            if (result != null && result != DBNull.Value)
-                            {
-                                roomNumber = (int)result;
-                            }
-                        }
-
-                        // Отправляем email с информацией о бронировании
-                        if (!string.IsNullOrEmpty(userEmail))
-                        {
-                            SendBookingConfirmationEmail(userEmail, roomNumber);
-                        }
-
-                        return true;
-                    }
-                }
                             // Получаем email пользователя и номер комнаты для отправки письма
                             string userEmail = "";
                             int roomNumber = 0;
@@ -324,86 +297,6 @@ namespace EleonHotel.Windows.MainWindows
                     return false;
                 }
             });
-        }
-
-        private void SendBookingConfirmationEmail(string userEmail, int roomNumber)
-        {
-            try
-            {
-                var fromAddress = new MailAddress(_senderEmail, _senderName);
-                var toAddress = new MailAddress(userEmail);
-                
-                var message = new MailMessage
-                {
-                    From = fromAddress,
-                    Subject = $"Подтверждение бронирования номера {roomNumber}",
-                    IsBodyHtml = true
-                };
-                message.To.Add(toAddress);
-                
-                string body = $@"
-                    <html>
-                    <body style='font-family: Arial, sans-serif;'>
-                        <h2 style='color: #4CAF50;'>Бронирование подтверждено!</h2>
-                        <p>Уважаемый гость,</p>
-                        <p>Ваше бронирование успешно оформлено. Ниже представлена информация о вашем пребывании:</p>
-                        
-                        <table style='border-collapse: collapse; width: 100%; max-width: 500px; margin: 20px 0;'>
-                            <tr style='background-color: #f2f2f2;'>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Номер комнаты:</td>
-                                <td style='padding: 12px; border: 1px solid #ddd;'>{roomNumber}</td>
-                            </tr>
-                            <tr>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Категория номера:</td>
-                                <td style='padding: 12px; border: 1px solid #ddd;'>{_categoryName}</td>
-                            </tr>
-                            <tr style='background-color: #f2f2f2;'>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Дата заезда:</td>
-                                <td style='padding: 12px; border: 1px solid #ddd;'>{_checkIn:dd.MM.yyyy}</td>
-                            </tr>
-                            <tr>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Дата выезда:</td>
-                                <td style='padding: 12px; border: 1px solid #ddd;'>{_checkOut:dd.MM.yyyy}</td>
-                            </tr>
-                            <tr style='background-color: #f2f2f2;'>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Количество суток:</td>
-                                <td style='padding: 12px; border: 1px solid #ddd;'>{_nights}</td>
-                            </tr>
-                            <tr>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Стоимость за сутки:</td>
-                                <td style='padding: 12px; border: 1px solid #ddd;'>{_pricePerNight:#,##0} ₽</td>
-                            </tr>
-                            <tr style='background-color: #4CAF50; color: white;'>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>Итоговая сумма:</td>
-                                <td style='padding: 12px; border: 1px solid #ddd; font-weight: bold;'>{_totalAmount:#,##0} ₽</td>
-                            </tr>
-                        </table>
-                        
-                        <p>Ждем вас в нашем отеле!</p>
-                        <p style='color: #666; font-size: 12px;'>С уважением,<br>{_senderName}</p>
-                    </body>
-                    </html>
-                ";
-                
-                message.Body = body;
-                
-                var smtp = new SmtpClient
-                {
-                    Host = _smtpServer,
-                    Port = _smtpPort,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(_senderEmail, _senderPassword)
-                };
-                
-                smtp.Send(message);
-            }
-            catch (Exception ex)
-            {
-                // Логируем ошибку отправки email, но не прерываем процесс оплаты
-                System.Diagnostics.Debug.WriteLine($"Ошибка отправки email: {ex.Message}");
-            }
         }
 
         private void SendBookingConfirmationEmail(string userEmail, int roomNumber)

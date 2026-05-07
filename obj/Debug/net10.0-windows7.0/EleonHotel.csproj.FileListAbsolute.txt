@@ -211,3 +211,4 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Dadata.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\PaymentWindow.g.cs
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\PaymentWindow.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\BookedGuestWindow.g.cs

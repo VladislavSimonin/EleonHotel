@@ -1,5 +1,11 @@
+using EleonHotel.Data.Classes;
+using EleonHotel.Properties;
+using EleonHotel.Windows.MainWindows;
+using EleonHotel.Windows.MainWindows.Guest;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,11 +15,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using EleonHotel.Data.Classes;
-using System.Data;
-using System.Data.SqlClient;
-using EleonHotel.Windows.MainWindows;
-using EleonHotel.Properties;
 
 namespace EleonHotel.Windows.StartWindows
 {
@@ -108,9 +109,9 @@ namespace EleonHotel.Windows.StartWindows
                 {
                     conn.Open();
 
-                    // Проверяем, есть ли пользователь в таблице Guests
+                    // Проверяем, есть ли пользователь в таблице Guests и закреплен ли за ним номер
                     using (var cmd = new SqlCommand(
-                        "SELECT guest_id FROM Guests WHERE user_id = @userId",
+                        "SELECT guest_id, room_id FROM Guests WHERE user_id = @userId",
                         conn))
                     {
                         cmd.Parameters.AddWithValue("@userId", userId);
@@ -119,10 +120,22 @@ namespace EleonHotel.Windows.StartWindows
                         {
                             if (reader.Read())
                             {
-                                // Пользователь является гостем
-                                new GuestWindow(userId).Show();
-                                this.Close();
-                                return;
+                                // Проверяем, закреплен ли номер за гостем
+                                if (reader["room_id"] != DBNull.Value)
+                                {
+                                    // Номер уже закреплен - переводим на BookedGuestWindow
+                                    new BookedGuestWindow(userId).Show();
+                                    this.Close();
+                                    return;
+                                }
+
+                                else
+                                {
+                                    // Номер не закреплен - переводим на GuestWindow для выбора номера
+                                    new GuestWindow(userId).Show();
+                                    this.Close();
+                                    return;
+                                }
                             }
                         }
                     }
