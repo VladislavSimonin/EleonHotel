@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\App.xaml
-152121787584
+15453710232
 23-42231355
-41-1707057599
+41-2087959741
 394742689007
-Windows\MainWindows\AdminWindow.xaml;Windows\MainWindows\Admin\Conflicts.xaml;Windows\MainWindows\Admin\deleteUser.xaml;Windows\MainWindows\Admin\fullUsersInfo.xaml;Windows\MainWindows\Admin\guestsInfo.xaml;Windows\MainWindows\Admin\roomsCondition.xaml;Windows\MainWindows\Admin\staffInfo.xaml;Windows\MainWindows\GuestWindow.xaml;Windows\MainWindows\Guest\BookedGuestWindow.xaml;Windows\MainWindows\ImageGalleryWindow.xaml;Windows\MainWindows\PaymentWindow.xaml;Windows\StartWindows\AccountRecovery.xaml;Windows\StartWindows\ChangePassword.xaml;Windows\StartWindows\CreateAccount.xaml;Windows\StartWindows\Welcome.xaml;
+Windows\MainWindows\Guest\AfterBooking\BookedGuestWindow.xaml;Windows\MainWindows\Guest\BeforeBooking\GuestWindow.xaml;Windows\MainWindows\Guest\BeforeBooking\ImageGalleryWindow.xaml;Windows\MainWindows\Guest\BeforeBooking\PaymentWindow.xaml;Windows\MainWindows\Staff\Admin\AdminWindow.xaml;Windows\MainWindows\Staff\Admin\Conflicts.xaml;Windows\MainWindows\Staff\Admin\deleteUser.xaml;Windows\MainWindows\Staff\Admin\fullUsersInfo.xaml;Windows\MainWindows\Staff\Admin\guestsInfo.xaml;Windows\MainWindows\Staff\Admin\roomsCondition.xaml;Windows\MainWindows\Staff\Admin\staffInfo.xaml;Windows\StartWindows\AccountRecovery.xaml;Windows\StartWindows\ChangePassword.xaml;Windows\StartWindows\CreateAccount.xaml;Windows\StartWindows\Welcome.xaml;
 
 False
 
