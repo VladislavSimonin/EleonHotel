@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Admin"
         mc:Ignorable="d"
-        Title="Conflicts" Height="450" Width="800">
-    <Grid>
-        
+        Title="Конфликты и штрафы" Height="550" Width="900">
+    <Grid Background="#22220398">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Штрафы" 
+                   FontSize="20" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed"
+                   Margin="10" HorizontalAlignment="Center"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="10">
+            <DataGrid Name="PenaltiesDataGrid" 
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      SelectionMode="Single"
+                      SelectionChanged="PenaltiesDataGrid_SelectionChanged"
+                      d:ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*"/>
+                    <DataGridTextColumn Header="Сумма штрафа" Binding="{Binding Amount, StringFormat={}{0:F2}}" Width="*"/>
+                    <DataGridTextColumn Header="Причина" Binding="{Binding Reason}" Width="2*"/>
+                    <DataGridTextColumn Header="Дата выписки" Binding="{Binding IssueDate, StringFormat={}{0:dd.MM.yyyy}}" Width="*"/>
+                    <DataGridCheckBoxColumn Header="Оплачено" Binding="{Binding IsPaid}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Добавить" Width="120" Height="30" Margin="5" Click="AddButton_Click" Background="#FF3CDC5C"/>
+            <Button Content="Редактировать" Width="120" Height="30" Margin="5" Click="EditButton_Click" Background="#FFFFD700"/>
+            <Button Content="Отмена" Width="120" Height="30" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
