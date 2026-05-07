@@ -1,7 +1,5 @@
 using System;
 using System.Data.SqlClient;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Windows;
 using EleonHotel.Data;
@@ -28,12 +26,6 @@ namespace EleonHotel.Windows.MainWindows
         private readonly decimal _pricePerNight;
         private readonly int _nights;
         private readonly decimal _totalAmount;
-        private readonly string ConnectionString = Properties.Settings.Default.ConnectionString;
-        private readonly string _smtpServer = Properties.Settings.Default.SmtpServer;
-        private readonly int _smtpPort = Properties.Settings.Default.SmtpPort;
-        private readonly string _senderEmail = Properties.Settings.Default.SenderEmail;
-        private readonly string _senderPassword = Properties.Settings.Default.SenderPassword;
-        private readonly string _senderName = Properties.Settings.Default.SenderName;
 
         public PaymentWindow(int userId, int categoryId, string categoryName, DateTime checkIn, DateTime checkOut, decimal pricePerNight)
         {
