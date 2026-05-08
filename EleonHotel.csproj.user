@@ -2,6 +2,24 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Windows\MainWindows\Guest\AfterBooking\aboutMe.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Cleaning.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Dish.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Doctor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Laundry.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Transfer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\MainWindows\Staff\Admin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,6 +41,9 @@
     <Compile Update="Windows\MainWindows\Staff\Admin\roomsCondition.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\MainWindows\Staff\Admin\SalesReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\MainWindows\Staff\Admin\staffInfo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +51,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\BookedGuestWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Staff\Manager\ManagerWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\StartWindows\AccountRecovery.xaml.cs">

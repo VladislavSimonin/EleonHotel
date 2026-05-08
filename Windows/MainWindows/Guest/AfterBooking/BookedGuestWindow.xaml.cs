@@ -17,7 +17,7 @@ namespace EleonHotel.Windows.MainWindows.Guest
     /// </summary>
     public partial class BookedGuestWindow : Window
     {
-        public BookedGuestWindow()
+        public BookedGuestWindow(int userId)
         {
             InitializeComponent();
         }

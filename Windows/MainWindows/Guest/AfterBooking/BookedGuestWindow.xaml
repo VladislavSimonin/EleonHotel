@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Guest"
         mc:Ignorable="d"
-        Title="BookedGuestWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Мой аккаунт" Height="450" Width="800">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>

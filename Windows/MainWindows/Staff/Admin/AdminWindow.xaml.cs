@@ -1,5 +1,6 @@
 ﻿using EleonHotel.Windows.AdminWindows;
 using EleonHotel.Windows.MainWindows.Admin;
+using EleonHotel.Windows.MainWindows.Staff.Admin;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -55,6 +56,11 @@ namespace EleonHotel.Windows.MainWindows
         private void guestsInfo_Click(object sender, RoutedEventArgs e)
         {
             new guestsInfo().ShowDialog();
+        }
+
+        private void SalesReport_Click(object sender, RoutedEventArgs e)
+        {
+            new SalesReport().ShowDialog();
         }
     }
 }
