@@ -108,8 +108,8 @@ namespace EleonHotel.Windows.MainWindows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/guest/beforebooking/imagegalle" +
-                    "rywindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/guest/beforebooking/imagegallerywindow." +
+                    "xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Windows\MainWindows\Guest\BeforeBooking\ImageGalleryWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

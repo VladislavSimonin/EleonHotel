@@ -109,7 +109,7 @@ namespace EleonHotel.Windows.MainWindows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/staff/admin/adminwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/staff/admin/adminwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Windows\MainWindows\Staff\Admin\AdminWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

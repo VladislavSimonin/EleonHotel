@@ -53,8 +53,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/guest/afterbooking/cleaning.xa" +
-                    "ml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/guest/afterbooking/cleaning.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Windows\MainWindows\Guest\AfterBooking\Cleaning.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

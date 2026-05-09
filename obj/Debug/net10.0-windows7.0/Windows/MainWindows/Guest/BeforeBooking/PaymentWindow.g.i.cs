@@ -161,8 +161,7 @@ namespace EleonHotel.Windows.MainWindows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/guest/beforebooking/paymentwin" +
-                    "dow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/guest/beforebooking/paymentwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Windows\MainWindows\Guest\BeforeBooking\PaymentWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

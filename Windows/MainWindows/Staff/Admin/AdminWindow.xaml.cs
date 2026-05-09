@@ -1,6 +1,8 @@
-﻿using EleonHotel.Windows.AdminWindows;
+﻿using EleonHotel.Services;
+using EleonHotel.Windows.AdminWindows;
 using EleonHotel.Windows.MainWindows.Admin;
-using EleonHotel.Windows.MainWindows.Staff.Admin;
+using EleonHotel.Windows.MainWindows.Staff;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +14,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
+using EleonHotel.Properties;
+using System.Data.SqlClient;
 
 namespace EleonHotel.Windows.MainWindows
 {
@@ -60,7 +65,33 @@ namespace EleonHotel.Windows.MainWindows
 
         private void SalesReport_Click(object sender, RoutedEventArgs e)
         {
-            new SalesReport().ShowDialog();
+            try насрать
+            {
+                // Открываем диалог сохранения файла
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel files (*.xlsx)|*.xlsx",
+                    FileName = $"Отчет_По_Продажам{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+                };
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    // Получаем строку подключения из настроек
+                    string connectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
+
+                    // Создаем генератор отчета и генерируем файл
+                    var reportGenerator = new SalesReportGenerator(connectionString);
+                    reportGenerator.GenerateReport(saveFileDialog.FileName);
+
+                    MessageBox.Show($"Отчет успешно создан:\n{saveFileDialog.FileName}",
+                        "Sales Report", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при создании отчета:\n{ex.Message}",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
