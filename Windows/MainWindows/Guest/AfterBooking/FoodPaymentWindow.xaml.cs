@@ -154,7 +154,6 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                             return false;
                         }
 
-                        // Получаем стоимость доставки из таблицы Additional_services (service_id = 4)
                         decimal deliverycost = 0;
                         string getDeliverycostQuery = "SELECT cost FROM Additional_services WHERE service_id = 4";
                         using (var cmd = new SqlCommand(getDeliverycostQuery, conn))
@@ -166,7 +165,6 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                             }
                             else
                             {
-                                // Если не найдено, используем значение по умолчанию
                                 deliverycost = _deliverycost;
                             }
                         }
