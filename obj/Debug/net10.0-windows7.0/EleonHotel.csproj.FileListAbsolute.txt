@@ -12,8 +12,6 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\EleonHotel.runtimeconfig.json
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\EleonHotel.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\EleonHotel.pdb
-C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Azure.Core.dll
-C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Azure.Identity.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\ControlzEx.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\EntityFramework.SqlServer.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\EntityFramework.dll
@@ -27,7 +25,6 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\MaterialDesignThemes.MahApps.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Bcl.Cryptography.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Build.Framework.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.CodeAnalysis.dll
@@ -45,8 +42,6 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Identity.Client.dll
-C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.IdentityModel.Logging.dll
@@ -61,7 +56,6 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\NetTopologySuite.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\NetTopologySuite.IO.SqlServerBytes.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Newtonsoft.Json.dll
-C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.ClientModel.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.Composition.AttributedModel.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.Composition.Convention.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.Composition.Hosting.dll
@@ -69,7 +63,6 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.Composition.TypedParts.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.Data.SqlClient.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\System.Memory.Data.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Z.EntityFramework.Extensions.EFCore.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Z.EntityFramework.Plus.EFCore.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Z.Expressions.Eval.dll
@@ -244,3 +237,5 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\RBush.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\SixLabors.Fonts.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Manager\ManagerWindow.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Data.SqlClient.Extensions.Abstractions.dll
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Data.SqlClient.Internal.Logging.dll

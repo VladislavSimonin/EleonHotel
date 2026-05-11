@@ -55,12 +55,12 @@
                                 
                                 <!-- Информация о блюде -->
                                 <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Top">
-                                    <TextBlock Text="{Binding DishName}" 
+                                    <TextBlock Text="{Binding dish_name}" 
                                                FontSize="18" 
                                                FontWeight="Bold" 
                                                TextWrapping="Wrap"
                                                Margin="0,0,0,5"/>
-                                    <TextBlock Text="{Binding DishComposition}" 
+                                    <TextBlock Text="{Binding dish_composition}" 
                                                FontSize="14" 
                                                TextWrapping="Wrap"
                                                Foreground="#666666"
@@ -68,7 +68,7 @@
                                     <TextBlock FontSize="16" 
                                                FontWeight="Bold"
                                                Foreground="#2E7D32">
-                                        <Run Text="{Binding Cost, StringFormat={}{0:0.00}}"/>
+                                        <Run Text="{Binding cost, StringFormat={}{0:0.00}}"/>
                                         <Run Text=" ₽"/>
                                     </TextBlock>
                                 </StackPanel>
@@ -79,7 +79,7 @@
                                     <ComboBox x:Name="QuantityComboBox" 
                                               Width="60" 
                                               SelectedIndex="0"
-                                              Tag="{Binding DishId}">
+                                              Tag="{Binding dish_id}">
                                         <ComboBoxItem Content="0"/>
                                         <ComboBoxItem Content="1"/>
                                         <ComboBoxItem Content="2"/>

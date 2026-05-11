@@ -48,20 +48,20 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                 {
                     while (reader.Read())
                     {
-                        int dishId = reader.GetInt32(reader.GetOrdinal("dish_id"));
-                        string dishName = reader["dish_name"].ToString();
-                        string dishComposition = reader["dish_composition"].ToString();
+                        int dish_id = reader.GetInt32(reader.GetOrdinal("dish_id"));
+                        string dish_name = reader["dish_name"].ToString();
+                        string dish_composition = reader["dish_composition"].ToString();
                         decimal cost = reader.GetDecimal(reader.GetOrdinal("cost"));
 
-                        // Определяем путь к изображению (предполагаем, что изображения названы по dish_id)
-                        string imagePath = $"/Data/Food/dish_{dishId}.jpg";
+                        // Определяем путь к изображению 
+                        string imagePath = $"/Data/Food/dish_{dish_id}.jpg";
 
                         _dishesList.Add(new DishInfo
                         {
-                            DishId = dishId,
-                            DishName = dishName,
-                            DishComposition = dishComposition,
-                            Cost = cost,
+                            dish_id = dish_id,
+                            dish_name = dish_name,
+                            dish_composition = dish_composition,
+                            cost = cost,
                             ImagePath = imagePath
                         });
                     }
@@ -85,10 +85,10 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
     public class DishInfo
     {
-        public int DishId { get; set; }
-        public string DishName { get; set; }
-        public string DishComposition { get; set; }
-        public decimal Cost { get; set; }
+        public int dish_id { get; set; }
+        public string dish_name { get; set; }
+        public string dish_composition { get; set; }
+        public decimal cost { get; set; }
         public string ImagePath { get; set; }
     }
 }
