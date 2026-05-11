@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EleonHotel.Windows.MainWindows.Guest.AfterBooking;
 
 namespace EleonHotel.Windows.MainWindows.Guest
 {
@@ -17,14 +18,18 @@ namespace EleonHotel.Windows.MainWindows.Guest
     /// </summary>
     public partial class BookedGuestWindow : Window
     {
+        private readonly int _userId;
+
         public BookedGuestWindow(int userId)
         {
             InitializeComponent();
+            _userId = userId;
         }
 
         private void aboutMe_Click(object sender, RoutedEventArgs e)
         {
-
+            var aboutMeWindow = new aboutMe(_userId);
+            aboutMeWindow.ShowDialog();
         }
 
         private void orderDish_Click(object sender, RoutedEventArgs e)
