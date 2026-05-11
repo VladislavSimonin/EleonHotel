@@ -5,8 +5,110 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Guest.AfterBooking"
         mc:Ignorable="d"
-        Title="Dish" Height="450" Width="800">
-    <Grid>
+        Title="Заказ блюд в номер" Height="700" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         
+        <!-- Заголовок и выбор столовых приборов -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20" HorizontalAlignment="Center">
+            <TextBlock Text="Заказ блюд в номер" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,20,0"/>
+            <TextBlock Text="Количество столовых приборов: " FontSize="16" VerticalAlignment="Center"/>
+            <ComboBox x:Name="CbCutlery" Width="60" SelectionChanged="CbCutlery_SelectionChanged">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2"/>
+                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5"/>
+                <ComboBoxItem Content="6"/>
+                <ComboBoxItem Content="7"/>
+                <ComboBoxItem Content="8"/>
+                <ComboBoxItem Content="9"/>
+                <ComboBoxItem Content="10"/>
+            </ComboBox>
+        </StackPanel>
+        
+        <!-- Список блюд -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl x:Name="DishesItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="5" Margin="0,5,0,10" Padding="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- Изображение блюда -->
+                                <Image Grid.Column="0" Source="{Binding ImagePath}" 
+                                       Stretch="UniformToFill" 
+                                       Width="140" Height="100"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"/>
+                                
+                                <!-- Информация о блюде -->
+                                <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding DishName}" 
+                                               FontSize="18" 
+                                               FontWeight="Bold" 
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,5"/>
+                                    <TextBlock Text="{Binding DishComposition}" 
+                                               FontSize="14" 
+                                               TextWrapping="Wrap"
+                                               Foreground="#666666"
+                                               Margin="0,0,0,5"/>
+                                    <TextBlock FontSize="16" 
+                                               FontWeight="Bold"
+                                               Foreground="#2E7D32">
+                                        <Run Text="{Binding Cost, StringFormat={}{0:0.00}}"/>
+                                        <Run Text=" ₽"/>
+                                    </TextBlock>
+                                </StackPanel>
+                                
+                                <!-- Выбор количества -->
+                                <StackPanel Grid.Column="2" VerticalAlignment="Top" Orientation="Horizontal">
+                                    <TextBlock Text="Кол-во: " FontSize="14" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                    <ComboBox x:Name="QuantityComboBox" 
+                                              Width="60" 
+                                              SelectedIndex="0"
+                                              Tag="{Binding DishId}">
+                                        <ComboBoxItem Content="0"/>
+                                        <ComboBoxItem Content="1"/>
+                                        <ComboBoxItem Content="2"/>
+                                        <ComboBoxItem Content="3"/>
+                                        <ComboBoxItem Content="4"/>
+                                        <ComboBoxItem Content="5"/>
+                                        <ComboBoxItem Content="6"/>
+                                        <ComboBoxItem Content="7"/>
+                                        <ComboBoxItem Content="8"/>
+                                        <ComboBoxItem Content="9"/>
+                                        <ComboBoxItem Content="10"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        <!-- Кнопка заказа -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button x:Name="BtnOrder" 
+                    Content="Заказать" 
+                    FontSize="18" 
+                    FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed"
+                    Width="200" 
+                    Height="45"
+                    Click="BtnOrder_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

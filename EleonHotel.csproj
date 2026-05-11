@@ -128,6 +128,7 @@
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="7.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Npgsql" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="10.105.4" />
     <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="10.105.4" />
   </ItemGroup>
@@ -356,6 +357,7 @@
     <Folder Include="Windows\MainWindows\Staff\Maid\" />
     <Folder Include="Windows\MainWindows\Staff\Cook\" />
     <Folder Include="Windows\MainWindows\Staff\Doctor\" />
+    <Folder Include="Data\Food\" />
   </ItemGroup>
 
 </Project>
