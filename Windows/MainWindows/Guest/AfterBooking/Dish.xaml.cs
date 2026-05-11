@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 {
@@ -80,8 +81,120 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
         private void BtnOrder_Click(object sender, RoutedEventArgs e)
         {
-            // Обработчик кнопки "Заказать" будет реализован позже
-            // Здесь нужно собрать все выбранные блюда с количеством и столовые приборы
+            // Собираем все выбранные блюда с количеством
+            var orderedDishes = new List<OrderedDishInfo>();
+            
+            foreach (var dish in _dishesList)
+            {
+                // Находим ComboBox для этого блюда
+                var comboBox = FindComboBoxForDish(dish.dish_id);
+                if (comboBox != null && comboBox.SelectedIndex > 0)
+                {
+                    int quantity = comboBox.SelectedIndex; // Индекс соответствует количеству (0 = не выбрано)
+                    if (quantity > 0)
+                    {
+                        orderedDishes.Add(new OrderedDishInfo
+                        {
+                            DishId = dish.dish_id,
+                            DishName = dish.dish_name,
+                            Cost = dish.cost,
+                            Quantity = quantity
+                        });
+                    }
+                }
+            }
+
+            // Если ничего не выбрано
+            if (orderedDishes.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите хотя бы одно блюдо", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Получаем количество столовых приборов
+            int cutleryCount = 1;
+            if (CbCutlery.SelectedItem is ComboBoxItem selectedItem)
+            {
+                int.TryParse(selectedItem.Content?.ToString(), out cutleryCount);
+            }
+
+            // Получаем номер комнаты пользователя
+            int roomNumber = GetRoomNumberForUser(_userId);
+            if (roomNumber == 0)
+            {
+                MessageBox.Show("У вас нет назначенной комнаты. Обратитесь к администратору.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Открываем окно оплаты
+            var paymentWindow = new FoodPaymentWindow(_userId, roomNumber, cutleryCount, orderedDishes);
+            paymentWindow.Owner = this;
+            if (paymentWindow.ShowDialog() == true)
+            {
+                // Оплата прошла успешно - закрываем окно заказа
+                Close();
+            }
+        }
+
+        private ComboBox FindComboBoxForDish(int dishId)
+        {
+            foreach (var item in DishesItemsControl.Items)
+            {
+                var container = (System.Windows.Controls.ContentPresenter)DishesItemsControl.ItemContainerGenerator.ContainerFromItem(item);
+                if (container != null)
+                {
+                    var comboBox = FindChild<ComboBox>(container, "QuantityComboBox");
+                    if (comboBox != null)
+                    {
+                        var tag = comboBox.Tag?.ToString();
+                        if (int.TryParse(tag, out int id) && id == dishId)
+                        {
+                            return comboBox;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private T FindChild<T>(DependencyObject parent, string name) where T : DependencyObject
+        {
+            for (int i = 0; i < System.Windows.Media.VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = System.Windows.Media.VisualTreeHelper.GetChild(parent, i);
+                if (child is FrameworkElement fe && fe.Name == name && child is T t)
+                    return t;
+
+                var childOfChild = FindChild<T>(child, name);
+                if (childOfChild != null)
+                    return childOfChild;
+            }
+            return null;
+        }
+
+        private int GetRoomNumberForUser(int userId)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                    SELECT r.number
+                    FROM Guests g
+                    LEFT JOIN Rooms r ON g.room_id = r.room_id
+                    WHERE g.user_id = @userId";
+
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return (int)result;
+                    }
+                }
+            }
+            return 0;
         }
     }
 
