@@ -171,7 +171,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
                         // Проверяем, существует ли уже запись о доставке (service_id = 4) для этого гостя
                         string checkDeliveryQuery = @"
-                            SELECT COUNT(*) FROM Ordered_services 
+                            SELECT COUNT(*) FROM Ordered_services
                             WHERE guest_id = @guestId AND service_id = 4";
                         bool deliveryExists = false;
                         using (var cmd = new SqlCommand(checkDeliveryQuery, conn))
@@ -197,15 +197,48 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         // Добавляем заказанные блюда в Ordered_dishes
                         foreach (var dish in _orderedDishes)
                         {
-                            for (int i = 0; i < dish.Quantity; i++)
+                            // Проверяем, существует ли уже запись для этого гостя и блюда
+                            string checkDishQuery = @"
+                                SELECT ordered_dishes_count FROM Ordered_dishes
+                                WHERE guest_id = @guestId AND dish_id = @dish_id";
+
+                            object existingCountObj = null;
+                            using (var cmd = new SqlCommand(checkDishQuery, conn))
                             {
+                                cmd.Parameters.AddWithValue("@guestId", guestId);
+                                cmd.Parameters.AddWithValue("@dish_id", dish.dish_id);
+                                existingCountObj = cmd.ExecuteScalar();
+                            }
+
+                            if (existingCountObj != null && existingCountObj != DBNull.Value)
+                            {
+                                // Запись существует - обновляем ordered_dishes_count
+                                int currentCount = (int)existingCountObj;
+                                int newCount = currentCount + dish.Quantity;
+
+                                string updateDishQuery = @"
+                                    UPDATE Ordered_dishes
+                                    SET ordered_dishes_count = @count
+                                    WHERE guest_id = @guestId AND dish_id = @dish_id";
+                                using (var cmd = new SqlCommand(updateDishQuery, conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@count", newCount);
+                                    cmd.Parameters.AddWithValue("@guestId", guestId);
+                                    cmd.Parameters.AddWithValue("@dish_id", dish.dish_id);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            else
+                            {
+                                // Запись не существует - создаем новую
                                 string insertDishQuery = @"
-                                    INSERT INTO Ordered_dishes (guest_id, dish_id)
-                                    VALUES (@guestId, @dish_id)";
+                                    INSERT INTO Ordered_dishes (guest_id, dish_id, ordered_dishes_count)
+                                    VALUES (@guestId, @dish_id, @count)";
                                 using (var cmd = new SqlCommand(insertDishQuery, conn))
                                 {
                                     cmd.Parameters.AddWithValue("@guestId", guestId);
                                     cmd.Parameters.AddWithValue("@dish_id", dish.dish_id);
+                                    cmd.Parameters.AddWithValue("@count", dish.Quantity);
                                     cmd.ExecuteNonQuery();
                                 }
                             }
