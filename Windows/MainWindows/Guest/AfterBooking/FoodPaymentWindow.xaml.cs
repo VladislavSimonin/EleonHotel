@@ -171,7 +171,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
                         // Проверяем, существует ли уже запись о доставке (service_id = 4) для этого гостя
                         string checkDeliveryQuery = @"
-                            SELECT COUNT(*) FROM Ordered_services
+                            SELECT COUNT(*) FROM Ordered_services 
                             WHERE guest_id = @guestId AND service_id = 4";
                         bool deliveryExists = false;
                         using (var cmd = new SqlCommand(checkDeliveryQuery, conn))
