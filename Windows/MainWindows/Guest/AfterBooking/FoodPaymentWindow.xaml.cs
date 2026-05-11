@@ -27,7 +27,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
             InitializePaymentInfo();
         }
 
-        private void InitializePaymentInfo()
+        private async void InitializePaymentInfo()
         {
             // Заполнение информации о доставке
             TblRoomNumber.Text = _roomNumber.ToString();
@@ -36,6 +36,9 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
             // Заполнение списка блюд
             DishesItemsControl.ItemsSource = _orderedDishes;
 
+            // Получение стоимости доставки из базы данных
+            decimal deliveryCost = await GetDeliveryCostAsync();
+
             // Расчет стоимости
             decimal dishesTotal = 0;
             foreach (var dish in _orderedDishes)
@@ -43,11 +46,39 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                 dishesTotal += dish.Cost * dish.Quantity;
             }
 
-            decimal totalAmount = dishesTotal + _deliveryCost;
+            decimal totalAmount = dishesTotal + deliveryCost;
 
             TblDishesTotal.Text = $"{dishesTotal:#,##0} ₽";
-            TblDeliveryCost.Text = $"{_deliveryCost:#,##0} ₽";
+            TblDeliveryCost.Text = $"{deliveryCost:#,##0} ₽";
             TblTotalAmount.Text = $"{totalAmount:#,##0} ₽";
+        }
+
+        private async Task<decimal> GetDeliveryCostAsync()
+        {
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    using (var conn = new SqlConnection(ConnectionString))
+                    {
+                        conn.Open();
+                        string query = "SELECT cost FROM Additional_services WHERE service_id = 4";
+                        using (var cmd = new SqlCommand(query, conn))
+                        {
+                            object result = cmd.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
+                            {
+                                return (decimal)result;
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Игнорируем ошибку и возвращаем значение по умолчанию
+                }
+                return _deliveryCost;
+            });
         }
 
         private bool ValidateCardData()
@@ -176,11 +207,27 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         if (guestId == -1)
                             return false;
 
-                        // Добавляем запись о доставке в Ordered_services (service_id для доставки)
-                        // Предполагаем, что service_id = 1 это доставка еды
+                        // Получаем стоимость доставки из таблицы Additional_services (service_id = 4)
+                        decimal deliveryCost = 0;
+                        string getDeliveryCostQuery = "SELECT cost FROM Additional_services WHERE service_id = 4";
+                        using (var cmd = new SqlCommand(getDeliveryCostQuery, conn))
+                        {
+                            object result = cmd.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
+                            {
+                                deliveryCost = (decimal)result;
+                            }
+                            else
+                            {
+                                // Если не найдено, используем значение по умолчанию
+                                deliveryCost = _deliveryCost;
+                            }
+                        }
+
+                        // Добавляем запись о доставке в Ordered_services (service_id = 4)
                         string insertDeliveryQuery = @"
                             INSERT INTO Ordered_services (guest_id, service_id) 
-                            VALUES (@guestId, 1)";
+                            VALUES (@guestId, 4)";
                         using (var cmd = new SqlCommand(insertDeliveryQuery, conn))
                         {
                             cmd.Parameters.AddWithValue("@guestId", guestId);
@@ -210,7 +257,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         {
                             dishesTotal += dish.Cost * dish.Quantity;
                         }
-                        decimal totalAmount = dishesTotal + _deliveryCost;
+                        decimal totalAmount = dishesTotal + deliveryCost;
 
                         // Обновляем Payment_invoices - добавляем сумму к total соответствующего гостя
                         string updatePaymentQuery = @"
@@ -285,5 +332,6 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
         public string DishName { get; set; }
         public decimal Cost { get; set; }
         public int Quantity { get; set; }
+        public decimal TotalCost => Cost * Quantity;
     }
 }
