@@ -145,7 +145,14 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         }
 
                         if (guestId == -1)
+                        {
+                            MessageBox.Show(
+                                "Не удалось найти информацию о госте. Пожалуйста, обратитесь к администратору.",
+                                "Ошибка",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
                             return false;
+                        }
 
                         // Получаем стоимость доставки из таблицы Additional_services (service_id = 4)
                         decimal deliverycost = 0;
@@ -214,8 +221,14 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         return true;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    // Показываем детальное сообщение об ошибке для отладки
+                    MessageBox.Show(
+                        $"Произошла ошибка при обработке платежа:\n{ex.Message}\n\nВнутренняя ошибка: {(ex.InnerException?.Message ?? "Нет данных")}",
+                        "Ошибка оплаты",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
                     return false;
                 }
             });
