@@ -23,6 +23,8 @@ public partial class EleonHotelContext : DbContext
 
     public virtual DbSet<Guest> Guests { get; set; }
 
+    public virtual DbSet<OrderedDish> OrderedDishes { get; set; }
+
     public virtual DbSet<PaymentInvoice> PaymentInvoices { get; set; }
 
     public virtual DbSet<Penalty> Penalties { get; set; }
@@ -125,23 +127,6 @@ public partial class EleonHotelContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("fk25");
 
-            entity.HasMany(d => d.Dishes).WithMany(p => p.Guests)
-                .UsingEntity<Dictionary<string, object>>(
-                    "OrderedDish",
-                    r => r.HasOne<RestaurantMenu>().WithMany()
-                        .HasForeignKey("DishId")
-                        .HasConstraintName("fk17"),
-                    l => l.HasOne<Guest>().WithMany()
-                        .HasForeignKey("GuestId")
-                        .HasConstraintName("fk18"),
-                    j =>
-                    {
-                        j.HasKey("GuestId", "DishId").HasName("pk7");
-                        j.ToTable("Ordered_dishes");
-                        j.IndexerProperty<int>("GuestId").HasColumnName("guest_id");
-                        j.IndexerProperty<int>("DishId").HasColumnName("dish_id");
-                    });
-
             entity.HasMany(d => d.Services).WithMany(p => p.Guests)
                 .UsingEntity<Dictionary<string, object>>(
                     "OrderedService",
@@ -158,6 +143,25 @@ public partial class EleonHotelContext : DbContext
                         j.IndexerProperty<int>("GuestId").HasColumnName("guest_id");
                         j.IndexerProperty<int>("ServiceId").HasColumnName("service_id");
                     });
+        });
+
+        modelBuilder.Entity<OrderedDish>(entity =>
+        {
+            entity.HasKey(e => new { e.GuestId, e.DishId }).HasName("pk7");
+
+            entity.ToTable("Ordered_dishes");
+
+            entity.Property(e => e.GuestId).HasColumnName("guest_id");
+            entity.Property(e => e.DishId).HasColumnName("dish_id");
+            entity.Property(e => e.OrderedDishesCount).HasColumnName("ordered_dishes_count");
+
+            entity.HasOne(d => d.Dish).WithMany(p => p.OrderedDishes)
+                .HasForeignKey(d => d.DishId)
+                .HasConstraintName("fk17");
+
+            entity.HasOne(d => d.Guest).WithMany(p => p.OrderedDishes)
+                .HasForeignKey(d => d.GuestId)
+                .HasConstraintName("fk18");
         });
 
         modelBuilder.Entity<PaymentInvoice>(entity =>

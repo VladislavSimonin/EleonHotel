@@ -13,5 +13,5 @@ public partial class RestaurantMenu
 
     public decimal Cost { get; set; }
 
-    public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();
+    public virtual ICollection<OrderedDish> OrderedDishes { get; set; } = new List<OrderedDish>();
 }

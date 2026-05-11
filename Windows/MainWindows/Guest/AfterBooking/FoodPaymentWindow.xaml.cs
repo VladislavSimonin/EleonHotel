@@ -154,7 +154,6 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                             return false;
                         }
 
-                        // Получаем стоимость доставки из таблицы Additional_services (service_id = 4)
                         decimal deliverycost = 0;
                         string getDeliverycostQuery = "SELECT cost FROM Additional_services WHERE service_id = 4";
                         using (var cmd = new SqlCommand(getDeliverycostQuery, conn))
@@ -166,19 +165,33 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                             }
                             else
                             {
-                                // Если не найдено, используем значение по умолчанию
                                 deliverycost = _deliverycost;
                             }
                         }
 
-                        // Добавляем запись о доставке в Ordered_services (service_id = 4)
-                        string insertDeliveryQuery = @"
-                            INSERT INTO Ordered_services (guest_id, service_id)
-                            VALUES (@guestId, 4)";
-                        using (var cmd = new SqlCommand(insertDeliveryQuery, conn))
+                        // Проверяем, существует ли уже запись о доставке (service_id = 4) для этого гостя
+                        string checkDeliveryQuery = @"
+                            SELECT COUNT(*) FROM Ordered_services
+                            WHERE guest_id = @guestId AND service_id = 4";
+                        bool deliveryExists = false;
+                        using (var cmd = new SqlCommand(checkDeliveryQuery, conn))
                         {
                             cmd.Parameters.AddWithValue("@guestId", guestId);
-                            cmd.ExecuteNonQuery();
+                            int count = (int)cmd.ExecuteScalar();
+                            deliveryExists = count > 0;
+                        }
+
+                        // Добавляем запись о доставке в Ordered_services (service_id = 4), только если её ещё нет
+                        if (!deliveryExists)
+                        {
+                            string insertDeliveryQuery = @"
+                                INSERT INTO Ordered_services (guest_id, service_id)
+                                VALUES (@guestId, 4)";
+                            using (var cmd = new SqlCommand(insertDeliveryQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@guestId", guestId);
+                                cmd.ExecuteNonQuery();
+                            }
                         }
 
                         // Добавляем заказанные блюда в Ordered_dishes
