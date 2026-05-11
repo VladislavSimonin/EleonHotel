@@ -1,45 +1,43 @@
 ```
 # Build artifacts
+*.o
 *.obj
 *.exe
 *.dll
-*.pdb
-*.userprefs
-*.cache
-*.compiled
-[Bb]in/
-[Oo]bj/
+*.so
+*.a
+*.out
+.vs/
 
 # Dependencies
-packages/
 node_modules/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+target/
+.gradle/
 
-# Logs
-*.log
-
-# User-specific files
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Editors
-.vs/
+# Editors/IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # OS generated files
 .DS_Store
 Thumbs.db
-desktop.ini
+Nothing should be ignored based on the provided file changes. The modified file 'Windows/StartWindows/CreateAccount.xaml.cs' is a source code file that should not be added to .gitignore.
+.env
+.env.local
+*.env.*
 
-# Testing
-TestResults/
+# Logs and coverage
+*.log
+coverage/
+htmlcov/
+.coverage
 
 # NuGet
 *.nupkg

@@ -65,7 +65,7 @@ namespace EleonHotel.Windows.MainWindows
 
         private void SalesReport_Click(object sender, RoutedEventArgs e)
         {
-            try насрать
+            try 
             {
                 // Открываем диалог сохранения файла
                 var saveFileDialog = new SaveFileDialog
