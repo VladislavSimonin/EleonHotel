@@ -34,7 +34,8 @@ namespace EleonHotel.Windows.MainWindows.Guest
 
         private void orderDish_Click(object sender, RoutedEventArgs e)
         {
-
+            var dishWindow = new Dish(_userId);
+            dishWindow.ShowDialog();
         }
 
         private void orderLaundry_Click(object sender, RoutedEventArgs e)
