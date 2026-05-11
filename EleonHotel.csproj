@@ -353,6 +353,7 @@
 	
 
   <ItemGroup>
+    <Folder Include="Data\Food\" />
     <Folder Include="Windows\MainWindows\Staff\Maid\" />
     <Folder Include="Windows\MainWindows\Staff\Cook\" />
     <Folder Include="Windows\MainWindows\Staff\Doctor\" />

@@ -101,8 +101,8 @@ namespace EleonHotel.Windows.MainWindows.Guest {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/guest/afterbooking/bookedguestwindow.xa" +
-                    "ml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/guest/afterbooking/bookedguest" +
+                    "window.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Windows\MainWindows\Guest\AfterBooking\BookedGuestWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

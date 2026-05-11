@@ -5,8 +5,99 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Guest.AfterBooking"
         mc:Ignorable="d"
-        Title="Dish" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+             ResizeMode="CanResizeWithGrip"
+     WindowStartupLocation="CenterScreen"
+     Title="Еда в номер" Height="940" Width="960" MinHeight="840" MinWidth="1240">
+    <ScrollViewer Background="#22220398" CanContentScroll="True" VerticalScrollBarVisibility="Auto" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="4" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-BoldItalic.ttf#Roboto Condensed"
+            FontSize="24" Content="Пожалуйста, выберите блюда" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <Label Grid.Column="1" Grid.ColumnSpan="2" Content="Количество столовых приборов:" FontSize="18" FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed" 
+HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <ComboBox x:Name="CbTableware" SelectionChanged="CbGuests_SelectionChanged" Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" Width="120"/>
+
+
+            
+        </Grid>
+    </ScrollViewer>
 </Window>
