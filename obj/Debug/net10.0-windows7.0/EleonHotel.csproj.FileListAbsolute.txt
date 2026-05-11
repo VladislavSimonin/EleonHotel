@@ -239,3 +239,5 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Staff\Manager\ManagerWindow.baml
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Data.SqlClient.Extensions.Abstractions.dll
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\bin\Debug\net10.0-windows7.0\Microsoft.Data.SqlClient.Internal.Logging.dll
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\FoodPaymentWindow.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\FoodPaymentWindow.baml

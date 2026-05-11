@@ -18,9 +18,9 @@
 
         <!-- Заголовок -->
         <Border Grid.Row="0" Background="#FF2E69" Padding="20">
-            <TextBlock Text="Оплата заказа еды" 
-                       FontSize="24" 
-                       FontWeight="Bold" 
+            <TextBlock Text="Оплата заказа еды"
+                       FontSize="24"
+                       FontWeight="Bold"
                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                        Foreground="White"
                        HorizontalAlignment="Center"/>
@@ -32,30 +32,30 @@
                 <!-- Информация о доставке -->
                 <Border Background="White" BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                     <StackPanel>
-                        <TextBlock Text="Информация о доставке" 
-                                   FontSize="18" 
+                        <TextBlock Text="Информация о доставке"
+                                   FontSize="18"
                                    FontWeight="Bold"
                                    FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                    Foreground="#FF2E69"
                                    Margin="0,0,0,10"/>
-                        
+
                         <StackPanel Margin="0,5">
-                            <TextBlock Text="Номер комнаты:" 
+                            <TextBlock Text="Номер комнаты:"
                                        FontSize="14"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                        Foreground="#666666"/>
-                            <TextBlock x:Name="TblRoomNumber" 
+                            <TextBlock x:Name="TblRoomNumber"
                                        FontSize="16"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                        Margin="0,2,0,10"/>
                         </StackPanel>
 
                         <StackPanel Margin="0,5">
-                            <TextBlock Text="Количество столовых приборов:" 
+                            <TextBlock Text="Количество столовых приборов:"
                                        FontSize="14"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                        Foreground="#666666"/>
-                            <TextBlock x:Name="TblCutleryCount" 
+                            <TextBlock x:Name="TblCutleryCount"
                                        FontSize="16"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                        Margin="0,2,0,10"/>
@@ -66,13 +66,13 @@
                 <!-- Заказанные блюда -->
                 <Border Background="White" BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                     <StackPanel>
-                        <TextBlock Text="Заказанные блюда" 
-                                   FontSize="18" 
+                        <TextBlock Text="Заказанные блюда"
+                                   FontSize="18"
                                    FontWeight="Bold"
                                    FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                    Foreground="#FF2E69"
                                    Margin="0,0,0,10"/>
-                        
+
                         <ItemsControl x:Name="DishesItemsControl">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -83,7 +83,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0">
-                                                <TextBlock Text="{Binding DishName}" 
+                                                <TextBlock Text="{Binding dish_name}"
                                                            FontSize="14"
                                                            FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed"
                                                            TextWrapping="Wrap"/>
@@ -92,11 +92,13 @@
                                                     <Run Text="{Binding Quantity}"/>
                                                 </TextBlock>
                                             </StackPanel>
-                                            <TextBlock Grid.Column="1" 
+                                            <TextBlock Grid.Column="1"
                                                        FontSize="14"
                                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                                        Foreground="#FF2E69"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center">
+                                                <Run Text="{Binding TotalCost, Mode=OneWay, StringFormat={}{0:##0} ₽}"/>
+                                            </TextBlock>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -108,30 +110,30 @@
                 <!-- Информация об оплате -->
                 <Border Background="White" BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
                     <StackPanel>
-                        <TextBlock Text="Детали оплаты" 
-                                   FontSize="18" 
+                        <TextBlock Text="Детали оплаты"
+                                   FontSize="18"
                                    FontWeight="Bold"
                                    FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                    Foreground="#FF2E69"
                                    Margin="0,0,0,10"/>
-                        
+
                         <StackPanel Margin="0,5">
-                            <TextBlock Text="Стоимость блюд:" 
+                            <TextBlock Text="Стоимость блюд:"
                                        FontSize="14"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                        Foreground="#666666"/>
-                            <TextBlock x:Name="TblDishesTotal" 
+                            <TextBlock x:Name="TblDishesTotal"
                                        FontSize="16"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                        Margin="0,2,0,10"/>
                         </StackPanel>
 
                         <StackPanel Margin="0,5">
-                            <TextBlock Text="Доставка:" 
+                            <TextBlock Text="Доставка:"
                                        FontSize="14"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                        Foreground="#666666"/>
-                            <TextBlock x:Name="TblDeliveryCost" 
+                            <TextBlock x:Name="TblDeliveryCost"
                                        FontSize="16"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                        Margin="0,2,0,10"/>
@@ -140,11 +142,11 @@
                         <Separator Margin="0,10"/>
 
                         <StackPanel Margin="0,10">
-                            <TextBlock Text="Итого к оплате:" 
+                            <TextBlock Text="Итого к оплате:"
                                        FontSize="18"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                        Foreground="#333333"/>
-                            <TextBlock x:Name="TblTotalAmount" 
+                            <TextBlock x:Name="TblTotalAmount"
                                        FontSize="28"
                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-ExtraBoldItalic.ttf#Roboto Condensed"
                                        Foreground="#FF2E69"
@@ -156,20 +158,20 @@
                 <!-- Форма оплаты -->
                 <Border Background="White" BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="8" Padding="15">
                     <StackPanel>
-                        <TextBlock Text="Способ оплаты" 
-                                   FontSize="18" 
+                        <TextBlock Text="Способ оплаты"
+                                   FontSize="18"
                                    FontWeight="Bold"
                                    FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                    Foreground="#FF2E69"
                                    Margin="0,0,0,10"/>
 
                         <!-- Номер карты -->
-                        <TextBlock Text="Номер карты" 
+                        <TextBlock Text="Номер карты"
                                    FontSize="12"
                                    FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                    Foreground="#666666"
                                    Margin="0,0,0,5"/>
-                        <TextBox x:Name="TbCardNumber" 
+                        <TextBox x:Name="TbCardNumber"
                                  materialDesign:HintAssist.Hint="0000 0000 0000 0000"
                                  FontSize="16"
                                  MaxLength="19"
@@ -185,12 +187,12 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                <TextBlock Text="Срок действия" 
+                                <TextBlock Text="Срок действия"
                                            FontSize="12"
                                            FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                            Foreground="#666666"
                                            Margin="0,0,0,5"/>
-                                <TextBox x:Name="TbExpiryDate" 
+                                <TextBox x:Name="TbExpiryDate"
                                          materialDesign:HintAssist.Hint="MM/YY"
                                          FontSize="16"
                                          MaxLength="5"
@@ -198,12 +200,12 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
-                                <TextBlock Text="CVV" 
+                                <TextBlock Text="CVV"
                                            FontSize="12"
                                            FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                            Foreground="#666666"
                                            Margin="0,0,0,5"/>
-                                <TextBox x:Name="TbCvv" 
+                                <TextBox x:Name="TbCvv"
                                          materialDesign:HintAssist.Hint="123"
                                          FontSize="16"
                                          MaxLength="3"
@@ -212,12 +214,12 @@
                         </Grid>
 
                         <!-- Имя держателя карты -->
-                        <TextBlock Text="Имя держателя карты" 
+                        <TextBlock Text="Имя держателя карты"
                                    FontSize="12"
                                    FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-SemiBold.ttf#Roboto Condensed"
                                    Foreground="#666666"
                                    Margin="0,0,0,5"/>
-                        <TextBox x:Name="TbCardHolder" 
+                        <TextBox x:Name="TbCardHolder"
                                  materialDesign:HintAssist.Hint="IVAN IVANOV"
                                  FontSize="16"
                                  Margin="0,0,0,15"/>
@@ -234,7 +236,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="BtnCancel" 
+                <Button x:Name="BtnCancel"
                         Content="Отмена"
                         FontSize="16"
                         FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed"
@@ -242,9 +244,10 @@
                         Foreground="#333333"
                         Padding="30,10"
                         Margin="0,0,10,0"
-                        Click="BtnCancel_Click"/>
+                        Click="BtnCancel_Click" Height="38" VerticalAlignment="Bottom"/>
 
-                <Button x:Name="BtnPay" 
+                <Button x:Name="BtnPay"
+                        Height="38"
                         Grid.Column="1"
                         Content="Оплатить"
                         FontSize="16"
@@ -257,19 +260,19 @@
         </Border>
 
         <!-- Индикатор загрузки -->
-        <Border x:Name="LoadingOverlay" 
-                Grid.RowSpan="3" 
-                Background="#80000000" 
+        <Border x:Name="LoadingOverlay"
+                Grid.RowSpan="3"
+                Background="#80000000"
                 Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
-                             Width="60" 
-                            Height="60" 
+                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Width="60"
+                            Height="60"
                             Foreground="White"
-                            Value="0" 
+                            Value="0"
              IsIndeterminate="True" />
-                <TextBlock Text="Обработка платежа..." 
-                           FontSize="18" 
+                <TextBlock Text="Обработка платежа..."
+                           FontSize="18"
                            Foreground="White"
                            FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Medium.ttf#Roboto Condensed"
                            Margin="0,20,0,0"

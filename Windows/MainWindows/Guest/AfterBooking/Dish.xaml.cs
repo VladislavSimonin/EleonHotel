@@ -95,9 +95,9 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                     {
                         orderedDishes.Add(new OrderedDishInfo
                         {
-                            DishId = dish.dish_id,
-                            DishName = dish.dish_name,
-                            Cost = dish.cost,
+                            dish_id = dish.dish_id,
+                            dish_name = dish.dish_name,
+                            cost = dish.cost,
                             Quantity = quantity
                         });
                     }
@@ -136,7 +136,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
             }
         }
 
-        private ComboBox FindComboBoxForDish(int dishId)
+        private ComboBox FindComboBoxForDish(int dish_id)
         {
             foreach (var item in DishesItemsControl.Items)
             {
@@ -147,7 +147,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                     if (comboBox != null)
                     {
                         var tag = comboBox.Tag?.ToString();
-                        if (int.TryParse(tag, out int id) && id == dishId)
+                        if (int.TryParse(tag, out int id) && id == dish_id)
                         {
                             return comboBox;
                         }
