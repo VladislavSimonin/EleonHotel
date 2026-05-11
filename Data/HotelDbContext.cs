@@ -124,22 +124,9 @@ public partial class HotelDbContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("fk25");
 
-            entity.HasMany(d => d.Dishes).WithMany(p => p.Guests)
-                .UsingEntity<Dictionary<string, object>>(
-                    "OrderedDish",
-                    r => r.HasOne<RestaurantMenu>().WithMany()
-                        .HasForeignKey("DishId")
-                        .HasConstraintName("fk17"),
-                    l => l.HasOne<Guest>().WithMany()
-                        .HasForeignKey("GuestId")
-                        .HasConstraintName("fk18"),
-                    j =>
-                    {
-                        j.HasKey("GuestId", "DishId").HasName("pk7");
-                        j.ToTable("Ordered_dishes");
-                        j.IndexerProperty<int>("GuestId").HasColumnName("guest_id");
-                        j.IndexerProperty<int>("DishId").HasColumnName("dish_id");
-                    });
+            entity.HasMany(d => d.OrderedDishes).WithOne(p => p.Guest)
+                .HasForeignKey(d => d.GuestId)
+                .HasConstraintName("fk18");
 
             entity.HasMany(d => d.Services).WithMany(p => p.Guests)
                 .UsingEntity<Dictionary<string, object>>(

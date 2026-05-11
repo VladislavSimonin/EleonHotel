@@ -5,8 +5,6 @@ namespace EleonHotel.Models;
 
 public partial class OrderedDish
 {
-    internal object Guests;
-
     public int GuestId { get; set; }
 
     public int DishId { get; set; }
