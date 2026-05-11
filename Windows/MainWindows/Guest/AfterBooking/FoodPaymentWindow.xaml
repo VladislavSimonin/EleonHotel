@@ -96,7 +96,9 @@
                                                        FontSize="14"
                                                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
                                                        Foreground="#FF2E69"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center">
+                                                <Run Text="{Binding TotalCost, StringFormat={}{0:##0} ₽}"/>
+                                            </TextBlock>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
