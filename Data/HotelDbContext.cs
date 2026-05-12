@@ -128,22 +128,9 @@ public partial class HotelDbContext : DbContext
                 .HasForeignKey(d => d.GuestId)
                 .HasConstraintName("fk18");
 
-            entity.HasMany(d => d.Services).WithMany(p => p.Guests)
-                .UsingEntity<Dictionary<string, object>>(
-                    "OrderedService",
-                    r => r.HasOne<AdditionalService>().WithMany()
-                        .HasForeignKey("ServiceId")
-                        .HasConstraintName("fk15"),
-                    l => l.HasOne<Guest>().WithMany()
-                        .HasForeignKey("GuestId")
-                        .HasConstraintName("fk16"),
-                    j =>
-                    {
-                        j.HasKey("GuestId", "ServiceId").HasName("pk6");
-                        j.ToTable("Ordered_services");
-                        j.IndexerProperty<int>("GuestId").HasColumnName("guest_id");
-                        j.IndexerProperty<int>("ServiceId").HasColumnName("service_id");
-                    });
+            entity.HasMany(d => d.OrderedServices).WithOne(p => p.Service)
+                .HasForeignKey(d => d.ServiceId)
+                .HasConstraintName("fk15");
         });
 
         modelBuilder.Entity<PaymentInvoice>(entity =>
