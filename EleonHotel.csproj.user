@@ -17,6 +17,9 @@
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\Laundry.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Payments\LaundryPayment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\Transfer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

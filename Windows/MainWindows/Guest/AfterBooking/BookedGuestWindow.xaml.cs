@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EleonHotel.Windows.MainWindows.Guest.AfterBooking;
+using EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -9,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using EleonHotel.Windows.MainWindows.Guest.AfterBooking;
 
 namespace EleonHotel.Windows.MainWindows.Guest
 {
@@ -40,7 +41,8 @@ namespace EleonHotel.Windows.MainWindows.Guest
 
         private void orderLaundry_Click(object sender, RoutedEventArgs e)
         {
-
+            var laundryWindow = new LaundryPayment(_userId);
+            laundryWindow.ShowDialog();
         }
 
         private void orderCleaning_Click(object sender, RoutedEventArgs e)
