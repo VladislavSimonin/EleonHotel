@@ -38,7 +38,7 @@ namespace EleonHotel
             // Создаём БД, если её нет
             using (var context = ServiceProvider.GetRequiredService<HotelDbContext>())
             {
-                context.Database.Migrate();
+               context.Database.Migrate();
             }
         }
     }

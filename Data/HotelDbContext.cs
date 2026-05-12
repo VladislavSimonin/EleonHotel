@@ -24,6 +24,10 @@ public partial class HotelDbContext : DbContext
 
     public virtual DbSet<Guest> Guests { get; set; }
 
+    public virtual DbSet<OrderedDish> OrderedDishes { get; set; }
+
+    public virtual DbSet<OrderedService> OrderedServices { get; set; }
+
     public virtual DbSet<PaymentInvoice> PaymentInvoices { get; set; }
 
     public virtual DbSet<Penalty> Penalties { get; set; }
@@ -128,9 +132,9 @@ public partial class HotelDbContext : DbContext
                 .HasForeignKey(d => d.GuestId)
                 .HasConstraintName("fk18");
 
-            entity.HasMany(d => d.OrderedServices).WithOne(p => p.Service)
-                .HasForeignKey(d => d.ServiceId)
-                .HasConstraintName("fk15");
+            entity.HasMany(d => d.OrderedServices).WithOne(p => p.Guest)
+                .HasForeignKey(d => d.GuestId)
+                .HasConstraintName("fk16");
         });
 
         modelBuilder.Entity<PaymentInvoice>(entity =>
@@ -225,6 +229,26 @@ public partial class HotelDbContext : DbContext
             entity.HasOne(d => d.Guest).WithMany(p => p.OrderedDishes)
                 .HasForeignKey(d => d.GuestId)
                 .HasConstraintName("fk18");
+        });
+
+        modelBuilder.Entity<OrderedService>(entity =>
+        {
+            entity.HasKey(e => new { e.GuestId, e.ServiceId });
+
+            entity.ToTable("Ordered_services");
+
+            entity.Property(e => e.GuestId).HasColumnName("guest_id");
+            entity.Property(e => e.ServiceId).HasColumnName("service_id");
+            entity.Property(e => e.OrderedServicesCount)
+                .HasColumnName("ordered_services_count");
+
+            entity.HasOne(d => d.Service).WithMany()
+                .HasForeignKey(d => d.ServiceId)
+                .HasConstraintName("fk15");
+
+            entity.HasOne(d => d.Guest).WithMany(p => p.OrderedServices)
+                .HasForeignKey(d => d.GuestId)
+                .HasConstraintName("fk16");
         });
 
         modelBuilder.Entity<Room>(entity =>
