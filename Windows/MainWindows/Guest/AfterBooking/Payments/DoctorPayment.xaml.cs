@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments
 {
-    public partial class LaundryPayment : Window
+    public partial class DoctorPayment : Window
     {
         private readonly int _userId;
         private readonly int _serviceId;
@@ -14,7 +14,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments
         private readonly decimal _serviceCost;
         private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
 
-        public LaundryPayment(int userId, int serviceId, string serviceName, decimal serviceCost)
+        public DoctorPayment(int userId, int serviceId, string serviceName, decimal serviceCost)
         {
             InitializeComponent();
             _userId = userId;
