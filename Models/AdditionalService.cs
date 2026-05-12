@@ -11,5 +11,5 @@ public partial class AdditionalService
 
     public decimal Cost { get; set; }
 
-    public virtual ICollection<Guest> Guests { get; set; } = new List<Guest>();
+    public virtual ICollection<OrderedService> OrderedServices { get; set; } = new List<OrderedService>();
 }

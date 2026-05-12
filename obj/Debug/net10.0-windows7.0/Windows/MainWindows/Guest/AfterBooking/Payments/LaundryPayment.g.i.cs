@@ -53,8 +53,8 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/guest/afterbooking/payments/la" +
-                    "undrypayment.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/guest/afterbooking/payments/laundrypaym" +
+                    "ent.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\..\Windows\MainWindows\Guest\AfterBooking\Payments\LaundryPayment.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

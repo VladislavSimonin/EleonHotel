@@ -13,11 +13,11 @@ public partial class Guest
 
     public virtual ICollection<OrderedDish> OrderedDishes { get; set; } = new List<OrderedDish>();
 
+    public virtual ICollection<OrderedService> OrderedServices { get; set; } = new List<OrderedService>();
+
     public virtual ICollection<PaymentInvoice> PaymentInvoices { get; set; } = new List<PaymentInvoice>();
 
     public virtual Room? Room { get; set; }
 
     public virtual User User { get; set; } = null!;
-
-    public virtual ICollection<AdditionalService> Services { get; set; } = new List<AdditionalService>();
 }

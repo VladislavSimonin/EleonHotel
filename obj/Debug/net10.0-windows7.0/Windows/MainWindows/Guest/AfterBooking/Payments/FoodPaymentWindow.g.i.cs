@@ -161,8 +161,8 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/guest/afterbooking/payments/fo" +
-                    "odpaymentwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/guest/afterbooking/payments/foodpayment" +
+                    "window.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\..\Windows\MainWindows\Guest\AfterBooking\Payments\FoodPaymentWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

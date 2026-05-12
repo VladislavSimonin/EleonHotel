@@ -41,8 +41,8 @@ namespace EleonHotel.Windows.MainWindows.Guest
 
         private void orderLaundry_Click(object sender, RoutedEventArgs e)
         {
-            var laundryWindow = new LaundryPayment(_userId);
-            laundryWindow.ShowDialog();
+            //var laundryWindow = new LaundryPayment(_userId);
+            //laundryWindow.ShowDialog();
         }
 
         private void orderCleaning_Click(object sender, RoutedEventArgs e)
