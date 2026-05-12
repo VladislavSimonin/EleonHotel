@@ -243,3 +243,6 @@ C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\Payments\LaundryPayment.g.cs
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\Payments\FoodPaymentWindow.baml
 C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\Payments\LaundryPayment.baml
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\Payments\CleaningPayment.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\Payments\DoctorPayment.g.cs
+C:\Users\Vladislav\Desktop\Лето 2048\ДИПЛОМ\EleonHotel\obj\Debug\net10.0-windows7.0\Windows\MainWindows\Guest\AfterBooking\Payments\TransferPayment.g.cs
