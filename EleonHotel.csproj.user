@@ -65,6 +65,9 @@
     <Compile Update="Windows\MainWindows\Staff\Cook\cookWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\MainWindows\Staff\Doctor\doctorWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\MainWindows\Staff\Driver\driverWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
