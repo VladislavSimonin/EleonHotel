@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows;
@@ -119,13 +120,14 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments
 
                             string updateServiceQuery = @"
                                 UPDATE Ordered_services
-                                SET ordered_services_count = @count, is_done = 0
+                                SET ordered_services_count = @count, is_done = @isDone
                                 WHERE guest_id = @guestId AND service_id = @serviceId";
                             using (var cmd = new SqlCommand(updateServiceQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@count", newCount);
                                 cmd.Parameters.AddWithValue("@guestId", guestId);
                                 cmd.Parameters.AddWithValue("@serviceId", _serviceId);
+                                cmd.Parameters.Add("@isDone", SqlDbType.Bit).Value = false;
                                 cmd.ExecuteNonQuery();
                             }
                         }
@@ -133,11 +135,12 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments
                         {
                             string insertServiceQuery = @"
                                 INSERT INTO Ordered_services (guest_id, service_id, ordered_services_count, is_done)
-                                VALUES (@guestId, @serviceId, 1, 0)";
+                                VALUES (@guestId, @serviceId, 1, @isDone)";
                             using (var cmd = new SqlCommand(insertServiceQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@guestId", guestId);
                                 cmd.Parameters.AddWithValue("@serviceId", _serviceId);
+                                cmd.Parameters.Add("@isDone", SqlDbType.Bit).Value = false;
                                 cmd.ExecuteNonQuery();
                             }
                         }

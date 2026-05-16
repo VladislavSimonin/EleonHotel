@@ -5,8 +5,6 @@ namespace EleonHotel.Models;
 
 public partial class OrderedDish
 {
-    public int OrderedDishId { get; set; }
-
     public int GuestId { get; set; }
 
     public int DishId { get; set; }
@@ -14,6 +12,8 @@ public partial class OrderedDish
     public int? OrderedDishesCount { get; set; }
 
     public bool? IsDelivered { get; set; }
+
+    public int OrderedDishId { get; set; }
 
     public virtual RestaurantMenu Dish { get; set; } = null!;
 

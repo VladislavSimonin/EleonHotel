@@ -43,17 +43,17 @@ namespace EleonHotel.Windows.MainWindows.Guest
 
         private void orderLaundry_Click(object sender, RoutedEventArgs e)
         {
-            OpenServicePaymentWindow(1, "Прачечная");
+            OpenServicePaymentWindow(3, "Прачечная");
         }
 
         private void orderCleaning_Click(object sender, RoutedEventArgs e)
         {
-            OpenServicePaymentWindow(2, "Уборка");
+            OpenServicePaymentWindow(1, "Уборка");
         }
 
         private void orderTransfer_Click(object sender, RoutedEventArgs e)
         {
-            OpenServicePaymentWindow(3, "Трансфер");
+            OpenServicePaymentWindow(2, "Трансфер");
         }
 
         private void inviteDoctor_Click(object sender, RoutedEventArgs e)
