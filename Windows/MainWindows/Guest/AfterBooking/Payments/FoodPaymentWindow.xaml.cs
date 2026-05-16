@@ -185,8 +185,8 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         if (!deliveryExists)
                         {
                             string insertDeliveryQuery = @"
-                                INSERT INTO Ordered_services (guest_id, service_id)
-                                VALUES (@guestId, 4)";
+                                INSERT INTO Ordered_services (guest_id, service_id, is_done)
+                                VALUES (@guestId, 4, 0)";
                             using (var cmd = new SqlCommand(insertDeliveryQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@guestId", guestId);
@@ -230,10 +230,10 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                             }
                             else
                             {
-                                // Запись не существует - создаем новую
+                                // Запись не существует - создаем новую с is_delivered = 0 (False)
                                 string insertDishQuery = @"
-                                    INSERT INTO Ordered_dishes (guest_id, dish_id, ordered_dishes_count)
-                                    VALUES (@guestId, @dish_id, @count)";
+                                    INSERT INTO Ordered_dishes (guest_id, dish_id, ordered_dishes_count, is_delivered)
+                                    VALUES (@guestId, @dish_id, @count, 0)";
                                 using (var cmd = new SqlCommand(insertDishQuery, conn))
                                 {
                                     cmd.Parameters.AddWithValue("@guestId", guestId);

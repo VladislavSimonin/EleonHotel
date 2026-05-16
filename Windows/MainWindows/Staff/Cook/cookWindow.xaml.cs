@@ -17,9 +17,16 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
     /// </summary>
     public partial class cookWindow : Window
     {
+        private readonly int _userId;
+
         public cookWindow()
         {
             InitializeComponent();
+        }
+
+        public cookWindow(int userId) : this()
+        {
+            _userId = userId;
         }
     }
 }

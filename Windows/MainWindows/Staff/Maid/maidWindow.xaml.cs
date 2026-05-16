@@ -17,9 +17,16 @@ namespace EleonHotel.Windows.MainWindows.Staff.Maid
     /// </summary>
     public partial class maidWindow : Window
     {
+        private readonly int _userId;
+
         public maidWindow()
         {
             InitializeComponent();
+        }
+
+        public maidWindow(int userId) : this()
+        {
+            _userId = userId;
         }
     }
 }

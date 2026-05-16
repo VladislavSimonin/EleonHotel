@@ -17,9 +17,16 @@ namespace EleonHotel.Windows.MainWindows.Staff.Doctor
     /// </summary>
     public partial class doctorWindow : Window
     {
+        private readonly int _userId;
+
         public doctorWindow()
         {
             InitializeComponent();
+        }
+
+        public doctorWindow(int userId) : this()
+        {
+            _userId = userId;
         }
     }
 }
