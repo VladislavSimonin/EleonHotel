@@ -5,8 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EleonHotel.Windows.MainWindows.Staff.Maid"
         mc:Ignorable="d"
-        Title="maidWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Окно горничной" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Заказы на услуги" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl Name="OrdersItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#FF3C9CDC" BorderThickness="1" CornerRadius="5" Margin="0,0,0,10" Padding="10" Background="#FFF5F5F5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Номер комнаты -->
+                                <TextBlock Grid.Row="0" Grid.Column="0" 
+                                           Text="{Binding RoomNumber, StringFormat='Комната №{0}'}" 
+                                           FontSize="18" FontWeight="Bold" Margin="0,0,0,5"/>
+
+                                <!-- Название услуги -->
+                                <TextBlock Grid.Row="1" Grid.Column="0" 
+                                           Text="{Binding ServiceName}" 
+                                           FontSize="16" Margin="0,2"/>
+
+                                <!-- Кнопка Выполнить -->
+                                <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" 
+                                        Content="Выполнить" 
+                                        Width="100" Height="40"
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Click="BtnDone_Click"
+                                        Tag="{Binding GuestId}"
+                                        Background="#FF3CDC5C"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Сообщение, если нет заказов -->
+        <TextBlock Grid.Row="1" 
+                   Name="NoOrdersTextBlock"
+                   Text="Нет заказов на услуги" 
+                   FontSize="20" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Visibility="Hidden"/>
+
+        <Button Grid.Row="2" Content="Выйти" Width="120" Height="30" HorizontalAlignment="Right" Margin="0,10,0,0" Click="BtnExit_Click"/>
     </Grid>
 </Window>
