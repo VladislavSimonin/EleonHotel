@@ -119,7 +119,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments
 
                             string updateServiceQuery = @"
                                 UPDATE Ordered_services
-                                SET ordered_services_count = @count
+                                SET ordered_services_count = @count, is_done = 0
                                 WHERE guest_id = @guestId AND service_id = @serviceId";
                             using (var cmd = new SqlCommand(updateServiceQuery, conn))
                             {
@@ -132,8 +132,8 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments
                         else
                         {
                             string insertServiceQuery = @"
-                                INSERT INTO Ordered_services (guest_id, service_id, ordered_services_count)
-                                VALUES (@guestId, @serviceId, 1)";
+                                INSERT INTO Ordered_services (guest_id, service_id, ordered_services_count, is_done)
+                                VALUES (@guestId, @serviceId, 1, 0)";
                             using (var cmd = new SqlCommand(insertServiceQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@guestId", guestId);
