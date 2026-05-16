@@ -38,7 +38,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
                 // Получаем информацию о госте
                 string guestQuery = @"
-                    SELECT 
+                    SELECT
                         g.guest_id,
                         r.number AS room_number,
                         rc.room_category_name,
@@ -61,14 +61,14 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         if (reader.Read())
                         {
                             guestId = reader.GetInt32(reader.GetOrdinal("guest_id"));
-                            roomNumber = reader.IsDBNull(reader.GetOrdinal("room_number")) 
-                                ? "Не назначен" 
+                            roomNumber = reader.IsDBNull(reader.GetOrdinal("room_number"))
+                                ? "Не назначен"
                                 : reader["room_number"].ToString();
-                            roomCategory = reader.IsDBNull(reader.GetOrdinal("room_category_name")) 
-                                ? "Нет данных" 
+                            roomCategory = reader.IsDBNull(reader.GetOrdinal("room_category_name"))
+                                ? "Нет данных"
                                 : reader["room_category_name"].ToString();
-                            roomDescription = reader.IsDBNull(reader.GetOrdinal("description")) 
-                                ? "Нет данных" 
+                            roomDescription = reader.IsDBNull(reader.GetOrdinal("description"))
+                                ? "Нет данных"
                                 : reader["description"].ToString();
                         }
                     }
@@ -83,13 +83,12 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                 if (guestId > 0)
                 {
                     string servicesQuery = @"
-                        SELECT 
+                        SELECT
                             asrv.service_name,
-                            COUNT(*) AS order_count
+                            os.ordered_services_count
                         FROM Ordered_services os
                         INNER JOIN Additional_services asrv ON os.service_id = asrv.service_id
-                        WHERE os.guest_id = @guestId
-                        GROUP BY asrv.service_name";
+                        WHERE os.guest_id = @guestId";
 
                     using (var cmd = new SqlCommand(servicesQuery, connection))
                     {
@@ -101,7 +100,9 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                                 servicesList.Add(new ServiceInfo
                                 {
                                     ServiceName = reader["service_name"].ToString(),
-                                    OrderCount = reader.GetInt32(reader.GetOrdinal("order_count"))
+                                    OrderCount = reader.IsDBNull(reader.GetOrdinal("ordered_services_count"))
+                                        ? 0
+                                        : reader.GetInt32(reader.GetOrdinal("ordered_services_count"))
                                 });
                             }
                         }

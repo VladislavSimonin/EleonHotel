@@ -140,9 +140,9 @@ namespace EleonHotel.Windows.StartWindows
                         }
                     }
 
-                    // Проверяем, есть ли пользователь в таблице Employees с employee_id = 1 или 2
+                    // Проверяем, есть ли пользователь в таблице Employees с employee_id = 1, 2 или 3
                     using (var cmd = new SqlCommand(
-                        "SELECT employee_id FROM Employees WHERE user_id = @userId AND employee_id IN (1, 2)",
+                        "SELECT employee_id FROM Employees WHERE user_id = @userId AND position_id IN (1, 2, 3)",
                         conn))
                     {
                         cmd.Parameters.AddWithValue("@userId", userId);
@@ -151,7 +151,6 @@ namespace EleonHotel.Windows.StartWindows
                         {
                             if (reader.Read())
                             {
-                                // Пользователь является администратором
                                 new AdminWindow(userId).Show();
                                 this.Close();
                                 return;
@@ -159,7 +158,6 @@ namespace EleonHotel.Windows.StartWindows
                         }
                     }
 
-                    // Если пользователь не найден ни в одной из таблиц
                     MessageBox.Show("Ошибка: Пользователь не найден в системе. Обратитесь к администратору.", 
                         "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
