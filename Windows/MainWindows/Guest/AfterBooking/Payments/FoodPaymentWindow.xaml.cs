@@ -193,6 +193,19 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                                 cmd.ExecuteNonQuery();
                             }
                         }
+                        else
+                        {
+                            // Если запись существует, обновляем is_done = 0 (False), так как услуга еще не выполнена
+                            string updateDeliveryQuery = @"
+                                UPDATE Ordered_services
+                                SET is_done = 0
+                                WHERE guest_id = @guestId AND service_id = 4";
+                            using (var cmd = new SqlCommand(updateDeliveryQuery, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@guestId", guestId);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
 
                         // Добавляем заказанные блюда в Ordered_dishes
                         foreach (var dish in _orderedDishes)
@@ -212,13 +225,13 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
                             if (existingCountObj != null && existingCountObj != DBNull.Value)
                             {
-                                // Запись существует - обновляем ordered_dishes_count
+                                // Запись существует - обновляем ordered_dishes_count и сбрасываем is_delivered в 0 (False), если блюдо еще не доставлено
                                 int currentCount = (int)existingCountObj;
                                 int newCount = currentCount + dish.Quantity;
 
                                 string updateDishQuery = @"
                                     UPDATE Ordered_dishes
-                                    SET ordered_dishes_count = @count
+                                    SET ordered_dishes_count = @count, is_delivered = 0
                                     WHERE guest_id = @guestId AND dish_id = @dish_id";
                                 using (var cmd = new SqlCommand(updateDishQuery, conn))
                                 {
