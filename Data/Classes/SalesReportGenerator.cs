@@ -191,7 +191,7 @@ namespace EleonHotel.Services
         private decimal GetFoodBeverageRevenue(SqlConnection connection)
         {
             const string query = @"
-                SELECT ISNULL(SUM(rm.cost), 0)
+                SELECT ISNULL(SUM(rm.cost * od.ordered_dishes_count), 0)
                 FROM Ordered_dishes od
                 JOIN Restaurant_menu rm ON od.dish_id = rm.dish_id
                 JOIN Guests g ON od.guest_id = g.guest_id
