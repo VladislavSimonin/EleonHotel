@@ -208,15 +208,30 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                         }
 
                         // Добавляем заказанные блюда в Ordered_dishes
-                        // ВАЖНО: Каждый заказ создает НОВУЮ запись, даже если гость заказывает то же блюдо повторно
+                        // ВАЖНО: Каждый заказ создает НОВУЮ запись с уникальным ordered_dish_id
                         foreach (var dish in _orderedDishes)
                         {
-                            // Всегда создаем новую запись с уникальным ordered_dish_id
+                            int newOrderedDishId;
+
+                            // 1. Получаем следующий доступный ID с блокировкой таблицы для безопасности
+                            string getMaxIdQuery = @"
+                                SELECT ISNULL(MAX(ordered_dish_id), 0) 
+                                FROM Ordered_dishes WITH (UPDLOCK, HOLDLOCK)";
+
+                            using (var cmd = new SqlCommand(getMaxIdQuery, conn))
+                            {
+                                object result = cmd.ExecuteScalar();
+                                newOrderedDishId = (result != null && result != DBNull.Value) ? (int)result + 1 : 1;
+                            }
+
+                            // 2. Вставляем новую запись с явным указанием ordered_dish_id
                             string insertDishQuery = @"
-                                INSERT INTO Ordered_dishes (guest_id, dish_id, ordered_dishes_count, is_delivered)
-                                VALUES (@guestId, @dish_id, @count, 0)";
+                                INSERT INTO Ordered_dishes (guest_id, dish_id, ordered_dishes_count, is_delivered, ordered_dish_id)
+                                VALUES (@guestId, @dish_id, @count, 0, @ordered_dish_id)";
+
                             using (var cmd = new SqlCommand(insertDishQuery, conn))
                             {
+                                cmd.Parameters.AddWithValue("@ordered_dish_id", newOrderedDishId);
                                 cmd.Parameters.AddWithValue("@guestId", guestId);
                                 cmd.Parameters.AddWithValue("@dish_id", dish.dish_id);
                                 cmd.Parameters.AddWithValue("@count", dish.Quantity);
@@ -249,6 +264,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                 }
                 catch (Exception ex)
                 {
+                    // Показываем детальное сообщение об ошибке для отладки
                     MessageBox.Show(
                         $"Произошла ошибка при обработке платежа:\n{ex.Message}\n\nВнутренняя ошибка: {(ex.InnerException?.Message ?? "Нет данных")}",
                         "Ошибка оплаты",
@@ -261,11 +277,11 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
         private async void BtnPay_Click(object sender, RoutedEventArgs e)
         {
-
+            // Валидация данных карты
             if (!ValidateCardData())
                 return;
 
-
+            // Показываем индикатор загрузки
             LoadingOverlay.Visibility = Visibility.Visible;
             BtnPay.IsEnabled = false;
 

@@ -55,7 +55,7 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
 
                     // Получаем все заказы блюд, которые еще не доставлены
                     string query = @"
-                        SELECT 
+                        SELECT
                             od.ordered_dish_id,
                             od.guest_id,
                             r.number AS room_number,
@@ -63,7 +63,7 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
                             d.dish_name,
                             od.ordered_dishes_count
                         FROM Ordered_dishes od
-                        JOIN Dishes d ON od.dish_id = d.dish_id
+                        JOIN Restaurant_menu d ON od.dish_id = d.dish_id
                         JOIN Guests g ON od.guest_id = g.guest_id
                         LEFT JOIN Rooms r ON g.room_id = r.room_id
                         WHERE od.is_delivered = 0 OR od.is_delivered IS NULL
@@ -112,23 +112,31 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
                         var dishesByGuest = new Dictionary<int, List<DishViewModel>>();
                         var orderedDishIdsByGuest = new Dictionary<int, List<int>>();
 
-                    // Группируем по guest_id (комнате)
-                    var groupedOrders = pendingDishes
-                        .GroupBy(od => od.GuestId)
-                        .Select(g => new OrderViewModel
+                        foreach (var kvp in dishesByGuestAndDish)
                         {
-                            GuestId = g.Key,
-                            RoomNumber = g.First().Guest.Room != null ? g.First().Guest.Room.Number : 0,
-                            Dishes = g.Select(od => new DishViewModel
-                            {
-                                DishId = od.DishId,
-                                DishName = od.Dish.DishName,
-                                Quantity = od.OrderedDishesCount ?? 0
-                            }).ToList()
-                        })
-                        .ToList();
+                            int guestId = kvp.Key.guestId;
 
-                    return groupedOrders;
+                            if (!dishesByGuest.ContainsKey(guestId))
+                            {
+                                dishesByGuest[guestId] = new List<DishViewModel>();
+                                orderedDishIdsByGuest[guestId] = new List<int>();
+                            }
+
+                            dishesByGuest[guestId].Add(kvp.Value);
+                            orderedDishIdsByGuest[guestId].AddRange(orderedDishIdsByGuestAndDish[kvp.Key]);
+                        }
+
+                        foreach (var kvp in dishesByGuest)
+                        {
+                            orders.Add(new OrderViewModel
+                            {
+                                GuestId = kvp.Key,
+                                RoomNumber = roomByGuest[kvp.Key],
+                                Dishes = kvp.Value,
+                                OrderedDishIds = orderedDishIdsByGuest[kvp.Key]
+                            });
+                        }
+                    }
                 }
 
                 return orders;
@@ -154,22 +162,58 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
 
         private async Task MarkOrderAsDeliveredAsync(int guestId)
         {
-            await Task.Run(() =>
+            try
             {
                 using (var conn = new SqlConnection(ConnectionString))
                 {
-                    // Находим все заказанные блюда этого гостя, которые еще не доставлены
-                    var pendingDishes = context.OrderedDishes
-                        .Where(od => od.GuestId == guestId && (od.IsDelivered == false || od.IsDelivered == null))
-                        .ToList();
+                    await conn.OpenAsync();
 
-                    using (var cmd = new SqlCommand(updateQuery, conn))
+                    // Используем транзакцию для атомарности операций
+                    using (var transaction = conn.BeginTransaction())
                     {
-                        cmd.Parameters.AddWithValue("@guest_id", guestId);
-                        cmd.ExecuteNonQuery();
+                        try
+                        {
+                            // 1. Обновляем статус блюд на доставленные
+                            string updateDishesQuery = @"
+                        UPDATE Ordered_dishes
+                        SET is_delivered = 1
+                        WHERE guest_id = @guestId AND (is_delivered = 0 OR is_delivered IS NULL)";
+
+                            using (var cmdDishes = new SqlCommand(updateDishesQuery, conn, transaction))
+                            {
+                                cmdDishes.Parameters.AddWithValue("@guestId", guestId);
+                                await cmdDishes.ExecuteNonQueryAsync();
+                            }
+
+                            // 2. Обновляем статус услуги доставки и увеличиваем счетчик
+                            string updateServicesQuery = @"
+                        UPDATE Ordered_services
+                        SET is_done = 1,
+                            ordered_services_count = ISNULL(ordered_services_count, 0) + 1
+                        WHERE guest_id = @guestId AND service_id = 4";
+
+                            using (var cmdServices = new SqlCommand(updateServicesQuery, conn, transaction))
+                            {
+                                cmdServices.Parameters.AddWithValue("@guestId", guestId);
+                                await cmdServices.ExecuteNonQueryAsync();
+                            }
+
+                            // Подтверждаем транзакцию
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            // Откатываем транзакцию в случае ошибки
+                            transaction.Rollback();
+                            throw;
+                        }
                     }
                 }
-            });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при обновлении статуса доставки: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
