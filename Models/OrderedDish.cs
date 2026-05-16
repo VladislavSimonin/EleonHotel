@@ -13,6 +13,8 @@ public partial class OrderedDish
 
     public bool? IsDelivered { get; set; }
 
+    public int OrderedDishId { get; set; }
+
     public virtual RestaurantMenu Dish { get; set; } = null!;
 
     public virtual Guest Guest { get; set; } = null!;
