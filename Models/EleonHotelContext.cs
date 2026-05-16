@@ -136,10 +136,7 @@ public partial class EleonHotelContext : DbContext
 
             entity.ToTable("Ordered_dishes");
 
-            entity.Property(e => e.OrderedDishId)
-                .ValueGeneratedNever()
-                .HasColumnName("ordered_dish_id");
-            entity.Property(e => e.DishId).HasColumnName("dish_id");
+            entity.Property(e => e.OrderedDishId).HasColumnName("ordered_dish_id");
             entity.Property(e => e.GuestId).HasColumnName("guest_id");
             entity.Property(e => e.IsDelivered).HasColumnName("is_delivered");
             entity.Property(e => e.OrderedDishesCount).HasColumnName("ordered_dishes_count");

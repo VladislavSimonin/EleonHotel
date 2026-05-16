@@ -213,14 +213,17 @@ public partial class HotelDbContext : DbContext
 
         modelBuilder.Entity<OrderedDish>(entity =>
         {
-            entity.HasKey(e => new { e.GuestId, e.DishId });
+            entity.HasKey(e => e.OrderedDishId);
 
             entity.ToTable("Ordered_dishes");
 
+            entity.Property(e => e.OrderedDishId).HasColumnName("ordered_dish_id");
             entity.Property(e => e.GuestId).HasColumnName("guest_id");
             entity.Property(e => e.DishId).HasColumnName("dish_id");
             entity.Property(e => e.OrderedDishesCount)
                 .HasColumnName("ordered_dishes_count");
+            entity.Property(e => e.IsDelivered)
+                .HasColumnName("is_delivered");
 
             entity.HasOne(d => d.Dish).WithMany()
                 .HasForeignKey(d => d.DishId)

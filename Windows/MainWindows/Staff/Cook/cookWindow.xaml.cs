@@ -55,55 +55,80 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
 
                     // Получаем все заказы блюд, которые еще не доставлены
                     string query = @"
-                        SELECT
+                        SELECT 
+                            od.ordered_dish_id,
                             od.guest_id,
                             r.number AS room_number,
-                            rm.dish_name,
+                            d.dish_id AS dish_id,
+                            d.dish_name,
                             od.ordered_dishes_count
                         FROM Ordered_dishes od
-                        JOIN Restaurant_menu rm ON od.dish_id = rm.dish_id
+                        JOIN Dishes d ON od.dish_id = d.dish_id
                         JOIN Guests g ON od.guest_id = g.guest_id
                         LEFT JOIN Rooms r ON g.room_id = r.room_id
                         WHERE od.is_delivered = 0 OR od.is_delivered IS NULL
-                        ORDER BY r.number, rm.dish_name";
+                        ORDER BY r.number, d.dish_name";
 
                     using (var cmd = new SqlCommand(query, conn))
                     using (var reader = cmd.ExecuteReader())
                     {
-                        var dishesByGuest = new Dictionary<int, List<DishViewModel>>();
+                        // Группируем по guest_id и dish_id для суммирования количества одинаковых блюд
+                        var dishesByGuestAndDish = new Dictionary<(int guestId, int dishId), DishViewModel>();
+                        var orderedDishIdsByGuestAndDish = new Dictionary<(int guestId, int dishId), List<int>>();
                         var roomByGuest = new Dictionary<int, int>();
 
                         while (reader.Read())
                         {
+                            int orderedDishId = reader.GetInt32(reader.GetOrdinal("ordered_dish_id"));
                             int guestId = reader.GetInt32(reader.GetOrdinal("guest_id"));
+                            int dishId = reader.GetInt32(reader.GetOrdinal("dish_id"));
                             int roomNumber = reader.IsDBNull(reader.GetOrdinal("room_number")) ? 0 : reader.GetInt32(reader.GetOrdinal("room_number"));
                             string dishName = reader.GetString(reader.GetOrdinal("dish_name"));
                             int quantity = reader.IsDBNull(reader.GetOrdinal("ordered_dishes_count")) ? 0 : reader.GetInt32(reader.GetOrdinal("ordered_dishes_count"));
 
-                            if (!dishesByGuest.ContainsKey(guestId))
+                            if (!roomByGuest.ContainsKey(guestId))
                             {
-                                dishesByGuest[guestId] = new List<DishViewModel>();
                                 roomByGuest[guestId] = roomNumber;
                             }
 
-                            dishesByGuest[guestId].Add(new DishViewModel
+                            var key = (guestId, dishId);
+
+                            if (!dishesByGuestAndDish.ContainsKey(key))
                             {
-                                DishId = 0, // Не используется в отображении
-                                DishName = dishName,
-                                Quantity = quantity
-                            });
+                                dishesByGuestAndDish[key] = new DishViewModel
+                                {
+                                    DishId = dishId,
+                                    DishName = dishName,
+                                    Quantity = 0
+                                };
+                                orderedDishIdsByGuestAndDish[key] = new List<int>();
+                            }
+
+                            dishesByGuestAndDish[key].Quantity += quantity;
+                            orderedDishIdsByGuestAndDish[key].Add(orderedDishId);
                         }
 
-                        foreach (var kvp in dishesByGuest)
+                        // Группируем по guest_id для создания OrderViewModel
+                        var dishesByGuest = new Dictionary<int, List<DishViewModel>>();
+                        var orderedDishIdsByGuest = new Dictionary<int, List<int>>();
+
+                    // Группируем по guest_id (комнате)
+                    var groupedOrders = pendingDishes
+                        .GroupBy(od => od.GuestId)
+                        .Select(g => new OrderViewModel
                         {
-                            orders.Add(new OrderViewModel
+                            GuestId = g.Key,
+                            RoomNumber = g.First().Guest.Room != null ? g.First().Guest.Room.Number : 0,
+                            Dishes = g.Select(od => new DishViewModel
                             {
-                                GuestId = kvp.Key,
-                                RoomNumber = roomByGuest[kvp.Key],
-                                Dishes = kvp.Value
-                            });
-                        }
-                    }
+                                DishId = od.DishId,
+                                DishName = od.Dish.DishName,
+                                Quantity = od.OrderedDishesCount ?? 0
+                            }).ToList()
+                        })
+                        .ToList();
+
+                    return groupedOrders;
                 }
 
                 return orders;
@@ -133,16 +158,10 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
             {
                 using (var conn = new SqlConnection(ConnectionString))
                 {
-                    conn.Open();
-
-                    string updateQuery = @"
-                        UPDATE Ordered_dishes
-                        SET is_delivered = 1
-                        WHERE guest_id = @guest_id AND (is_delivered = 0 OR is_delivered IS NULL)
-
-                        UPDATE Ordered_services
-                        SET is_done = 1
-                        WHERE guest_id = @guest_id AND (is_done = 0 OR is_done IS NULL)";
+                    // Находим все заказанные блюда этого гостя, которые еще не доставлены
+                    var pendingDishes = context.OrderedDishes
+                        .Where(od => od.GuestId == guestId && (od.IsDelivered == false || od.IsDelivered == null))
+                        .ToList();
 
                     using (var cmd = new SqlCommand(updateQuery, conn))
                     {
@@ -165,6 +184,7 @@ namespace EleonHotel.Windows.MainWindows.Staff.Cook
         public int GuestId { get; set; }
         public int RoomNumber { get; set; }
         public List<DishViewModel> Dishes { get; set; } = new List<DishViewModel>();
+        public List<int> OrderedDishIds { get; set; } = new List<int>();
     }
 
     // ViewModel для отображения блюда
