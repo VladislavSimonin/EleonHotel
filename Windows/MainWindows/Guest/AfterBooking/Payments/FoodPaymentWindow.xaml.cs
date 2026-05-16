@@ -249,7 +249,6 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                 }
                 catch (Exception ex)
                 {
-                    // Показываем детальное сообщение об ошибке для отладки
                     MessageBox.Show(
                         $"Произошла ошибка при обработке платежа:\n{ex.Message}\n\nВнутренняя ошибка: {(ex.InnerException?.Message ?? "Нет данных")}",
                         "Ошибка оплаты",
@@ -262,11 +261,11 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
         private async void BtnPay_Click(object sender, RoutedEventArgs e)
         {
-            // Валидация данных карты
+
             if (!ValidateCardData())
                 return;
 
-            // Показываем индикатор загрузки
+
             LoadingOverlay.Visibility = Visibility.Visible;
             BtnPay.IsEnabled = false;
 
