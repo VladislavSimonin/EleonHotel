@@ -17,9 +17,16 @@ namespace EleonHotel.Windows.MainWindows.Staff.Driver
     /// </summary>
     public partial class driverWindow : Window
     {
+        private readonly int _userId;
+
         public driverWindow()
         {
             InitializeComponent();
+        }
+
+        public driverWindow(int userId) : this()
+        {
+            _userId = userId;
         }
     }
 }

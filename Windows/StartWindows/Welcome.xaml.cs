@@ -2,6 +2,10 @@ using EleonHotel.Data.Classes;
 using EleonHotel.Properties;
 using EleonHotel.Windows.MainWindows;
 using EleonHotel.Windows.MainWindows.Guest;
+using EleonHotel.Windows.MainWindows.Staff.Maid;
+using EleonHotel.Windows.MainWindows.Staff.Cook;
+using EleonHotel.Windows.MainWindows.Staff.Doctor;
+using EleonHotel.Windows.MainWindows.Staff.Driver;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -142,7 +146,7 @@ namespace EleonHotel.Windows.StartWindows
 
                     // Проверяем, есть ли пользователь в таблице Employees с employee_id = 1, 2 или 3
                     using (var cmd = new SqlCommand(
-                        "SELECT employee_id FROM Employees WHERE user_id = @userId AND position_id IN (1, 2, 3)",
+                        "SELECT employee_id, position_id FROM Employees WHERE user_id = @userId AND position_id IN (1, 2, 3)",
                         conn))
                     {
                         cmd.Parameters.AddWithValue("@userId", userId);
@@ -152,6 +156,40 @@ namespace EleonHotel.Windows.StartWindows
                             if (reader.Read())
                             {
                                 new AdminWindow(userId).Show();
+                                this.Close();
+                                return;
+                            }
+                        }
+                    }
+
+                    // Проверяем, есть ли пользователь в таблице Employees с position_id 4, 6, 7 или 9
+                    using (var cmd = new SqlCommand(
+                        "SELECT employee_id, position_id FROM Employees WHERE user_id = @userId AND position_id IN (4, 6, 7, 9)",
+                        conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int positionId = (int)reader["position_id"];
+                                
+                                switch (positionId)
+                                {
+                                    case 4:
+                                        new maidWindow(userId).Show();
+                                        break;
+                                    case 6:
+                                        new cookWindow(userId).Show();
+                                        break;
+                                    case 7:
+                                        new doctorWindow(userId).Show();
+                                        break;
+                                    case 9:
+                                        new driverWindow(userId).Show();
+                                        break;
+                                }
                                 this.Close();
                                 return;
                             }
