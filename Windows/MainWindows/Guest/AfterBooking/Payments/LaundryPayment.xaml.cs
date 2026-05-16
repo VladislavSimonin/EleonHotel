@@ -125,9 +125,9 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking.Payments
                             using (var cmd = new SqlCommand(updateServiceQuery, conn))
                             {
                                 cmd.Parameters.AddWithValue("@count", newCount);
+                                cmd.Parameters.Add("@isDone", SqlDbType.Bit).Value = false;
                                 cmd.Parameters.AddWithValue("@guestId", guestId);
                                 cmd.Parameters.AddWithValue("@serviceId", _serviceId);
-                                cmd.Parameters.Add("@isDone", SqlDbType.Bit).Value = false;
                                 cmd.ExecuteNonQuery();
                             }
                         }

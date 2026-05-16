@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Title="Оплата услуги уборки" Height="550" Width="450">
+        Title="Оплата дополнительной уборки" Height="550" Width="450">
     <Grid Background="#FFF5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -18,7 +18,7 @@
 
         <!-- Заголовок -->
         <Border Grid.Row="0" Background="#FF2E69" Padding="20">
-            <TextBlock Text="Оплата услуги уборки"
+            <TextBlock Text="Оплата дополнительной уборки"
                        FontSize="24"
                        FontWeight="Bold"
                        FontFamily="/Resources/Roboto_Condensed/static/RobotoCondensed-Bold.ttf#Roboto Condensed"
