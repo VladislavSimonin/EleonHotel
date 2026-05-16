@@ -230,7 +230,7 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                             }
                             else
                             {
-                                // Запись не существует - создаем новую с is_delivered = 0 (False)
+                                // Запись не существует - создаем новую с is_delivered = 0 
                                 string insertDishQuery = @"
                                     INSERT INTO Ordered_dishes (guest_id, dish_id, ordered_dishes_count, is_delivered)
                                     VALUES (@guestId, @dish_id, @count, 0)";
@@ -269,7 +269,6 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
                 }
                 catch (Exception ex)
                 {
-                    // Показываем детальное сообщение об ошибке для отладки
                     MessageBox.Show(
                         $"Произошла ошибка при обработке платежа:\n{ex.Message}\n\nВнутренняя ошибка: {(ex.InnerException?.Message ?? "Нет данных")}",
                         "Ошибка оплаты",
@@ -282,11 +281,11 @@ namespace EleonHotel.Windows.MainWindows.Guest.AfterBooking
 
         private async void BtnPay_Click(object sender, RoutedEventArgs e)
         {
-            // Валидация данных карты
+
             if (!ValidateCardData())
                 return;
 
-            // Показываем индикатор загрузки
+
             LoadingOverlay.Visibility = Visibility.Visible;
             BtnPay.IsEnabled = false;
 
