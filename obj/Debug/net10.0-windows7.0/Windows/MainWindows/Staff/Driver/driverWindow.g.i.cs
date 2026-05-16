@@ -53,8 +53,7 @@ namespace EleonHotel.Windows.MainWindows.Staff.Driver {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/staff/driver/driverwindow.xaml" +
-                    "", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/staff/driver/driverwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Windows\MainWindows\Staff\Driver\driverWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -11,6 +11,8 @@ public partial class OrderedDish
 
     public int? OrderedDishesCount { get; set; }
 
+    public bool? IsDelivered { get; set; }
+
     public virtual RestaurantMenu Dish { get; set; } = null!;
 
     public virtual Guest Guest { get; set; } = null!;

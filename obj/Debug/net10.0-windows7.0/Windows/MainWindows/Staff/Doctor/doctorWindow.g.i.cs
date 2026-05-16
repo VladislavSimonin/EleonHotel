@@ -53,8 +53,7 @@ namespace EleonHotel.Windows.MainWindows.Staff.Doctor {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EleonHotel;V1.0.0.0;component/windows/mainwindows/staff/doctor/doctorwindow.xaml" +
-                    "", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EleonHotel;component/windows/mainwindows/staff/doctor/doctorwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Windows\MainWindows\Staff\Doctor\doctorWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

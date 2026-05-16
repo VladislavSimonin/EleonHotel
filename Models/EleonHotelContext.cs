@@ -138,6 +138,7 @@ public partial class EleonHotelContext : DbContext
 
             entity.Property(e => e.GuestId).HasColumnName("guest_id");
             entity.Property(e => e.DishId).HasColumnName("dish_id");
+            entity.Property(e => e.IsDelivered).HasColumnName("is_delivered");
             entity.Property(e => e.OrderedDishesCount).HasColumnName("ordered_dishes_count");
 
             entity.HasOne(d => d.Dish).WithMany(p => p.OrderedDishes)
@@ -157,6 +158,7 @@ public partial class EleonHotelContext : DbContext
 
             entity.Property(e => e.GuestId).HasColumnName("guest_id");
             entity.Property(e => e.ServiceId).HasColumnName("service_id");
+            entity.Property(e => e.IsDone).HasColumnName("is_done");
             entity.Property(e => e.OrderedServicesCount).HasColumnName("ordered_services_count");
 
             entity.HasOne(d => d.Guest).WithMany(p => p.OrderedServices)
