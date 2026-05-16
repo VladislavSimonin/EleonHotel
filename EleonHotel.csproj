@@ -1,17 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-	  <Compile Remove="Windows\MainWindows\Staff\Cook\**" />
 	  <Compile Remove="Windows\MainWindows\Staff\Doctor\**" />
-	  <Compile Remove="Windows\MainWindows\Staff\Maid\**" />
-	  <EmbeddedResource Remove="Windows\MainWindows\Staff\Cook\**" />
 	  <EmbeddedResource Remove="Windows\MainWindows\Staff\Doctor\**" />
-	  <EmbeddedResource Remove="Windows\MainWindows\Staff\Maid\**" />
-	  <None Remove="Windows\MainWindows\Staff\Cook\**" />
 	  <None Remove="Windows\MainWindows\Staff\Doctor\**" />
-	  <None Remove="Windows\MainWindows\Staff\Maid\**" />
-	  <Page Remove="Windows\MainWindows\Staff\Cook\**" />
 	  <Page Remove="Windows\MainWindows\Staff\Doctor\**" />
-	  <Page Remove="Windows\MainWindows\Staff\Maid\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Remove="C:\Users\Vladislav\.nuget\packages\materialdesignthemes\5.3.1\contentFiles\any\net10.0-windows7.0\Resources\Roboto\RobotoCondensed-Italic.ttf" />

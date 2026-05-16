@@ -10,14 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace EleonHotel.Windows.MainWindows.Staff.Manager
+namespace EleonHotel.Windows.MainWindows.Staff.Driver
 {
     /// <summary>
-    /// Логика взаимодействия для ManagerWindow.xaml
+    /// Логика взаимодействия для driverWindow.xaml
     /// </summary>
-    public partial class ManagerWindow : Window
+    public partial class driverWindow : Window
     {
-        public ManagerWindow()
+        public driverWindow()
         {
             InitializeComponent();
         }

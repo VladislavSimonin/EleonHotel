@@ -62,7 +62,13 @@
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\BookedGuestWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\MainWindows\Staff\Manager\ManagerWindow.xaml.cs">
+    <Compile Update="Windows\MainWindows\Staff\Cook\cookWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Staff\Driver\driverWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\MainWindows\Staff\Maid\maidWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\StartWindows\AccountRecovery.xaml.cs">
