@@ -5,16 +5,7 @@
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\aboutMe.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Cleaning.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\Dish.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Doctor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Laundry.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\Payments\CleaningPayment.xaml.cs">
@@ -27,9 +18,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\MainWindows\Guest\AfterBooking\Payments\TransferPayment.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Windows\MainWindows\Guest\AfterBooking\Transfer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\MainWindows\Staff\Admin\AdminWindow.xaml.cs">

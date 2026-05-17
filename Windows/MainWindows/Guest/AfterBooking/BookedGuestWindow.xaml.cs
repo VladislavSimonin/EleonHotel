@@ -83,9 +83,9 @@ namespace EleonHotel.Windows.MainWindows.Guest
 
                 Window paymentWindow = serviceId switch
                 {
-                    1 => new LaundryPayment(_userId, serviceId, serviceName, serviceCost),
+                    3 => new LaundryPayment(_userId, serviceId, serviceName, serviceCost),
                     2 => new TransferPayment(_userId, serviceId, serviceName, serviceCost),
-                    3 => new CleaningPayment(_userId, serviceId, serviceName, serviceCost),
+                    1 => new CleaningPayment(_userId, serviceId, serviceName, serviceCost),
                     5 => new DoctorPayment(_userId, serviceId, serviceName, serviceCost),
                     _ => null
                 };
