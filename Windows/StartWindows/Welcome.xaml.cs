@@ -28,6 +28,11 @@ namespace EleonHotel.Windows.StartWindows
     public partial class Welcome : Window
     {
         private string ConnectionString = "Server=DESKTOP-SGSC2AR\\SQLEXPRESS;Database=EleonHotel;User Id=Vladislav;Password=lolihanter1000-7;TrustServerCertificate=true;";
+        
+        // Переменные для защиты от подбора паролей
+        private int _failedAttempts = 0;
+        private bool _isLocked = false;
+        private System.Windows.Threading.DispatcherTimer _lockTimer;
 
         public Welcome()
         {
@@ -35,6 +40,23 @@ namespace EleonHotel.Windows.StartWindows
             this.Width = SystemParameters.PrimaryScreenWidth * 0.5; // 50% ширины
             this.Height = SystemParameters.PrimaryScreenHeight * 0.5; // 50% высоты
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            
+            // Инициализация таймера блокировки
+            _lockTimer = new System.Windows.Threading.DispatcherTimer();
+            _lockTimer.Interval = TimeSpan.FromSeconds(15);
+            _lockTimer.Tick += LockTimer_Tick;
+        }
+        
+        private void LockTimer_Tick(object sender, EventArgs e)
+        {
+            // Таймер истек - снимаем блокировку
+            _lockTimer.Stop();
+            _isLocked = false;
+            _failedAttempts = 0;
+            LblStatus.Visibility = Visibility.Collapsed;
+            Enter.IsEnabled = true;
+            TbLogin.IsEnabled = true;
+            PbPassword.IsEnabled = true;
         }
 
         private void CreateAccount_Click(object sender, RoutedEventArgs e)
@@ -45,6 +67,13 @@ namespace EleonHotel.Windows.StartWindows
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
+            // Проверка блокировки
+            if (_isLocked)
+            {
+                MessageBox.Show("Слишком много неудачных попыток. Подождите 15 секунд.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             string login = TbLogin.Text.Trim();
             string password = PbPassword.Password;
 
@@ -79,15 +108,20 @@ namespace EleonHotel.Windows.StartWindows
                                 if (Argon2PasswordHasher.VerifyPassword(password, storedHash, storedSalt))
                                 {
                                     // Успешная авторизация
+                                    _failedAttempts = 0; // Сброс счетчика при успешном входе
                                     MessageBox.Show("Добро пожаловать!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                                     NavigateUser(userId);
                                 }
                                 else
                                 {
                                     // Неверный пароль
-                                    MessageBox.Show("Неверный логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    PbPassword.Clear();
+                                    HandleFailedAttempt();
                                 }
+                            }
+                            else
+                            {
+                                // Пользователь не найден - тоже считаем неудачной попыткой
+                                HandleFailedAttempt();
                             }
                         }           
                     }
@@ -103,6 +137,50 @@ namespace EleonHotel.Windows.StartWindows
             {
                 MessageBox.Show($"Неожиданная ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        
+        private void HandleFailedAttempt()
+        {
+            _failedAttempts++;
+            
+            if (_failedAttempts >= 3)
+            {
+                // Блокируем интерфейс на 15 секунд
+                _isLocked = true;
+                LblStatus.Content = $"Слишком много неудачных попыток. Осталось секунд: 15";
+                LblStatus.Visibility = Visibility.Visible;
+                Enter.IsEnabled = false;
+                TbLogin.IsEnabled = false;
+                PbPassword.IsEnabled = false;
+                _lockTimer.Start();
+                
+                // Запускаем обратный отсчет для отображения
+                var countdownTimer = new System.Windows.Threading.DispatcherTimer();
+                countdownTimer.Interval = TimeSpan.FromSeconds(1);
+                int remainingSeconds = 15;
+                countdownTimer.Tick += (s, e) =>
+                {
+                    remainingSeconds--;
+                    if (remainingSeconds > 0)
+                    {
+                        LblStatus.Content = $"Слишком много неудачных попыток. Осталось секунд: {remainingSeconds}";
+                    }
+                    else
+                    {
+                        countdownTimer.Stop();
+                    }
+                };
+                countdownTimer.Start();
+            }
+            else
+            {
+                // Показываем количество оставшихся попыток
+                int attemptsLeft = 3 - _failedAttempts;
+                LblStatus.Content = $"Неверный логин или пароль. Осталось попыток: {attemptsLeft}";
+                LblStatus.Visibility = Visibility.Visible;
+            }
+            
+            PbPassword.Clear();
         }
 
         private void NavigateUser(int userId)
