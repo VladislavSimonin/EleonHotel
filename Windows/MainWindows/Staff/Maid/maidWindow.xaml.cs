@@ -25,6 +25,7 @@ namespace EleonHotel.Windows.MainWindows.Staff.Maid
         {
             _userId = userId;
             LoadOrders();
+            LoadRoomsForCleaning();
         }
 
         private async void LoadOrders()
@@ -134,6 +135,65 @@ namespace EleonHotel.Windows.MainWindows.Staff.Maid
             {
                 MessageBox.Show($"Ошибка при обновлении статуса услуги: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private async void LoadRoomsForCleaning()
+        {
+            var rooms = await GetRoomsForCleaningAsync();
+
+            if (rooms.Count > 0 && OrdersItemsControl.ItemsSource != null)
+            {
+                var combinedList = OrdersItemsControl.ItemsSource.Cast<OrderViewModel>().ToList();
+                combinedList.AddRange(rooms);
+                OrdersItemsControl.ItemsSource = combinedList;
+            }
+            else if (rooms.Count > 0)
+            {
+                OrdersItemsControl.ItemsSource = rooms;
+                NoOrdersTextBlock.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private async Task<List<OrderViewModel>> GetRoomsForCleaningAsync()
+        {
+            return await Task.Run(() =>
+            {
+                var rooms = new List<OrderViewModel>();
+
+                using (var conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    // Получаем все комнаты со статусом "Назначен к уборке" (room_status_id = 3) или "На уборке" (room_status_id = 4)
+                    string query = @"
+                        SELECT
+                            r.number AS room_number,
+                            rs.room_status AS status_name
+                        FROM Rooms r
+                        JOIN Room_statuses rs ON r.room_status_id = rs.room_status_id
+                        WHERE r.room_status_id IN (3, 4)
+                        ORDER BY r.number";
+
+                    using (var cmd = new SqlCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int roomNumber = reader.GetInt32(reader.GetOrdinal("room_number"));
+                            string statusName = reader.GetString(reader.GetOrdinal("status_name"));
+
+                            rooms.Add(new OrderViewModel
+                            {
+                                GuestId = 0, // Для комнат без заказа используем 0
+                                RoomNumber = roomNumber,
+                                ServiceName = statusName
+                            });
+                        }
+                    }
+                }
+
+                return rooms;
+            });
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
